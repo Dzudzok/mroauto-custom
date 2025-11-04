@@ -1,4 +1,4 @@
 /* TEST – tylko na stronie produktu */
-.flex-menu ul li a {
-  color: #333 !important;   /* czerwony */
+.flex-informations.processed h1 {
+  color: #ff0000 !important;   /* czerwony */
 }
