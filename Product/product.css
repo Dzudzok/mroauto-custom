@@ -1,4 +1,4 @@
 /* TEST – tylko na stronie produktu */
 .flex-informations.processed h1 {
-  color: #ff0000 !important;   /* czerwony */
+  color: #00ff15 !important;   /* czerwony */
 }
