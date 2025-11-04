@@ -1,0 +1,4 @@
+/* TEST – tylko na stronie produktu */
+.flex-menu ul li a {
+  color: #ff0000 !important;   /* czerwony */
+}
