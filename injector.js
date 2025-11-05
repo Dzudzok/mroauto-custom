@@ -40,12 +40,42 @@
     document.head.appendChild(link);
     console.log('MROAUTO: CSS injected', link.href);
   };
+  // sanitizeHtmlString: parse fragment and return safe body HTML (remove meta CSP inserted outside <head>)
+  const sanitizeHtmlString = (html) => {
+    try {
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(html, 'text/html');
+
+      // Remove meta tags that set Content-Security-Policy (or similar) so they don't appear in body
+      const metas = Array.from(doc.querySelectorAll('meta'));
+      metas.forEach(m => {
+        const http = (m.getAttribute('http-equiv') || '').toLowerCase();
+        const name = (m.getAttribute('name') || '').toLowerCase();
+        if (http.includes('content-security-policy') || name.includes('content-security-policy')) {
+          m.remove();
+        }
+      });
+
+      // Prefer body content if present; otherwise strip meta tags as a fallback
+      if (doc.body && doc.body.innerHTML.trim()) {
+        return doc.body.innerHTML;
+      }
+      // fallback: remove any meta tags from raw HTML
+      return html.replace(/<meta[^>]*>/gi, '');
+    } catch (e) {
+      console.warn('MROAUTO: sanitizeHtmlString failed, using raw HTML', e);
+      return html.replace(/<meta[^>]*>/gi, '');
+    }
+  };
 
   const injectHtml = async (htmlPath, targetSelector, position = 'afterend', waitTimeout = 5000) => {
     if (!htmlPath) return;
     try {
       const res = await fetch(base + htmlPath);
-      const html = await res.text();
+      let html = await res.text();
+
+      // sanitize fragment to avoid injecting <meta http-equiv="Content-Security-Policy"> into body
+      const safeHtml = sanitizeHtmlString(html);
 
       if (targetSelector) {
         const target = await waitFor(targetSelector, waitTimeout);
@@ -53,11 +83,11 @@
           console.warn('MROAUTO: Nie znaleziono targetu dla', htmlPath, targetSelector);
           return;
         }
-        target.insertAdjacentHTML(position, html);
+        target.insertAdjacentHTML(position, safeHtml);
         console.log('MROAUTO: HTML wstrzyknięty do', targetSelector, '(', htmlPath, ')');
       } else {
         // fallback: append to body
-        document.body.insertAdjacentHTML('beforeend', html);
+        document.body.insertAdjacentHTML('beforeend', safeHtml);
         console.log('MROAUTO: HTML wstrzyknięty do body (fallback)', htmlPath);
       }
     } catch (e) {
@@ -126,6 +156,7 @@
       targetSelector: '.flex-search, .search, .results',
       position: 'beforeend'
     }
+
   ];
 
   // --- process rules ---
