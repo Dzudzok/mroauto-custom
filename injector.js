@@ -92,40 +92,8 @@
       // try to insert at the first reasonable container
       targetSelector: '.flex-product-list, .flex-content, .catalog, .products, .flex-products',
       position: 'beforeend'
-    },
-    {
-      name: 'basket',
-      pathIncludes: ['kosik', 'basket', 'cart'],
-      matchSelector: '.basket, .cart, .flex-basket',
-      html: 'Basket/basket.html',
-      css: 'Basket/basket.css',
-      targetSelector: '.basket, .cart, .flex-basket',
-      position: 'beforeend'
-    },
-    {
-      name: 'carselect',
-      pathIncludes: ['carselect', 'car-select'],
-      matchSelector: '.car-select, .flex-car-select',
-      html: 'CarSelect/carselect.html',
-      targetSelector: '.car-select, .flex-car-select',
-      position: 'beforeend'
-    },
-    {
-      name: 'order',
-      pathIncludes: ['order', 'zamowienie', 'objednavka'],
-      matchSelector: '.order, .checkout, .flex-order',
-      html: 'Order/order.html',
-      targetSelector: '.order, .checkout, .flex-order',
-      position: 'beforeend'
-    },
-    {
-      name: 'search',
-      pathIncludes: ['search', 'vyhledat', 'hledani'],
-      matchSelector: '.flex-search, .search, .results',
-      html: 'Search/search.html',
-      targetSelector: '.flex-search, .search, .results',
-      position: 'beforeend'
     }
+
   ];
 
   // --- process rules ---
