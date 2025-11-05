@@ -71,7 +71,13 @@
   const injectHtml = async (htmlPath, targetSelector, position = 'afterend', waitTimeout = 5000) => {
     if (!htmlPath) return;
     try {
-      const res = await fetch(base + htmlPath);
+      const url = base + htmlPath;
+      const res = await fetch(url);
+      if (!res.ok) {
+        console.warn('MROAUTO: fetch zwrócił błąd', res.status, res.statusText, 'dla', url);
+        // don't inject missing pages (e.g. GitHub Pages 404)
+        return;
+      }
       let html = await res.text();
 
       // sanitize fragment to avoid injecting <meta http-equiv="Content-Security-Policy"> into body
