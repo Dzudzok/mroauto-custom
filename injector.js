@@ -215,10 +215,10 @@
     {
       name: 'universal',
       pathIncludes: ['/katalog/univerzalni-dily'],
-      matchSelector: '.universal-parts',
+      matchSelector: '.flex-universal-parts',
       html: 'UniversalParts/universal.html',
       css: 'UniversalParts/universal.css',
-      targetSelector: '.universal-parts',
+      targetSelector: '.flex-universal-parts',
       position: 'beforeend'
     },
     {
@@ -226,15 +226,15 @@
       pathIncludes: ['/clanek/kontakt-mroauto-cz'],
       html: 'Contact/contact.html',
       css: 'Contact/contact.css',
-      targetSelector: '.contact-content',
+      targetSelector: '.flex-content',
       position: 'beforeend'
     },
     {
       name: 'about',
       pathIncludes: ['/clanek/o-nas-cz'],
-      html: 'AboutUs/about.html',
-      css: 'AboutUs/about.css',
-      targetSelector: '.about-content',
+      html: 'AboutUs/aboutus.html',
+      css: 'AboutUs/aboutus.css',
+      targetSelector: '.flex-content',
       position: 'beforeend'
     },
     {
@@ -242,7 +242,7 @@
       pathIncludes: ['/clanek/obchodni-podminky-cz2'],
       html: 'Privacy/privacy.html',
       css: 'Privacy/privacy.css',
-      targetSelector: '.privacy-content',
+      targetSelector: '.flex-content',
       position: 'beforeend'
     },
     {
@@ -250,7 +250,7 @@
       pathIncludes: ['/clanek/platba-cena-doprava-cz'],
       html: 'Shipping/shipping.html',
       css: 'Shipping/shipping.css',
-      targetSelector: '.shipping-content',
+      targetSelector: '.flex-content',
       position: 'beforeend'
     },
     {
@@ -258,7 +258,7 @@
       pathIncludes: ['/clanek/soubory-ke-stazeni-cz'],
       html: 'Downloads/downloads.html',
       css: 'Downloads/downloads.css',
-      targetSelector: '.downloads-content',
+      targetSelector: '.flex-content',
       position: 'beforeend'
     },
     {
@@ -266,7 +266,7 @@
       pathIncludes: ['/akce/'],
       html: 'Actions/actions.html',
       css: 'Actions/actions.css',
-      targetSelector: '.actions-content',
+      targetSelector: '.flex-content',
       position: 'beforeend'
     }
   ];
