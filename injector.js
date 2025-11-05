@@ -280,20 +280,19 @@
     {
       name: 'order',
       pathIncludes: ['/objednavka', '/cs/objednavka'],
-      // opcjonalnie dopasuj po selektorze jeśli dostępny: '.order' lub '.checkout'
-      matchSelector: '.order, .checkout, .mro-order-step',
+      matchSelector: '.flex-registration-step-2',
       html: 'Order/objednavka.html',
       css: 'Order/objednavka.css',
-      targetSelector: '.flex-content, .mro-order-step, body',
+      targetSelector: '.flex-registration-step-2',
       position: 'beforeend'
     },
     {
       name: 'summary',
       pathIncludes: ['/rekapitulace-objednavky'],
-      matchSelector: '.order-summary, .mro-order-step, .summary',
+      matchSelector: '.flex-order-controls',
       html: 'Order/summary.html',
       css: 'Order/summary.css',
-      targetSelector: '.flex-content, .mro-order-step, body',
+      targetSelector: '.flex-order-controls',
       position: 'beforeend'
     },
     {
