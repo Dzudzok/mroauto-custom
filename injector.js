@@ -206,10 +206,10 @@
     {
       name: 'blog',
       pathIncludes: ['/blog'],
-      matchSelector: '.blog-content',
+      matchSelector: '.blog-mainpage',  // sprawdź czy to strona bloga
       html: 'Blog/blog.html',
       css: 'Blog/blog.css',
-      targetSelector: '.blog-content',
+      targetSelector: '.blog-mainpage', // wstrzyknij do znalezionego elementu
       position: 'beforeend'
     },
     {
