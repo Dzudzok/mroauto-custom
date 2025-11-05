@@ -168,6 +168,22 @@
       position: 'beforeend'
     },
     {
+      name: 'product-top',
+      pathIncludes: ['hledani', '/katalog/tecdoc/'],
+      matchSelector: '.flex-product-detail',
+      html: 'Product/top.html',
+      targetSelector: '.flex-product-detail',
+      position: 'afterbegin'
+    },
+    {
+      name: 'product-bottom',
+      pathIncludes: ['hledani', '/katalog/tecdoc/'],
+      matchSelector: '.flex-product-detail',
+      html: 'Product/bottom.html',
+      targetSelector: '.flex-product-detail',
+      position: 'beforeend'
+    },
+    {
       name: 'productlist',
       pathIncludes: ['hledani', '/katalog/tecdoc/'],
       matchSelector: '[id^="ProductItem_"]',  // element z id zaczynającym się od ProductItem_
