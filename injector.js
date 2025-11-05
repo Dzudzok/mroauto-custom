@@ -10,6 +10,15 @@
   // convenience: primary base used for CSS injection (first available)
   const primaryBase = bases[0];
   const path = location.pathname.toLowerCase();
+  
+  // --- helpers for path matching ---
+  const isExactPath = (testPath, allowedPaths) => {
+    return allowedPaths.some(p => p === testPath);
+  };
+
+  const includesPath = (testPath, fragments) => {
+    return fragments.some(p => p && testPath.includes(p));
+  };
 
   // --- waitFor: resolves when selector appears or null on timeout ---
   const waitFor = (selector, timeout = 5000) => {
@@ -131,7 +140,8 @@
   const resources = [
     {
       name: 'homepage',
-      pathIncludes: ['', '/', '/cs'],
+      pathIncludes: ['', '/', '/cs', '/cs/'],
+      isExactPath: true,  // tylko dokładne dopasowanie ścieżki
       matchSelector: null,
       css: 'homepage.css',
       html: 'homepage.html',
@@ -140,36 +150,121 @@
     },
     {
       name: 'product',
-      pathIncludes: ['hledani', 'produkt'],
+      pathIncludes: ['hledani', '/katalog/tecdoc/'],
       matchSelector: '.flex-product-detail',
-      css: 'Product/product.css'
+      css: 'Product/product.css',
+      html: 'Product/product.html',
+      targetSelector: '.flex-product-detail',
+      position: 'beforeend'
     },
     {
       name: 'productlist',
-      pathIncludes: ['productlist', 'produkty', 'kategorie'],
-      matchSelector: '.flex-product-list, .flex-content, .catalog, .products, .flex-products',
-      css: 'ProductList/productlist.css', // optional - add file if you create it
+      pathIncludes: ['hledani', '/katalog/tecdoc/'],
+      matchSelector: '[id^="ProductItem_"]',  // element z id zaczynającym się od ProductItem_
+      css: 'ProductList/productlist.css',
       html: 'ProductList/productlist.html',
-      // try to insert at the first reasonable container
-      targetSelector: '.flex-product-list, .flex-content, .catalog, .products, .flex-products',
+      targetSelector: '.flex-item.catalog-view',
       position: 'beforeend'
     },
-        {
+    {
       name: 'basket',
-      pathIncludes: ['kosik', 'basket', 'cart'],
-      matchSelector: '.basket, .cart, flex-basket',
+      pathIncludes: ['/kosik'],
+      matchSelector: '.basket, .cart, .flex-basket',
       html: 'Basket/basket.html',
       css: 'Basket/basket.css',
       targetSelector: '.basket, .cart, .flex-basket',
       position: 'beforeend'
+    },
+    {
+      name: 'carselect',
+      pathIncludes: ['/katalog/tecdoc/osobni'],
+      matchSelector: '.vehicle-selector, .car-select',
+      html: 'CarSelect/carselect.html',
+      css: 'CarSelect/carselect.css',
+      targetSelector: '.vehicle-selector, .car-select',
+      position: 'beforeend'
+    },
+    {
+      name: 'search',
+      pathIncludes: [],  // na każdej stronie
+      matchSelector: '.flex-smart-search',
+      html: 'Search/search.html',
+      css: 'Search/search.css',
+      targetSelector: '.flex-smart-search-input',
+      position: 'beforeend'
+    },
+    {
+      name: 'blog',
+      pathIncludes: ['/blog'],
+      matchSelector: '.blog-content',
+      html: 'Blog/blog.html',
+      css: 'Blog/blog.css',
+      targetSelector: '.blog-content',
+      position: 'beforeend'
+    },
+    {
+      name: 'universal',
+      pathIncludes: ['/katalog/univerzalni-dily'],
+      matchSelector: '.universal-parts',
+      html: 'UniversalParts/universal.html',
+      css: 'UniversalParts/universal.css',
+      targetSelector: '.universal-parts',
+      position: 'beforeend'
+    },
+    {
+      name: 'contact',
+      pathIncludes: ['/clanek/kontakt-mroauto-cz'],
+      html: 'Contact/contact.html',
+      css: 'Contact/contact.css',
+      targetSelector: '.contact-content',
+      position: 'beforeend'
+    },
+    {
+      name: 'about',
+      pathIncludes: ['/clanek/o-nas-cz'],
+      html: 'AboutUs/about.html',
+      css: 'AboutUs/about.css',
+      targetSelector: '.about-content',
+      position: 'beforeend'
+    },
+    {
+      name: 'privacy',
+      pathIncludes: ['/clanek/obchodni-podminky-cz2'],
+      html: 'Privacy/privacy.html',
+      css: 'Privacy/privacy.css',
+      targetSelector: '.privacy-content',
+      position: 'beforeend'
+    },
+    {
+      name: 'shipping',
+      pathIncludes: ['/clanek/platba-cena-doprava-cz'],
+      html: 'Shipping/shipping.html',
+      css: 'Shipping/shipping.css',
+      targetSelector: '.shipping-content',
+      position: 'beforeend'
+    },
+    {
+      name: 'downloads',
+      pathIncludes: ['/clanek/soubory-ke-stazeni-cz'],
+      html: 'Downloads/downloads.html',
+      css: 'Downloads/downloads.css',
+      targetSelector: '.downloads-content',
+      position: 'beforeend'
+    },
+    {
+      name: 'actions',
+      pathIncludes: ['/akce/'],
+      html: 'Actions/actions.html',
+      css: 'Actions/actions.css',
+      targetSelector: '.actions-content',
+      position: 'beforeend'
     }
-
   ];
 
   // --- process rules ---
   resources.forEach((r) => {
-    // match by pathIncludes OR by selector presence
-    const pathMatch = r.pathIncludes && r.pathIncludes.some(p => p && path.includes(p));
+    // match by pathIncludes (exact or partial) OR by selector presence
+    const pathMatch = r.pathIncludes && (r.isExactPath ? isExactPath(path, r.pathIncludes) : includesPath(path, r.pathIncludes));
     const selectorMatch = r.matchSelector && document.querySelector(r.matchSelector);
 
     if (pathMatch || selectorMatch) {
