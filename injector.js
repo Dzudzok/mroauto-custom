@@ -34,114 +34,21 @@
             resolve(node);
           }
         });
-        observer.observe(document.body, { childList: true, subtree: true });
 
-        setTimeout(() => {
-          observer.disconnect();
-          resolve(null);
-        }, timeout);
+        // start observing for DOM changes and set a timeout fallback
+        observer.observe(document.documentElement || document.body, { childList: true, subtree: true });
+        if (timeout) setTimeout(() => { observer.disconnect(); resolve(null); }, timeout);
       } catch (e) {
-        console.error('MROAUTO: waitFor error', e);
+        // on any exception just resolve null
         resolve(null);
       }
     });
   };
-
-  // --- helpers to inject CSS and HTML ---
-  const injectCss = (href) => {
-    if (!href) return;
-    const link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.href = href.startsWith('http') ? href : primaryBase + href;
-    document.head.appendChild(link);
-    console.log('MROAUTO: CSS injected', link.href);
-  };
-  // sanitizeHtmlString: parse fragment and return safe body HTML (remove meta CSP inserted outside <head>)
-  const sanitizeHtmlString = (html) => {
-    try {
-      const parser = new DOMParser();
-      const doc = parser.parseFromString(html, 'text/html');
-
-      // Remove meta tags that set Content-Security-Policy (or similar) so they don't appear in body
-      const metas = Array.from(doc.querySelectorAll('meta'));
-      metas.forEach(m => {
-        const http = (m.getAttribute('http-equiv') || '').toLowerCase();
-        const name = (m.getAttribute('name') || '').toLowerCase();
-        if (http.includes('content-security-policy') || name.includes('content-security-policy')) {
-          m.remove();
-        }
-      });
-
-      // Prefer body content if present; otherwise strip meta tags as a fallback
-      if (doc.body && doc.body.innerHTML.trim()) {
-        return doc.body.innerHTML;
-      }
-      // fallback: remove any meta tags from raw HTML
-      return html.replace(/<meta[^>]*>/gi, '');
-    } catch (e) {
-      console.warn('MROAUTO: sanitizeHtmlString failed, using raw HTML', e);
-      return html.replace(/<meta[^>]*>/gi, '');
-    }
-  };
-
-  const injectHtml = async (htmlPath, targetSelector, position = 'afterend', waitTimeout = 5000) => {
-    if (!htmlPath) return;
-    try {
-      // Try fetching the HTML fragment from each configured base until one succeeds.
-      let res = null;
-      let triedUrl = null;
-      for (const b of bases) {
-        const url = b + htmlPath;
-        triedUrl = url;
-        try {
-          res = await fetch(url);
-          if (res.ok) {
-            // found it
-            break;
-          }
-          console.warn('MROAUTO: próba fetch', res.status, res.statusText, 'dla', url);
-        } catch (e) {
-          console.warn('MROAUTO: fetch error dla', url, e);
-        }
-        res = null;
-      }
-
-      if (!res || !res.ok) {
-        console.warn('MROAUTO: Nie znaleziono pliku pod żadną z baz dla', htmlPath, 'ostatnia próba:', triedUrl);
-        console.info('MROAUTO: Spróbuj ustawić window.MRO_BASE lub window.MRO_BASES w Tampermonkey przed załadowaniem injector.js');
-        return;
-      }
-
-      let html = await res.text();
-
-      // sanitize fragment to avoid injecting <meta http-equiv="Content-Security-Policy"> into body
-      const safeHtml = sanitizeHtmlString(html);
-
-      if (targetSelector) {
-        const target = await waitFor(targetSelector, waitTimeout);
-        if (!target) {
-          console.warn('MROAUTO: Nie znaleziono targetu dla', htmlPath, targetSelector);
-          return;
-        }
-        target.insertAdjacentHTML(position, safeHtml);
-        console.log('MROAUTO: HTML wstrzyknięty do', targetSelector, '(', htmlPath, ')');
-      } else {
-        // fallback: append to body
-        document.body.insertAdjacentHTML('beforeend', safeHtml);
-        console.log('MROAUTO: HTML wstrzyknięty do body (fallback)', htmlPath);
-      }
-    } catch (e) {
-      console.error('MROAUTO: Błąd ładowania', htmlPath, e);
-    }
-  };
-
-  // --- resource routing table ---
-  // Each rule: name, match by pathIncludes (any), matchSelector (DOM selector to check presence), css, html, targetSelector, position
   const resources = [
     {
       name: 'global',
-      pathIncludes: [],  // puste = wszystkie strony
-      matchSelector: 'body',  // zawsze obecny
+      pathIncludes: [],
+      matchSelector: 'body',
       css: 'global.css',
       html: 'global.html',
       js: 'global.js',
@@ -151,9 +58,10 @@
     {
       name: 'homepage',
       pathIncludes: ['', '/', '/cs', '/cs/'],
-      isExactPath: true,  // tylko dokładne dopasowanie ścieżki
+      isExactPath: true,
       matchSelector: null,
       css: 'HomePage/homepage.css',
+      js: 'HomePage/homepage.js',
       html: 'HomePage/homepage.html',
       targetSelector: '.flex-selected-categories-container',
       position: 'afterend'
@@ -163,6 +71,7 @@
       pathIncludes: ['hledani', '/katalog/tecdoc/'],
       matchSelector: '.flex-product-detail',
       css: 'Product/product.css',
+      js: 'Product/product.js',
       html: 'Product/product.html',
       targetSelector: '.flex-product-detail',
       position: 'beforeend'
@@ -186,8 +95,9 @@
     {
       name: 'productlist',
       pathIncludes: ['hledani', '/katalog/tecdoc/'],
-      matchSelector: '[id^="ProductItem_"]',  // element z id zaczynającym się od ProductItem_
+      matchSelector: '[id^="ProductItem_"]',
       css: 'ProductList/productlist.css',
+      js: 'ProductList/productlist.js',
       html: 'ProductList/productlist.html',
       targetSelector: '.flex-item.catalog-view',
       position: 'beforeend'
@@ -196,6 +106,7 @@
       name: 'basket',
       pathIncludes: ['/kosik'],
       matchSelector: '.basket, .cart, .flex-basket',
+      js: 'Basket/basket.js',
       html: 'Basket/basket.html',
       css: 'Basket/basket.css',
       targetSelector: '.basket, .cart, .flex-basket',
@@ -204,10 +115,11 @@
     {
       name: 'carselect',
       pathIncludes: ['/katalog/tecdoc/osobni'],
-      matchSelector: '.flex-tecdoc-manufacturers',
+      matchSelector: '.vehicle-selector, .car-select, .flex-tecdoc-manufacturers',
+      js: 'CarSelect/carselect.js',
       html: 'CarSelect/carselect.html',
       css: 'CarSelect/carselect.css',
-      targetSelector: '.flex-tecdoc-manufacturers',
+      targetSelector: '.vehicle-selector, .car-select, .flex-tecdoc-manufacturers',
       position: 'beforeend'
     },
     {
@@ -230,8 +142,9 @@
     },
     {
       name: 'search',
-      pathIncludes: [],  // na każdej stronie
+      pathIncludes: [],  // on every page
       matchSelector: '.flex-smart-search',
+      js: 'Search/search.js',
       html: 'Search/search.html',
       css: 'Search/search.css',
       targetSelector: '.flex-smart-search-input',
@@ -240,16 +153,18 @@
     {
       name: 'blog',
       pathIncludes: ['/blog'],
-      matchSelector: '.blog-mainpage',  // sprawdź czy to strona bloga
+      matchSelector: '.blog-mainpage',
+      js: 'Blog/blog.js',
       html: 'Blog/blog.html',
       css: 'Blog/blog.css',
-      targetSelector: '.blog-mainpage', // wstrzyknij do znalezionego elementu
+      targetSelector: '.blog-mainpage',
       position: 'beforeend'
     },
     {
       name: 'universal',
       pathIncludes: ['/katalog/univerzalni-dily'],
       matchSelector: '.flex-universal-parts',
+      js: 'UniversalParts/universal.js',
       html: 'UniversalParts/universal.html',
       css: 'UniversalParts/universal.css',
       targetSelector: '.flex-universal-parts',
@@ -258,6 +173,7 @@
     {
       name: 'contact',
       pathIncludes: ['/clanek/kontakt-mroauto-cz'],
+      js: 'Contact/contact.js',
       html: 'Contact/contact.html',
       css: 'Contact/contact.css',
       targetSelector: '.flex-content',
@@ -266,6 +182,7 @@
     {
       name: 'about',
       pathIncludes: ['/clanek/o-nas-cz'],
+      js: 'AboutUs/aboutus.js',
       html: 'AboutUs/aboutus.html',
       css: 'AboutUs/aboutus.css',
       targetSelector: '.flex-content',
@@ -274,6 +191,7 @@
     {
       name: 'privacy',
       pathIncludes: ['/clanek/obchodni-podminky-cz2'],
+      js: 'Privacy/privacy.js',
       html: 'Privacy/privacy.html',
       css: 'Privacy/privacy.css',
       targetSelector: '.flex-content',
@@ -282,6 +200,7 @@
     {
       name: 'shipping',
       pathIncludes: ['/clanek/platba-cena-doprava-cz'],
+      js: 'Shipping/shipping.js',
       html: 'Shipping/shipping.html',
       css: 'Shipping/shipping.css',
       targetSelector: '.flex-content',
@@ -290,6 +209,7 @@
     {
       name: 'downloads',
       pathIncludes: ['/clanek/soubory-ke-stazeni-cz'],
+      js: 'Downloads/downloads.js',
       html: 'Downloads/downloads.html',
       css: 'Downloads/downloads.css',
       targetSelector: '.flex-content',
@@ -298,24 +218,27 @@
     {
       name: 'order',
       pathIncludes: ['/objednavka', '/cs/objednavka'],
-      matchSelector: '.flex-registration-step-2',
+      matchSelector: '.order, .checkout, .mro-order-step, .flex-registration-step-2',
+      js: 'Order/objednavka.js',
       html: 'Order/objednavka.html',
       css: 'Order/objednavka.css',
-      targetSelector: '.flex-registration-step-2',
+      targetSelector: '.flex-content, .mro-order-step, body, .flex-registration-step-2',
       position: 'beforeend'
     },
     {
       name: 'summary',
       pathIncludes: ['/rekapitulace-objednavky'],
-      matchSelector: '.flex-order-controls',
+      matchSelector: '.order-summary, .mro-order-step, .summary, .flex-order-controls',
+      js: 'Order/summary.js',
       html: 'Order/summary.html',
       css: 'Order/summary.css',
-      targetSelector: '.flex-order-controls',
+      targetSelector: '.flex-content, .mro-order-step, body, .flex-order-controls',
       position: 'beforeend'
     },
     {
       name: 'actions',
       pathIncludes: ['/akce/'],
+      js: 'Actions/actions.js',
       html: 'Actions/actions.html',
       css: 'Actions/actions.css',
       targetSelector: '.flex-content',
