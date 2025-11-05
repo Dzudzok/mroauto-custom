@@ -1,7 +1,14 @@
 /* injector.js – finalna wersja testowa */
 (() => {
-  // Base URL where fragments and CSS are hosted. For local testing override to 'http://localhost:8000/'.
-  const base = 'https://dzudzok.github.io/mroauto-custom/';
+  // Base URL(s) where fragments and CSS are hosted. For local testing override via Tampermonkey by
+  // setting window.MRO_BASE (string) or window.MRO_BASES (array of strings) before this script runs.
+  // Default: GitHub Pages hosting for this repo.
+  const defaultBase = 'https://dzudzok.github.io/mroauto-custom/';
+  const bases = (Array.isArray(window.MRO_BASES) && window.MRO_BASES.length)
+    ? window.MRO_BASES
+    : [(window.MRO_BASE || defaultBase)];
+  // convenience: primary base used for CSS injection (first available)
+  const primaryBase = bases[0];
   const path = location.pathname.toLowerCase();
 
   // --- waitFor: resolves when selector appears or null on timeout ---
@@ -36,7 +43,7 @@
     if (!href) return;
     const link = document.createElement('link');
     link.rel = 'stylesheet';
-    link.href = href.startsWith('http') ? href : base + href;
+    link.href = href.startsWith('http') ? href : primaryBase + href;
     document.head.appendChild(link);
     console.log('MROAUTO: CSS injected', link.href);
   };
@@ -71,13 +78,31 @@
   const injectHtml = async (htmlPath, targetSelector, position = 'afterend', waitTimeout = 5000) => {
     if (!htmlPath) return;
     try {
-      const url = base + htmlPath;
-      const res = await fetch(url);
-      if (!res.ok) {
-        console.warn('MROAUTO: fetch zwrócił błąd', res.status, res.statusText, 'dla', url);
-        // don't inject missing pages (e.g. GitHub Pages 404)
+      // Try fetching the HTML fragment from each configured base until one succeeds.
+      let res = null;
+      let triedUrl = null;
+      for (const b of bases) {
+        const url = b + htmlPath;
+        triedUrl = url;
+        try {
+          res = await fetch(url);
+          if (res.ok) {
+            // found it
+            break;
+          }
+          console.warn('MROAUTO: próba fetch', res.status, res.statusText, 'dla', url);
+        } catch (e) {
+          console.warn('MROAUTO: fetch error dla', url, e);
+        }
+        res = null;
+      }
+
+      if (!res || !res.ok) {
+        console.warn('MROAUTO: Nie znaleziono pliku pod żadną z baz dla', htmlPath, 'ostatnia próba:', triedUrl);
+        console.info('MROAUTO: Spróbuj ustawić window.MRO_BASE lub window.MRO_BASES w Tampermonkey przed załadowaniem injector.js');
         return;
       }
+
       let html = await res.text();
 
       // sanitize fragment to avoid injecting <meta http-equiv="Content-Security-Policy"> into body
@@ -127,6 +152,15 @@
       html: 'ProductList/productlist.html',
       // try to insert at the first reasonable container
       targetSelector: '.flex-product-list, .flex-content, .catalog, .products, .flex-products',
+      position: 'beforeend'
+    },
+        {
+      name: 'basket',
+      pathIncludes: ['kosik', 'basket', 'cart'],
+      matchSelector: '.basket, .cart, flex-basket',
+      html: 'Basket/basket.html',
+      css: 'Basket/basket.css',
+      targetSelector: '.basket, .cart, .flex-basket',
       position: 'beforeend'
     }
 
