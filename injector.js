@@ -139,12 +139,22 @@
   // Each rule: name, match by pathIncludes (any), matchSelector (DOM selector to check presence), css, html, targetSelector, position
   const resources = [
     {
+      name: 'global',
+      pathIncludes: [],  // puste = wszystkie strony
+      matchSelector: 'body',  // zawsze obecny
+      css: 'global.css',
+      html: 'global.html',
+      js: 'global.js',
+      targetSelector: 'body',
+      position: 'afterbegin'
+    },
+    {
       name: 'homepage',
       pathIncludes: ['', '/', '/cs', '/cs/'],
       isExactPath: true,  // tylko dokładne dopasowanie ścieżki
       matchSelector: null,
-      css: 'homepage.css',
-      html: 'homepage.html',
+      css: 'HomePage/homepage.css',
+      html: 'HomePage/homepage.html',
       targetSelector: '.flex-selected-categories-container',
       position: 'afterend'
     },
