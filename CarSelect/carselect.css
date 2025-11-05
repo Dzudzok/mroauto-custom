@@ -1,0 +1,11 @@
+.mro-car-select {
+  /* Twoje style dla wyboru samochodu */
+  background-color: #e9e9e9;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-family: Arial, sans-serif;
+  color: #333;
+  text-align: center;
+  line-height: 1.5;
+}
