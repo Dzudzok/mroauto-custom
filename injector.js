@@ -23,7 +23,6 @@
       link.rel = 'stylesheet';
       link.href = (href.startsWith('http') ? href : primaryBase + href);
       document.head.appendChild(link);
-      console.info('MROAUTO: injected CSS', link.href);
     } catch (e) {
       console.warn('MROAUTO: injectCss failed', href, e);
     }
@@ -63,7 +62,6 @@
             if (!el) return;
             try {
               el.insertAdjacentHTML(position, safe);
-              console.info('MROAUTO: injected HTML', url, 'into', sel);
             } catch (e) {
               console.warn('MROAUTO: failed to insert HTML into', sel, e);
             }
@@ -85,7 +83,6 @@
       script.defer = false;
       script.async = false;
       document.body.appendChild(script);
-      console.info('MROAUTO: injected JS', script.src);
     } catch (e) {
       console.warn('MROAUTO: injectJs failed', src, e);
     }
