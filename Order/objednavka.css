@@ -1,0 +1,7 @@
+/* Styles for order (checkout) step 2 */
+.mro-order-step.objednavka {
+  padding: 16px;
+  background: #fff;
+  border: 1px solid #eee;
+}
+.mro-order-form { max-width: 800px; margin: 0 auto; }

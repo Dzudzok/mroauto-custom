@@ -262,6 +262,25 @@
       position: 'beforeend'
     },
     {
+      name: 'order',
+      pathIncludes: ['/objednavka', '/cs/objednavka'],
+      // opcjonalnie dopasuj po selektorze jeśli dostępny: '.order' lub '.checkout'
+      matchSelector: '.order, .checkout, .mro-order-step',
+      html: 'Order/objednavka.html',
+      css: 'Order/objednavka.css',
+      targetSelector: '.flex-content, .mro-order-step, body',
+      position: 'beforeend'
+    },
+    {
+      name: 'summary',
+      pathIncludes: ['/rekapitulace-objednavky'],
+      matchSelector: '.order-summary, .mro-order-step, .summary',
+      html: 'Order/summary.html',
+      css: 'Order/summary.css',
+      targetSelector: '.flex-content, .mro-order-step, body',
+      position: 'beforeend'
+    },
+    {
       name: 'actions',
       pathIncludes: ['/akce/'],
       html: 'Actions/actions.html',
