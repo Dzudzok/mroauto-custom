@@ -204,10 +204,28 @@
     {
       name: 'carselect',
       pathIncludes: ['/katalog/tecdoc/osobni'],
-      matchSelector: '.vehicle-selector, .car-select',
+      matchSelector: '.flex-tecdoc-manufacturers',
       html: 'CarSelect/carselect.html',
       css: 'CarSelect/carselect.css',
-      targetSelector: '.vehicle-selector, .car-select',
+      targetSelector: '.flex-tecdoc-manufacturers',
+      position: 'beforeend'
+    },
+    {
+      name: 'carselectmodels',
+      pathIncludes: ['/katalog/tecdoc/osobni'],
+      matchSelector: '.flex-tecdoc-models',
+      html: 'CarSelect/carselectmodels.html',
+      css: 'CarSelect/carselectmodels.css',
+      targetSelector: '.flex-tecdoc-models',
+      position: 'beforeend'
+    },
+    {
+      name: 'carselectengines',
+      pathIncludes: ['/katalog/tecdoc/osobni'],
+      matchSelector: '.flex-tecdoc-engines',
+      html: 'CarSelect/carselectengines.html',
+      css: 'CarSelect/carselectengines.css',
+      targetSelector: '.flex-tecdoc-engines',
       position: 'beforeend'
     },
     {
