@@ -253,25 +253,6 @@ document.querySelectorAll(".flex-delivery-time-item").forEach(firstItem => {
 
 // <!-- Product description -->
 (function() {
-    // Use global helper if available, otherwise define locally
-    const waitForElement = window.MRO_HELPERS?.waitForElement || function(selector, timeout = 5000) {
-        return new Promise((resolve) => {
-            const el = document.querySelector(selector);
-            if (el) return resolve(el);
-
-            const observer = new MutationObserver(() => {
-                const node = document.querySelector(selector);
-                if (node) {
-                    observer.disconnect();
-                    resolve(node);
-                }
-            });
-
-            observer.observe(document.documentElement, { childList: true, subtree: true });
-            setTimeout(() => { observer.disconnect(); resolve(null); }, timeout);
-        });
-    };
-
     function formatListText(container = document) {
         container.querySelectorAll('div.flex-oe-numbers-list p:not(.processed)').forEach(p => {
             const text = p.textContent.trim();
@@ -324,25 +305,21 @@ document.querySelectorAll(".flex-delivery-time-item").forEach(firstItem => {
     }
 
     // Main initialization
-    async function init() {
-        // Wait for one of the target containers to appear
-        const found = await Promise.race([
-            waitForElement('div.flex-oe-numbers-list'),
-            waitForElement('div.flex-car-applications-list')
-        ]);
+    function init() {
+        // Function to run formatting
+        const runFormatting = () => {
+            formatListText();
+            attachToggleEvents();
+        };
 
-        if (!found) {
-            console.log('MROAUTO: Product description containers not found, skipping formatting');
-            return;
+        // Try to run immediately if DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', runFormatting);
+        } else {
+            runFormatting();
         }
 
-        console.log('MROAUTO: Product.js - Description formatting initialized');
-
-        // Run initial formatting
-        formatListText();
-        attachToggleEvents();
-
-        // Setup observer for dynamic content
+        // Setup observer for dynamic content - ALWAYS run this
         const observer = new MutationObserver((mutations) => {
             mutations.forEach(mutation => {
                 if (mutation.addedNodes.length) {
@@ -360,6 +337,8 @@ document.querySelectorAll(".flex-delivery-time-item").forEach(firstItem => {
             childList: true,
             subtree: true
         });
+
+        console.log('MROAUTO: Product.js - Description formatting initialized');
     }
 
     // Call init
