@@ -1,1 +1,35 @@
-<div class="mro-product-list"></div>
+<div class="filter-container">
+    <button id="openFiltersBtn">Filtry</button>
+
+    <!-- Modal z filtrami -->
+    <div id="filtersModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Wybierz filtry</h2>
+                <button class="close-modal" id="closeModalBtn">×</button>
+            </div>
+
+            <!-- Sekcja: Producenci -->
+            <div class="filter-section">
+                <h3>Producenci</h3>
+                <div class="filter-options" id="manufacturersList">
+                    <!-- Dynamicznie wypełniane -->
+                </div>
+            </div>
+
+            <!-- Sekcja: Inne parametry -->
+            <div class="filter-section">
+                <h3>Inne parametry</h3>
+                <div class="filter-options" id="otherParamsList">
+                    <!-- Dynamicznie wypełniane -->
+                </div>
+            </div>
+
+            <!-- Przyciski akcji -->
+            <div class="modal-actions">
+                <button id="clearFiltersBtn">Zrušit filtry</button>
+                <button id="applyFiltersBtn">Filtrovat</button>
+            </div>
+        </div>
+    </div>
+</div>
