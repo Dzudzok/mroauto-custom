@@ -168,6 +168,16 @@
       position: 'beforeend'
     },
     {
+      name: 'productlistsearch', // tylko na strankach z lista produktw bez auta
+      pathIncludes: ['hledani', '/katalog/tecdoc/'],
+      matchSelector: '[id^="ProductItem_"]',
+      css: 'ProductListSearch/productlistsearch.css',
+      html: 'ProductListSearch/productlistsearch.html',
+      js: 'ProductListSearch/productlistsearch.js',
+      targetSelector: '.flex-item.catalog-view',
+      position: 'beforeend'
+    },
+    {
       name: 'basket',
       pathIncludes: ['/kosik'],
       matchSelector: '.basket, .cart, .flex-basket',

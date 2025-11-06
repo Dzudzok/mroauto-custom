@@ -1,0 +1,9 @@
+.flex-checkbox-common input:checked ~ .checkmark {
+    background-color: var(--check-color);
+    border-radius: 50%;
+}
+
+.checkmark-products {
+    background-color: #ffffff;
+    border-radius: 50%;
+} 
