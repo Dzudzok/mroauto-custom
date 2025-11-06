@@ -1,5 +1,5 @@
 .flex-checkbox-common input:checked ~ .checkmark {
-    background-color: #00b118;
+    background-color: var(--check-color);
     border-radius: 50%;
 }
 

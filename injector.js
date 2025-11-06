@@ -158,7 +158,7 @@
       position: 'beforeend'
     },
     {
-      name: 'productlist',
+      name: 'productlist', // tylko na strankach s obrazem autem po stromie tecdoc
       pathIncludes: ['hledani', '/katalog/tecdoc/'],
       matchSelector: ['[id^="ProductItem_"]', '.flex-tecdoc-vehicle-info-box'],
       css: 'ProductList/productlist.css',
