@@ -1,3 +1,36 @@
+// <!-- Global Helper Functions -->
+window.MRO_HELPERS = window.MRO_HELPERS || {};
+
+// Universal function to wait for DOM elements
+window.MRO_HELPERS.waitForElement = function(selector, timeout = 5000) {
+    return new Promise((resolve) => {
+        const el = document.querySelector(selector);
+        if (el) return resolve(el);
+
+        const observer = new MutationObserver(() => {
+            const node = document.querySelector(selector);
+            if (node) {
+                observer.disconnect();
+                resolve(node);
+            }
+        });
+
+        observer.observe(document.documentElement, { childList: true, subtree: true });
+        setTimeout(() => { observer.disconnect(); resolve(null); }, timeout);
+    });
+};
+
+// Check if DOM is ready
+window.MRO_HELPERS.onReady = function(callback) {
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', callback);
+    } else {
+        callback();
+    }
+};
+
+console.log('MROAUTO: Global helpers loaded');
+
 // <!-- Global manufacturer logos updater -->
 (function($) {
     const logoIds = {

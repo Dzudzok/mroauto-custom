@@ -1,11 +1,34 @@
 // <!-- Modern delivery box -->
 (function () {
-  if (!document.querySelector(".flex-product-detail")) return;
-  
-  const isNotLoggedIn = document.querySelector(".flex-login-form");
-  if (!isNotLoggedIn) return;
+  // Helper function to wait for element
+  function waitForElement(selector, timeout = 5000) {
+    return new Promise((resolve) => {
+      const el = document.querySelector(selector);
+      if (el) return resolve(el);
 
-  const style = document.createElement("style");
+      const observer = new MutationObserver(() => {
+        const node = document.querySelector(selector);
+        if (node) {
+          observer.disconnect();
+          resolve(node);
+        }
+      });
+
+      observer.observe(document.documentElement, { childList: true, subtree: true });
+      setTimeout(() => { observer.disconnect(); resolve(null); }, timeout);
+    });
+  }
+
+  // Main initialization function
+  async function init() {
+    // Wait for product detail page to load
+    const productDetail = await waitForElement(".flex-product-detail");
+    if (!productDetail) return;
+    
+    const isNotLoggedIn = document.querySelector(".flex-login-form");
+    if (!isNotLoggedIn) return;
+
+    const style = document.createElement("style");
   style.textContent = `
     .modern-delivery-box {
       border-radius: 12px;
@@ -217,10 +240,15 @@ document.querySelectorAll(".flex-delivery-time-item").forEach(firstItem => {
     wrapper.style.maxHeight = firstItem.scrollHeight + "px";
   }
 });
+  }
+
+  // Call init function
+  init();
 })();
 
 
 // <!-- Product description -->
+(function() {
 function formatListText(container = document) {
     container.querySelectorAll('div.flex-oe-numbers-list p:not(.processed)').forEach(p => {
         const text = p.textContent.trim();
@@ -294,3 +322,4 @@ observer.observe(document.body, {
     childList: true,
     subtree: true
 });
+})();
