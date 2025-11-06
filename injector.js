@@ -164,7 +164,7 @@
       css: 'ProductList/productlist.css',
       html: 'ProductList/productlist.html',
       js: 'ProductList/productlist.js',
-      targetSelector: '.flex-general',
+      targetSelector: '.flex-item.catalog-view',
       position: 'beforeend'
     },
     {
