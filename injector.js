@@ -316,9 +316,23 @@
 
   resources.forEach((r) => {
     const pathMatch = r.pathIncludes && (r.isExactPath ? isExactPath(path, r.pathIncludes) : includesPath(path, r.pathIncludes));
-    const selectorMatch = r.matchSelector && document.querySelector(r.matchSelector);
+    
+    // Handle matchSelector as array or string
+    let selectorMatch = false;
+    if (r.matchSelector) {
+      if (Array.isArray(r.matchSelector)) {
+        selectorMatch = r.matchSelector.some(sel => document.querySelector(sel));
+      } else {
+        selectorMatch = !!document.querySelector(r.matchSelector);
+      }
+    }
 
-    if (pathMatch || selectorMatch) {
+    // Use AND logic if both path and selector defined, OR if only one is defined
+    const shouldInject = (r.pathIncludes && r.matchSelector) 
+      ? (pathMatch && selectorMatch)  // Both must match
+      : (pathMatch || selectorMatch);  // At least one must match
+
+    if (shouldInject) {
       if (r.css) injectCss(r.css);
       if (r.html) {
         injectHtml(r.html, r.targetSelector, r.position || 'afterend', 7000);
