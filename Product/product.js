@@ -1,7 +1,7 @@
 // <!-- Modern delivery box -->
 (function () {
-  // Helper function to wait for element
-  function waitForElement(selector, timeout = 5000) {
+  // Use global helper if available, otherwise define locally
+  const waitForElement = window.MRO_HELPERS?.waitForElement || function(selector, timeout = 5000) {
     return new Promise((resolve) => {
       const el = document.querySelector(selector);
       if (el) return resolve(el);
@@ -17,13 +17,17 @@
       observer.observe(document.documentElement, { childList: true, subtree: true });
       setTimeout(() => { observer.disconnect(); resolve(null); }, timeout);
     });
-  }
+  };
 
   // Main initialization function
   async function init() {
     // Wait for product detail page to load
     const productDetail = await waitForElement(".flex-product-detail");
-    if (!productDetail) return;
+    if (!productDetail) {
+      console.log('MROAUTO: Product detail not found, skipping modern delivery box');
+      return;
+    }
+    console.log('MROAUTO: Product.js - Modern delivery box initialized');
     
     const isNotLoggedIn = document.querySelector(".flex-login-form");
     if (!isNotLoggedIn) return;
@@ -249,77 +253,115 @@ document.querySelectorAll(".flex-delivery-time-item").forEach(firstItem => {
 
 // <!-- Product description -->
 (function() {
-function formatListText(container = document) {
-    container.querySelectorAll('div.flex-oe-numbers-list p:not(.processed)').forEach(p => {
-        const text = p.textContent.trim();
-        if (text) {
-            const items = text.split(',').map(item => item.trim()).filter(item => item);
-            const ul = document.createElement('ul');
-            ul.classList.add('flex-oe-numbers-list-items');
+    // Use global helper if available, otherwise define locally
+    const waitForElement = window.MRO_HELPERS?.waitForElement || function(selector, timeout = 5000) {
+        return new Promise((resolve) => {
+            const el = document.querySelector(selector);
+            if (el) return resolve(el);
 
-            items.forEach(item => {
-                const li = document.createElement('li');
-                li.textContent = item;
-                ul.appendChild(li);
-            });
-
-            p.innerHTML = '';
-            p.appendChild(ul);
-            p.classList.add('processed');
-        }
-    });
-
-    container.querySelectorAll('div.flex-car-applications-list p:not(.processed)').forEach(p => {
-        const text = p.textContent.trim();
-        if (text) {
-            const items = text.split(',').map(item => item.trim()).filter(item => item);
-            const ul = document.createElement('ul');
-            ul.classList.add('flex-car-applications-list-items');
-
-            items.forEach(item => {
-                const li = document.createElement('li');
-                li.textContent = item;
-                ul.appendChild(li);
-            });
-
-            p.innerHTML = '';
-            p.appendChild(ul);
-            p.classList.add('processed');
-        }
-    });
-}
-
-function attachToggleEvents(container = document) {
-    container.querySelectorAll('div.flex-car-applications-list h3, div.flex-oe-numbers-list h3').forEach(header => {
-        if (!header.classList.contains('event-attached')) {
-            header.addEventListener('click', () => {
-                header.classList.toggle('active');
-            });
-            header.classList.add('event-attached');
-        }
-    });
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-    formatListText();
-    attachToggleEvents();
-});
-
-const observer = new MutationObserver((mutations) => {
-    mutations.forEach(mutation => {
-        if (mutation.addedNodes.length) {
-            mutation.addedNodes.forEach(node => {
-                if (node.nodeType === 1) {
-                    formatListText(node);
-                    attachToggleEvents(node);
+            const observer = new MutationObserver(() => {
+                const node = document.querySelector(selector);
+                if (node) {
+                    observer.disconnect();
+                    resolve(node);
                 }
             });
-        }
-    });
-});
 
-observer.observe(document.body, {
-    childList: true,
-    subtree: true
-});
+            observer.observe(document.documentElement, { childList: true, subtree: true });
+            setTimeout(() => { observer.disconnect(); resolve(null); }, timeout);
+        });
+    };
+
+    function formatListText(container = document) {
+        container.querySelectorAll('div.flex-oe-numbers-list p:not(.processed)').forEach(p => {
+            const text = p.textContent.trim();
+            if (text) {
+                const items = text.split(',').map(item => item.trim()).filter(item => item);
+                const ul = document.createElement('ul');
+                ul.classList.add('flex-oe-numbers-list-items');
+
+                items.forEach(item => {
+                    const li = document.createElement('li');
+                    li.textContent = item;
+                    ul.appendChild(li);
+                });
+
+                p.innerHTML = '';
+                p.appendChild(ul);
+                p.classList.add('processed');
+            }
+        });
+
+        container.querySelectorAll('div.flex-car-applications-list p:not(.processed)').forEach(p => {
+            const text = p.textContent.trim();
+            if (text) {
+                const items = text.split(',').map(item => item.trim()).filter(item => item);
+                const ul = document.createElement('ul');
+                ul.classList.add('flex-car-applications-list-items');
+
+                items.forEach(item => {
+                    const li = document.createElement('li');
+                    li.textContent = item;
+                    ul.appendChild(li);
+                });
+
+                p.innerHTML = '';
+                p.appendChild(ul);
+                p.classList.add('processed');
+            }
+        });
+    }
+
+    function attachToggleEvents(container = document) {
+        container.querySelectorAll('div.flex-car-applications-list h3, div.flex-oe-numbers-list h3').forEach(header => {
+            if (!header.classList.contains('event-attached')) {
+                header.addEventListener('click', () => {
+                    header.classList.toggle('active');
+                });
+                header.classList.add('event-attached');
+            }
+        });
+    }
+
+    // Main initialization
+    async function init() {
+        // Wait for one of the target containers to appear
+        const found = await Promise.race([
+            waitForElement('div.flex-oe-numbers-list'),
+            waitForElement('div.flex-car-applications-list')
+        ]);
+
+        if (!found) {
+            console.log('MROAUTO: Product description containers not found, skipping formatting');
+            return;
+        }
+
+        console.log('MROAUTO: Product.js - Description formatting initialized');
+
+        // Run initial formatting
+        formatListText();
+        attachToggleEvents();
+
+        // Setup observer for dynamic content
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach(mutation => {
+                if (mutation.addedNodes.length) {
+                    mutation.addedNodes.forEach(node => {
+                        if (node.nodeType === 1) {
+                            formatListText(node);
+                            attachToggleEvents(node);
+                        }
+                    });
+                }
+            });
+        });
+
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
+    }
+
+    // Call init
+    init();
 })();
