@@ -160,7 +160,7 @@
     {
       name: 'productlist',
       pathIncludes: ['hledani', '/katalog/tecdoc/'],
-      matchSelector: ['[id^="ProductItem_"]', '.vehicle-image'],
+      matchSelector: '.vehicle-image',
       css: 'ProductList/productlist.css',
       html: 'ProductList/productlist.html',
       js: 'ProductList/productlist.js',
