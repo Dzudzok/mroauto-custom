@@ -315,7 +315,8 @@
   ];
 
   resources.forEach((r) => {
-    const pathMatch = r.pathIncludes && (r.isExactPath ? isExactPath(path, r.pathIncludes) : includesPath(path, r.pathIncludes));
+    const hasPathCondition = r.pathIncludes && r.pathIncludes.length > 0;
+    const pathMatch = hasPathCondition && (r.isExactPath ? isExactPath(path, r.pathIncludes) : includesPath(path, r.pathIncludes));
     
     // Handle matchSelector as array or string
     let selectorMatch = false;
@@ -328,7 +329,7 @@
     }
 
     // Use AND logic if both path and selector defined, OR if only one is defined
-    const shouldInject = (r.pathIncludes && r.matchSelector) 
+    const shouldInject = (hasPathCondition && r.matchSelector) 
       ? (pathMatch && selectorMatch)  // Both must match
       : (pathMatch || selectorMatch);  // At least one must match
 
