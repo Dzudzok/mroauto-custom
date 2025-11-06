@@ -116,6 +116,7 @@
       matchSelector: 'body',
       css: 'global.css',
       html: 'global.html',
+      js: 'global.js',
       targetSelector: 'body',
       position: 'afterbegin'
     },
