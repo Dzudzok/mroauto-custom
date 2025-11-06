@@ -160,7 +160,7 @@
     {
       name: 'productlist',
       pathIncludes: ['hledani', '/katalog/tecdoc/'],
-      matchSelector: '[id^="ProductItem_"], .flex-tecdoc-vehicle-info-box',
+      matchSelector: ['[id^="ProductItem_"]', '.flex-tecdoc-vehicle-info-box'],
       css: 'ProductList/productlist.css',
       html: 'ProductList/productlist.html',
       js: 'ProductList/productlist.js',
@@ -322,7 +322,8 @@
     let selectorMatch = false;
     if (r.matchSelector) {
       if (Array.isArray(r.matchSelector)) {
-        selectorMatch = r.matchSelector.some(sel => document.querySelector(sel));
+        // For arrays: use .every() if ALL selectors must exist, .some() if ANY is enough
+        selectorMatch = r.matchSelector.every(sel => document.querySelector(sel));
       } else {
         selectorMatch = !!document.querySelector(r.matchSelector);
       }
