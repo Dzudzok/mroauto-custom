@@ -1,3 +1,4 @@
+// <!-- Global manufacturer logos updater -->
 (function($) {
     const logoIds = {
         "a.b.s.": "370258",

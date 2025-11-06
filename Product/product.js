@@ -1,3 +1,4 @@
+// <!-- Modern delivery box -->
 (function () {
   if (!document.querySelector(".flex-product-detail")) return;
   
@@ -217,3 +218,79 @@ document.querySelectorAll(".flex-delivery-time-item").forEach(firstItem => {
   }
 });
 })();
+
+
+// <!-- Product description -->
+function formatListText(container = document) {
+    container.querySelectorAll('div.flex-oe-numbers-list p:not(.processed)').forEach(p => {
+        const text = p.textContent.trim();
+        if (text) {
+            const items = text.split(',').map(item => item.trim()).filter(item => item);
+            const ul = document.createElement('ul');
+            ul.classList.add('flex-oe-numbers-list-items');
+
+            items.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = item;
+                ul.appendChild(li);
+            });
+
+            p.innerHTML = '';
+            p.appendChild(ul);
+            p.classList.add('processed');
+        }
+    });
+
+    container.querySelectorAll('div.flex-car-applications-list p:not(.processed)').forEach(p => {
+        const text = p.textContent.trim();
+        if (text) {
+            const items = text.split(',').map(item => item.trim()).filter(item => item);
+            const ul = document.createElement('ul');
+            ul.classList.add('flex-car-applications-list-items');
+
+            items.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = item;
+                ul.appendChild(li);
+            });
+
+            p.innerHTML = '';
+            p.appendChild(ul);
+            p.classList.add('processed');
+        }
+    });
+}
+
+function attachToggleEvents(container = document) {
+    container.querySelectorAll('div.flex-car-applications-list h3, div.flex-oe-numbers-list h3').forEach(header => {
+        if (!header.classList.contains('event-attached')) {
+            header.addEventListener('click', () => {
+                header.classList.toggle('active');
+            });
+            header.classList.add('event-attached');
+        }
+    });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    formatListText();
+    attachToggleEvents();
+});
+
+const observer = new MutationObserver((mutations) => {
+    mutations.forEach(mutation => {
+        if (mutation.addedNodes.length) {
+            mutation.addedNodes.forEach(node => {
+                if (node.nodeType === 1) {
+                    formatListText(node);
+                    attachToggleEvents(node);
+                }
+            });
+        }
+    });
+});
+
+observer.observe(document.body, {
+    childList: true,
+    subtree: true
+});
