@@ -9,7 +9,6 @@
   const REQUIRE_B2B   = true;
   const REQUIRE_FULL  = true;
   const CELLS         = 17;
-  const COMPACT_BP = 540; // px – od tej szerokości w dół przechodzimy w tryb compact
   const REDIRECT = vin => 'https://www.mroauto.cz/cs/katalog/yq-katalog/vin/' + encodeURIComponent(vin);
   const LOGIN_URL = 'https://www.mroauto.cz/cs/prihlaseni'; // FIX: twardy adres
 
@@ -19,11 +18,6 @@
     obs.observe(document, {childList:true, subtree:true});
     setTimeout(()=>{ obs.disconnect(); res(null); }, timeout);
   });
-
-  function applyCompact(host){
-  const compact = window.matchMedia(`(max-width:${COMPACT_BP}px)`).matches;
-  host.classList.toggle('--compact', compact);
-  }
 
   function isLoggedIn() {
     const userMenu = document.querySelector('#ctl00\\$ctl00\\$BodyContentPlaceHolder\\$UserMenu .customer-name');
@@ -57,46 +51,58 @@
     const style = document.createElement('style');
     style.id = 'mro-vin-css';
     style.textContent = `
-  #mlpVehicleSearch{width:100%;margin:8px auto 18px;max-width:1210px;display:block!important}
-  #mlpVehicleSearch .vehicleSearch__heading{margin:0 0 8px;font-weight:800;font-size:18px;color:#0b3b82}
-  #mlpVehicleSearch .vehicleSearch__form{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;position:relative}
-  #mlpVehicleSearch .vehicleSearch__label{position:relative;display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:12px;border:1px solid #d8dee4;border-radius:12px;background:#fff;box-shadow:0 4px 6px rgba(0,0,0,.1),0 1px 3px rgba(0,0,0,.05)}
-  #mlpVehicleSearch .vehicleSearch__char{display:inline-grid;place-items:center;width:36px;height:44px;border-radius:10px;border:1px dashed #e5e7eb;color:#111;font-weight:700}
-  #mlpVehicleSearch .vehicleSearch__char.--filled{border-style:solid;border-color:#4CAF50}
-  #mlpVehicleSearch .vehicleSearch__carret{width:2px;height:22px;background:#005da3;animation:mroBlink 1s infinite;display:inline-block}
-  @keyframes mroBlink{0%,49%{opacity:1}50%,100%{opacity:.1}}
-  #mlpVehicleSearch .vehicleSearch__input{position:absolute;inset:0;opacity:0;pointer-events:auto;width:100%;height:100%;text-transform:uppercase}
-  #mlpVehicleSearch .vehicleSearch__btn{height:48px;min-width:54px;border-radius:12px;border:1px solid #1e40af;background:linear-gradient(180deg,#2563eb,#1e40af);color:#fff;font-weight:800;padding:0 14px;cursor:pointer;display:inline-grid;place-items:center;position:relative;z-index:3}
-  #mlpVehicleSearch .vehicleSearch__btn:disabled{opacity:.5;cursor:not-allowed}
-  #mlpVehicleSearch .vehicleSearch__charCounter{font-size:13px;color:#6b7280}
+#mlpVehicleSearch{width:100%;height:32px;margin:8px auto 18px;max-width:1210px;display:block!important;padding-bottom: 21px;}
+#mlpVehicleSearch .vehicleSearch__heading{margin:0;font-weight:800;font-size:18px;color:#0b3b82}
+#mlpVehicleSearch .vehicleSearch__form{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;position:relative}
+#mlpVehicleSearch .vehicleSearch__label{position:relative;display:flex;gap:10px;align-items:center;padding:12px;border:1px solid #d8dee4;border-radius:12px;background:#fff;height:32px;box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.05);transition: transform 0.2s ease, box-shadow 0.2s ease;}
+#mlpVehicleSearch .vehicleSearch__char{display:inline-grid;place-items:center;width:36px;height:44px;border-radius:10px;border:1px dashed #e5e7eb;color:#111;font-weight:700}
+#mlpVehicleSearch .vehicleSearch__char.--filled{border-style:solid;border-color:#4CAF50}
+#mlpVehicleSearch .vehicleSearch__carret{width:2px;height:22px;background:#005da3;animation:mroBlink 1s infinite;display:inline-block}
+@keyframes mroBlink{0%,49%{opacity:1}50%,100%{opacity:.1}}
+#mlpVehicleSearch .vehicleSearch__input{position:absolute;inset:0;opacity:0;pointer-events:auto;width:100%;height:100%;text-transform:uppercase}
+#mlpVehicleSearch .vehicleSearch__btn{height:48px;min-width:54px;border-radius:12px;border:1px solid #1e40af;background:linear-gradient(180deg,#2563eb,#1e40af);color:#fff;font-weight:800;padding:0 14px;cursor:pointer;display:inline-grid;place-items:center;position:relative;z-index:3}
+#mlpVehicleSearch .vehicleSearch__btn:disabled{opacity:.5;cursor:not-allowed}
+#mlpVehicleSearch .vehicleSearch__charCounter{font-size:13px;color:#6b7280}
+#mlpVehicleSearch .svgicon{width:20px;height:20px;display:inline-block}
+#mlpVehicleSearch .svgicon svg{width:1em;height:1em;display:block;fill:currentColor;color:#fff}
 
-  /* ===== MOBILE / COMPACT ===== */
-  @media (max-width: 768px){
-    #mlpVehicleSearch .vehicleSearch__form{grid-template-columns:1fr;row-gap:10px}
-    #mlpVehicleSearch .vehicleSearch__btn{width:100%;height:52px}
-    #mlpVehicleSearch .vehicleSearch__heading{font-size:16px}
+/* === LOCKED (NB2B / niezalogowany) === */
+#mlpVehicleSearch.--locked .vehicleSearch__form{filter:blur(1.3px);pointer-events:none}
+#mlpVehicleSearch .vehicleSearch__overlay{
+  position:absolute; inset:0;
+  display:flex; justify-content:center; align-items:center;
+  pointer-events:auto;              /* FIX: overlay ŁAPIE klik */
+  z-index:10;                     /* FIX: nad wszystkim */
+}
+#mlpVehicleSearch .vehicleSearch__overlayContent{
+  display:inline-flex; align-items:center; gap:10px;
+  background: rgb(15 23 42 / 37%); color:#fff; padding:10px 14px; border-radius:10px;
+  box-shadow:0 10px 24px rgba(0,0,0,.18);
+  cursor:pointer;
+}
+#mlpVehicleSearch .vehicleSearch__overlayContent a{color:#93c5fd;text-decoration:underline;cursor:pointer}
+#mlpVehicleSearch .vehicleSearch__overlayContent .lock{display:inline-grid;place-items:center;width:20px;height:20px}
+
+@media (max-width: 768px){
+  #mlpVehicleSearch{ --cellW:28px; --cellH:36px; --gap:6px; }
+  #mlpVehicleSearch .vehicleSearch__form{
+    grid-template-columns: 1fr;          /* <<< przycisk spada niżej */
+    row-gap: 10px;
   }
-  #mlpVehicleSearch.--compact .vehicleSearch__label{
-    gap:0; padding:8px 10px; border-radius:10px;
+  #mlpVehicleSearch .vehicleSearch__btn{
+    width:100%;                          /* <<< full width na mobile */
   }
-  #mlpVehicleSearch.--compact .vehicleSearch__char,
-  #mlpVehicleSearch.--compact .vehicleSearch__carret,
-  #mlpVehicleSearch.--compact .vehicleSearch__charCounter{
-    display:none !important;
-  }
-  #mlpVehicleSearch.--compact .vehicleSearch__input{
-    position:static; opacity:1; pointer-events:auto; height:48px;
-    border:1px solid #d8dee4; border-radius:8px; padding:0 12px;
-    font-size:16px; letter-spacing:.5px; width:100%; outline:none;
-    text-transform:uppercase;
-  }
-  #mlpVehicleSearch.--compact .vehicleSearch__input:focus{
-    border-color:#005da3; box-shadow:0 0 0 3px rgba(0,93,163,.15);
-  }
-  `;
+}
+@media(max-width:768px){
+  #mlpVehicleSearch .vehicleSearch__char{width:28px;height:40px}
+  #mlpVehicleSearch .vehicleSearch__heading{font-size:16px}
+  .flex-main-menu {
+    display: flex;
+    flex-direction: column;
+}
+}`;
     document.head.appendChild(style);
   }
-
 
   function buildHost(){
     const host = document.createElement('div');
@@ -231,8 +237,6 @@
 
     if (document.getElementById('mlpVehicleSearch')) return;
     const host = buildHost();
-    applyCompact(host);
-    window.addEventListener('resize', () => applyCompact(host), {passive:true});
     placeHost(host);
     wire(host, allowed);
   }
