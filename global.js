@@ -70,7 +70,7 @@
     style.id = 'mro-vin-css';
     style.textContent = `
 #mlpVehicleSearch{width:100%;margin:8px auto 18px;max-width:1210px;display:block!important}
-#mlpVehicleSearch .vehicleSearch__heading{margin:0 0 8px;font-weight:800;font-size:18px;color:#0b3b82}
+#mlpVehicleSearch .vehicleSearch__heading{margin:10px 10px 0px;font-weight:800;font-size:18px;color:#0b3b82}
 #mlpVehicleSearch .vehicleSearch__form{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;position:relative}
 #mlpVehicleSearch .vehicleSearch__label{position:relative;display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:12px;border:1px solid #d8dee4;border-radius:12px;background:#fff;box-shadow:0 4px 6px rgba(0,0,0,.1),0 1px 3px rgba(0,0,0,.05)}
 #mlpVehicleSearch .vehicleSearch__char{display:inline-grid;place-items:center;width:36px;height:44px;border-radius:10px;border:1px dashed #e5e7eb;color:#111;font-weight:700}
