@@ -1033,6 +1033,140 @@ console.log('MROAUTO: Global helpers loaded');
 
 
 
+(function attachCurrencyIntoLangMenu() {
+  const SEL_MENU = '#mro-lang-inline .mro-lang-menu';
+  const SEL_CURR_SRC = '.currency-language-selection .category.currencies .items .item';
+
+  function ensureCurrencySection() {
+    const menu = document.querySelector(SEL_MENU);
+    if (!menu) return null;
+
+    // jeśli już wstawione – zwróć host listy
+    if (menu.querySelector('#mro-curr-list')) {
+      return menu.querySelector('#mro-curr-list');
+    }
+
+    // wstaw divider + sekcję "Waluta"
+    const divider = document.createElement('div');
+    divider.className = 'mro-divider';
+
+    const section = document.createElement('div');
+    section.className = 'mro-section';
+
+    const title = document.createElement('div');
+    title.className = 'mro-section-title';
+    title.textContent = 'Měna'; // translatable przez Google, bo to DOM-tekst
+
+    const list = document.createElement('div');
+    list.className = 'mro-curr-list';
+    list.id = 'mro-curr-list';
+
+    // dodaj na koniec menu
+    menu.appendChild(divider);
+    section.appendChild(title);
+    section.appendChild(list);
+    menu.appendChild(section);
+
+    // drobny CSS inline – tylko jeśli nie masz w Stylusie
+    injectOnceCSS(`
+      #mro-lang-inline .mro-curr-list{display:flex;gap:8px;padding:4px 4px 2px;flex-wrap:wrap}
+      #mro-lang-inline .mro-curr-btn{padding:6px 10px;font-size:13px;border:1px solid #e5e7eb;border-radius:8px;background:#fff;color:#5f5f5f; cursor:pointer;line-height:1}
+      #mro-lang-inline .mro-curr-btn.selected{border-color:#00569d;background:#eef5ff}
+      .menu-item.dropdown .dropdown-button {visibility: hidden;width: 1px;}
+	#mro-lang-inline .mro-section-title {text-align: left;}
+	#mro-lang-inline .mro-lang-menu {display: flex;flex-direction: column-reverse;}
+	.flag {width: 24px;}
+    `);
+
+    return list;
+  }
+
+  function injectOnceCSS(css) {
+    if (document.getElementById('mro-curr-inline-css')) return;
+    const s = document.createElement('style');
+    s.id = 'mro-curr-inline-css';
+    s.textContent = css;
+    (document.head || document.documentElement).appendChild(s);
+  }
+
+  function syncCurrencies() {
+    const host = ensureCurrencySection();
+    if (!host) return;
+
+    const srcItems = document.querySelectorAll(SEL_CURR_SRC);
+    if (!srcItems.length) return;
+
+    host.innerHTML = '';
+    srcItems.forEach(src => {
+      const code = (src.textContent || '').trim();
+      const isSel = src.classList.contains('selected');
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'mro-curr-btn' + (isSel ? ' selected' : '');
+      btn.textContent = code;
+
+      // klik w nasz przycisk → kliknij oryginał (zachowujemy natywną logikę)
+      const attr = src.getAttribute('attr-currency-type');
+      btn.addEventListener('click', (e) => {
+        e.preventDefault(); e.stopPropagation();
+        const orig = document.querySelector(`.currency-language-selection .category.currencies .items .item[attr-currency-type="${attr}"]`);
+        if (orig) orig.click();
+        // lokalnie podświetl wybór
+        host.querySelectorAll('.mro-curr-btn').forEach(x => x.classList.remove('selected'));
+        btn.classList.add('selected');
+      });
+
+      host.appendChild(btn);
+    });
+  }
+
+  // Odśwież listę walut ZA KAŻDYM otwarciem menu językowego
+  function hookOpenRefresh() {
+    const root = document.getElementById('mro-lang-inline');
+    if (!root) return;
+
+    const trigger = root.querySelector('.mro-lang-trigger');
+    const menu = root.querySelector('.mro-lang-menu');
+    if (!trigger || !menu) return;
+
+    // jeśli już podpięte – nie dubluj
+    if (root.__mro_curr_hooked) return;
+    root.__mro_curr_hooked = true;
+
+    trigger.addEventListener('click', () => {
+      // gdy menu się otwiera (hidden==false), zsynchronizuj waluty
+      setTimeout(() => { if (!menu.hidden) syncCurrencies(); }, 0);
+    });
+
+    // obserwuj oryginalny dropdown (gdyby Nextis przebudował selekcję)
+    const srcHost = document.querySelector('.currency-language-selection .category.currencies .items');
+    if (srcHost) {
+      new MutationObserver(() => {
+        if (!menu.hidden) syncCurrencies();
+      }).observe(srcHost, {childList:true, subtree:true, attributes:true});
+    }
+  }
+
+  function boot() {
+    // czekamy aż zrenderuje się nasz panel językowy
+    const interval = setInterval(() => {
+      const menu = document.querySelector(SEL_MENU);
+      if (menu) {
+        clearInterval(interval);
+        ensureCurrencySection();
+        hookOpenRefresh();
+      }
+    }, 120);
+
+    // awaryjnie zsynchronizuj po 2s
+    setTimeout(syncCurrencies, 2000);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', boot);
+  } else boot();
+})();
+
 
 
 
