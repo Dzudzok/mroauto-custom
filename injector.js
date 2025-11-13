@@ -117,7 +117,7 @@
       css: 'global.css',
       html: 'global.html',
       js: 'global.js',
-      targetSelector: 'body',
+      targetSelector: 'head',
       position: 'afterbegin'
     },
         {
