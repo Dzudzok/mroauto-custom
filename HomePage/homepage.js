@@ -8,7 +8,7 @@
   const REQUIRE_B2B   = true;
   const REQUIRE_FULL  = true;
   const CELLS         = 17;
-  const COMPACT_BP    = 540;
+  const COMPACT_BP    = 540; // tylko to zmienia UI: <=540px => zwykły input
   const LOGIN_URL     = 'https://www.mroauto.cz/cs/prihlaseni';
   const REDIRECT      = vin => 'https://www.mroauto.cz/cs/katalog/yq-katalog/vin/' + encodeURIComponent(vin);
 
@@ -17,45 +17,16 @@
   if (here !== CANON) return;
 
   /* ===== HELPERS ===== */
-  const sleep = (ms) => new Promise(r => setTimeout(r, ms));
-
-  const waitFor = (sel, { timeout = 8000, root = document } = {}) => new Promise(res => {
-    const el = root.querySelector(sel);
+  const waitFor = (sel, { timeout = 8000 } = {}) => new Promise(res => {
+    const el = document.querySelector(sel);
     if (el) return res(el);
-
     const obs = new MutationObserver(() => {
-      const e = root.querySelector(sel);
+      const e = document.querySelector(sel);
       if (e) { obs.disconnect(); res(e); }
     });
-
-    obs.observe(document.documentElement, { childList: true, subtree: true });
+    obs.observe(document, { childList: true, subtree: true });
     setTimeout(() => { obs.disconnect(); res(null); }, timeout);
   });
-
-  // czeka aż dany element istnieje ORAZ przez chwilę się nie przestawia (layout stabilny)
-  async function waitForStable(selector, { timeout = 9000, stableMs = 450, checkEvery = 120 } = {}) {
-    const start = Date.now();
-    let el = null;
-
-    while (Date.now() - start < timeout) {
-      el = document.querySelector(selector);
-      if (!el) { await sleep(checkEvery); continue; }
-
-      const r1 = el.getBoundingClientRect();
-      await sleep(stableMs);
-      const r2 = el.getBoundingClientRect();
-
-      const same =
-        Math.abs(r1.top - r2.top) < 1 &&
-        Math.abs(r1.left - r2.left) < 1 &&
-        Math.abs(r1.width - r2.width) < 1 &&
-        Math.abs(r1.height - r2.height) < 1;
-
-      if (same) return el;
-      await sleep(checkEvery);
-    }
-    return el; // może być null albo niestabilny, ale kończymy po timeout
-  }
 
   function isLoggedIn() {
     try {
@@ -116,16 +87,18 @@
 }
 #mlpVehicleSearch .vehicleSearch__overlayContent a{color:#93c5fd;text-decoration:underline}
 
-/* MOBILE */
+/* MOBILE: tylko zmieniamy UI na czysty input */
 @media (max-width:${COMPACT_BP}px){
   #mlpVehicleSearch .vehicleSearch__form{grid-template-columns:1fr;row-gap:10px}
   #mlpVehicleSearch .vehicleSearch__btn{width:100%;height:52px}
   #mlpVehicleSearch .vehicleSearch__heading{font-size:16px}
 
+  /* ukryj kratki i licznik */
   #mlpVehicleSearch .vehicleSearch__char,
   #mlpVehicleSearch .vehicleSearch__carret,
   #mlpVehicleSearch .vehicleSearch__charCounter{display:none!important}
 
+  /* pokaż natywne pole input zamiast "niewidzialnego" */
   #mlpVehicleSearch .vehicleSearch__input{
     position:static;opacity:1;height:48px;border:1px solid #d8dee4;border-radius:8px;
     padding:0 12px;font-size:16px;letter-spacing:.5px;outline:none;width:100%;text-transform:uppercase
@@ -179,6 +152,7 @@
     function render(v) {
       const chars = v.split('');
 
+      // desktop: kratki + kursor + licznik
       if (window.innerWidth > COMPACT_BP) {
         cells.forEach((cell, i) => {
           cell.textContent = '';
@@ -193,6 +167,7 @@
         if (counter) counter.textContent = `${chars.length}/${CELLS}`;
       }
 
+      // aktywacja przycisku
       btn.disabled = allowed
         ? (REQUIRE_FULL ? (chars.length !== CELLS) : (chars.length < 5))
         : true;
@@ -226,6 +201,7 @@
       location.href = REDIRECT(vin);
     });
 
+    // LOCKED overlay (bez zmian)
     if (!allowed) {
       host.classList.add('--locked');
       const overlay = document.createElement('div');
@@ -241,9 +217,10 @@
       form.parentElement.style.position = 'relative';
       form.parentElement.appendChild(overlay);
       overlay.querySelector('.vehicleSearch__overlayContent')
-        .addEventListener('click', () => { location.href = LOGIN_URL; });
+             .addEventListener('click', () => { location.href = LOGIN_URL; });
     }
 
+    // z-index dla przycisku
     btn.style.position = 'relative';
     btn.style.zIndex   = '3';
 
@@ -268,58 +245,23 @@
     else parent.insertBefore(host, before || null);
   }
 
-  /* ===== START (NOWE) ===== */
-  let injecting = false;
+  /* ===== START ===== */
+  async function runInject() {
+    injectCSS();
 
-  async function tryInjectOnce() {
-    if (injecting) return;
-    injecting = true;
+    const allowed =
+      (!REQUIRE_LOGIN || isLoggedIn()) &&
+      (!REQUIRE_B2B   || isB2B());
 
-    try {
-      injectCSS();
-      if (document.getElementById('mlpVehicleSearch')) return;
+    await Promise.race([waitFor('.flex-main-menu .flex-menu, .flex-menu.flex-menu-items-5, .flex-menu-items-5', {timeout:3000}), new Promise(r=>setTimeout(r,3000))]);
+    await Promise.race([waitFor('.side-container.left, .side-container.left-column, .side-container.leftcol', {timeout:3000}), new Promise(r=>setTimeout(r,3000))]);
 
-      const allowed =
-        (!REQUIRE_LOGIN || isLoggedIn()) &&
-        (!REQUIRE_B2B   || isB2B());
+    if (document.getElementById('mlpVehicleSearch')) return;
 
-      // czekamy aż kluczowe miejsca będą stabilne (a nie tylko "pojawiają się na ms")
-      await waitForStable('.flex-main-menu .flex-menu, .flex-menu.flex-menu-items-5, .flex-menu-items-5', { timeout: 9000, stableMs: 450 });
-      await waitForStable('.side-container.left, .side-container.left-column, .side-container.leftcol', { timeout: 9000, stableMs: 450 });
-
-      // jeszcze mały bufor po stabilizacji (często po tym wpadają lazy elementy)
-      await sleep(120);
-
-      if (document.getElementById('mlpVehicleSearch')) return;
-
-      const host = buildHost();
-      placeHost(host);
-      wire(host, allowed);
-    } finally {
-      injecting = false;
-    }
+    const host = buildHost();
+    placeHost(host);
+    wire(host, allowed);
   }
 
-  // 1) start klasyczny
-  (async () => {
-    // odpal szybko, ale jak DOM jeszcze się „buduje”, to i tak stabilizacja to złapie
-    tryInjectOnce();
-
-    // 2) retry: kilka prób w pierwszych sekundach (najczęstszy problem z homepage)
-    for (let i = 0; i < 6; i++) {
-      if (document.getElementById('mlpVehicleSearch')) break;
-      await sleep(500);
-      await tryInjectOnce();
-    }
-  })();
-
-  // 3) obserwator: jak strona coś przebuduje (AJAX / partial render), spróbuj ponownie
-  const reinjectObs = new MutationObserver(() => {
-    if (!document.getElementById('mlpVehicleSearch')) {
-      // lekkie odroczenie, żeby poczekać aż seria zmian DOM się skończy
-      clearTimeout(window.__mroVinReinjectT);
-      window.__mroVinReinjectT = setTimeout(() => tryInjectOnce(), 250);
-    }
-  });
-  reinjectObs.observe(document.body, { childList: true, subtree: true });
+  runInject();
 })();
