@@ -68,8 +68,8 @@
 #mlpVehicleSearch{width:100%;margin:8px auto 18px;max-width:1210px;display:block!important}
 #mlpVehicleSearch .vehicleSearch__heading{margin:0 0 8px;font-weight:800;font-size:18px;color:#0b3b82}
 #mlpVehicleSearch .vehicleSearch__form{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;position:relative}
-#mlpVehicleSearch .vehicleSearch__label{position:relative;display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:12px;border:1px solid #d8dee4;border-radius:12px;background:#fff;box-shadow:0 4px 6px rgba(0,0,0,.1),0 1px 3px rgba(0,0,0,.05)}
-#mlpVehicleSearch .vehicleSearch__char{display:inline-grid;place-items:center;width:36px;height:44px;border-radius:10px;border:1px dashed #e5e7eb;color:#111;font-weight:700}
+#mlpVehicleSearch .vehicleSearch__label{position:relative;display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:7px;border:1px solid #d8dee4;border-radius:12px;background:#fff;box-shadow:0 4px 6px rgba(0,0,0,.1),0 1px 3px rgba(0,0,0,.05)}
+#mlpVehicleSearch .vehicleSearch__char{display:inline-grid;place-items:center;width:52px;height:34px;border-radius:10px;border:1px dashed #e5e7eb;color:#111;font-weight:700}
 #mlpVehicleSearch .vehicleSearch__char.--filled{border-style:solid;border-color:#4CAF50}
 #mlpVehicleSearch .vehicleSearch__carret{width:2px;height:22px;background:#005da3;animation:mroBlink 1s infinite;display:inline-block}
 @keyframes mroBlink{0%,49%{opacity:1}50%,100%{opacity:.1}}
@@ -269,34 +269,3 @@
 
 
 
-(function () {
-  const KEY = "mro_holiday_bar_closed_2025";
-  const wrap = document.getElementById("mroHolidayWrap");
-  const btn  = document.getElementById("mroHolidayClose");
-  if (!wrap || !btn) return;
-
-  // ✅ OD DZISIAJ
-  const start = new Date(); // teraz
-  start.setHours(0,0,0,0);
-
-  // ✅ DO 02.01.2026 (włącznie)
-  const end = new Date(2026, 0, 2, 23, 59, 59);
-
-  const now = new Date();
-  const isInWindow = now >= start && now <= end;
-
-  // jeśli user zamknął → nie pokazuj
-  const isClosed = localStorage.getItem(KEY) === "1";
-
-  if (isInWindow && !isClosed) wrap.hidden = false;
-
-  btn.addEventListener("click", function () {
-    localStorage.setItem(KEY, "1");
-    wrap.hidden = true;
-  });
-
-  // (opcjonalnie) po terminie wyczyść flagę, żeby w przyszłości można było użyć nowej
-  if (now > end) {
-    localStorage.removeItem(KEY);
-  }
-})();
