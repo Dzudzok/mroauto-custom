@@ -283,7 +283,7 @@
   const isInWindow = now >= start && now <= end;
   const isClosed = localStorage.getItem(KEY) === "1";
 
-  if (isInWindow && !isClosed) wrap.hidden = false;
+  if (!isClosed) wrap.hidden = false;
 
   btn.addEventListener("click", function () {
     localStorage.setItem(KEY, "1");
