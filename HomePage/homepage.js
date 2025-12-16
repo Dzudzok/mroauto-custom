@@ -275,18 +275,28 @@
   const btn  = document.getElementById("mroHolidayClose");
   if (!wrap || !btn) return;
 
-  // pokazuj tylko w oknie 20.12.2025–02.01.2026
-  const now = new Date();
-  const start = new Date(2025, 11, 20);            // 20 Dec 2025
-  const end   = new Date(2026, 0, 2, 23, 59, 59);  // 2 Jan 2026
+  // ✅ OD DZISIAJ
+  const start = new Date(); // teraz
+  start.setHours(0,0,0,0);
 
+  // ✅ DO 02.01.2026 (włącznie)
+  const end = new Date(2026, 0, 2, 23, 59, 59);
+
+  const now = new Date();
   const isInWindow = now >= start && now <= end;
+
+  // jeśli user zamknął → nie pokazuj
   const isClosed = localStorage.getItem(KEY) === "1";
 
-  if (!isClosed) wrap.hidden = false;
+  if (isInWindow && !isClosed) wrap.hidden = false;
 
   btn.addEventListener("click", function () {
     localStorage.setItem(KEY, "1");
     wrap.hidden = true;
   });
+
+  // (opcjonalnie) po terminie wyczyść flagę, żeby w przyszłości można było użyć nowej
+  if (now > end) {
+    localStorage.removeItem(KEY);
+  }
 })();
