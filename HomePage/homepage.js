@@ -270,25 +270,23 @@
 
 
 (function () {
-  const KEY = "mro_holiday_note_closed_2025";
-  const note = document.getElementById("holidayNote");
-  const closeBtn = document.getElementById("holidayNoteClose");
-  if (!note || !closeBtn) return;
+  const KEY = "mro_holiday_bar_closed_2025";
+  const wrap = document.getElementById("mroHolidayWrap");
+  const btn  = document.getElementById("mroHolidayClose");
+  if (!wrap || !btn) return;
 
   // pokazuj tylko w oknie 20.12.2025–02.01.2026
   const now = new Date();
-  const start = new Date(2025, 11, 20); // 20 Dec 2025
-  const end   = new Date(2026, 0, 2, 23, 59, 59); // 2 Jan 2026
+  const start = new Date(2025, 11, 20);            // 20 Dec 2025
+  const end   = new Date(2026, 0, 2, 23, 59, 59);  // 2 Jan 2026
 
   const isInWindow = now >= start && now <= end;
   const isClosed = localStorage.getItem(KEY) === "1";
 
-  if (isInWindow && !isClosed) {
-    note.hidden = false;
-  }
+  if (isInWindow && !isClosed) wrap.hidden = false;
 
-  closeBtn.addEventListener("click", function () {
+  btn.addEventListener("click", function () {
     localStorage.setItem(KEY, "1");
-    note.hidden = true;
+    wrap.hidden = true;
   });
 })();
