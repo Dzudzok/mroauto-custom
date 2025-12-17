@@ -1170,4 +1170,134 @@ console.log('MROAUTO: Global helpers loaded');
 
 
 
+/* MROAUTO – Logged-in popup (inventory / limited delivery) */
+(() => {
+  'use strict';
 
+  /* ================= KONFIG ================= */
+  const CONFIG = {
+    startDate: '2025-12-17',
+    endDate:   '2025-12-18',
+
+    noticeId: 'inventory-delivery-19-12-2025-vFINAL',
+
+    title: 'Důležité oznámení',
+    subtitle: 'Inventarizace a omezený rozvoz',
+    badgeText: '19.12.2025',
+    buttonText: 'Rozumím',
+
+    messageHtml: `
+      <p><b>Dne 19.12.2025 vyjíždí pouze jeden ranní rozvoz.</b></p>
+      <p>Prosíme o objednávání dopředu, případně nejpozději na ranní trasu <b>19.12.2025</b>.</p>
+      <p class="mroNote">Děkujeme za pochopení – důvodem je inventarizace.</p>
+    `
+  };
+
+  /* ================= HELPERS ================= */
+  const pad2 = n => String(n).padStart(2, '0');
+  const toYMD = d => `${d.getFullYear()}-${pad2(d.getMonth() + 1)}-${pad2(d.getDate())}`;
+
+  const isWithinDate = () => {
+    const today = toYMD(new Date());
+    return today >= CONFIG.startDate && today <= CONFIG.endDate;
+  };
+
+  const storageKey = `mro_notice_seen_${CONFIG.noticeId}`;
+  const alreadySeen = () => localStorage.getItem(storageKey) === '1';
+  const markSeen = () => localStorage.setItem(storageKey, '1');
+
+  /* ======= WAIT FOR ELEMENT (KEY PART) ======= */
+  const waitForCustomer = (timeout = 30000) => {
+    return new Promise((resolve) => {
+      const check = () => {
+        const el = document.querySelector('.customer .name');
+        if (el && el.textContent.trim().length > 0) {
+          resolve(el.textContent.trim());
+          return true;
+        }
+        return false;
+      };
+
+      if (check()) return;
+
+      const obs = new MutationObserver(() => {
+        if (check()) {
+          obs.disconnect();
+          resolve(document.querySelector('.customer .name').textContent.trim());
+        }
+      });
+
+      obs.observe(document.documentElement, { childList: true, subtree: true });
+      setTimeout(() => { obs.disconnect(); resolve(null); }, timeout);
+    });
+  };
+
+  /* ================= UI ================= */
+  const injectCSS = () => {
+    if (document.getElementById('mroPopupCSS')) return;
+    const style = document.createElement('style');
+    style.id = 'mroPopupCSS';
+    style.textContent = `
+      .mroOverlay{position:fixed;inset:0;background:rgba(10,20,35,.55);z-index:999999;display:flex;align-items:center;justify-content:center;padding:16px}
+      .mroModal{width:min(560px,100%);background:#fff;border-radius:14px;box-shadow:0 18px 60px rgba(0,0,0,.25);overflow:hidden}
+      .mroTop{background:linear-gradient(180deg,#0a67b0,#084f86);color:#fff;padding:14px 16px;position:relative}
+      .mroTitle{margin:0;font-weight:800;font-size:16px}
+      .mroSubtitle{margin:6px 0 0;font-size:13px;opacity:.95}
+      .mroBadge{position:absolute;top:14px;right:14px;background:#e31b23;color:#fff;font-weight:800;font-size:12px;padding:6px 10px;border-radius:999px}
+      .mroClose{display: none;}
+      .mroBody{padding:16px;font-size:14px;color:#1b2a3a}
+      .mroNote{background:#f4f7fb;border-left:4px solid #0a67b0;padding:10px 12px;border-radius:10px}
+      .mroActions{padding:0 16px 16px;display:flex;justify-content:flex-end}
+      .mroBtn{background:#e31b23;color:#fff;border:0;border-radius:12px;padding:10px 16px;font-weight:800;cursor:pointer}
+      @media(max-width:420px){.mroActions{justify-content:stretch}.mroBtn{width:100%}}
+    `;
+    document.head.appendChild(style);
+  };
+
+  const showPopup = () => {
+    if (document.getElementById('mroOverlay')) return;
+
+    const overlay = document.createElement('div');
+    overlay.className = 'mroOverlay';
+    overlay.id = 'mroOverlay';
+
+    overlay.innerHTML = `
+      <div class="mroModal">
+        <div class="mroTop">
+          <button class="mroClose">×</button>
+          <div class="mroBadge">${CONFIG.badgeText}</div>
+          <h3 class="mroTitle">${CONFIG.title}</h3>
+          <p class="mroSubtitle">${CONFIG.subtitle}</p>
+        </div>
+        <div class="mroBody">
+          ${CONFIG.messageHtml}
+        </div>
+        <div class="mroActions">
+          <button class="mroBtn">${CONFIG.buttonText}</button>
+        </div>
+      </div>
+    `;
+
+    document.body.appendChild(overlay);
+
+    const close = () => {
+      markSeen();
+      overlay.remove();
+    };
+
+    overlay.querySelector('.mroClose').onclick = close;
+    overlay.querySelector('.mroBtn').onclick = close;
+    overlay.onclick = e => e.target === overlay && close();
+  };
+
+  /* ================= START ================= */
+  if (!isWithinDate() || alreadySeen()) return;
+
+  injectCSS();
+
+  waitForCustomer().then(customerName => {
+    if (!customerName) return; // nie zalogowany
+    showPopup();
+  });
+
+})();
