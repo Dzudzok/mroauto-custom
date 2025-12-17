@@ -841,8 +841,6 @@ console.log('MROAUTO: Global helpers loaded');
 
 
 
-<!-- /Google translate -->
-
 (function () {
   const DEFAULT_LANG = 'cs';
   const LANGS = [
