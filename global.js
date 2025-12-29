@@ -1171,7 +1171,7 @@ console.log('MROAUTO: Global helpers loaded');
 (() => {
   'use strict';
 
-	console.log('test1');
+	console.log('Svatek 06-01-2026');
 
   const CONFIG = {
     startDate: '2025-12-28',
