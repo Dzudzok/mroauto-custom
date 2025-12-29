@@ -1171,6 +1171,8 @@ console.log('MROAUTO: Global helpers loaded');
 (() => {
   'use strict';
 
+	console.log('test1');
+
   const CONFIG = {
     startDate: '2025-12-28',
     endDate:   '2026-01-06',
