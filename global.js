@@ -1167,3 +1167,136 @@ console.log('MROAUTO: Global helpers loaded');
 
 
 
+/* MROAUTO – Forced popup until acknowledged (shows on all pages for logged-in users) */
+(() => {
+  'use strict';
+
+  const CONFIG = {
+    startDate: '2025-12-29',
+    endDate:   '2026-01-06',
+
+    noticeId: 'inventory-delivery-06-01-2026-vFORCE',
+
+    title: 'Důležité oznámení',
+    subtitle: 'Omezený rozvoz',
+    badgeText: '06.01.2025',
+    buttonText: 'Rozumím',
+
+    messageHtml: `
+      <p><b>Dne 06.01.2026 vyjíždí pouze jeden ranní rozvoz.</b></p>
+      <p>Prosíme o objednávání dopředu, případně nejpozději na ranní trasu <b>06.01.2026</b>.</p>
+      <p class="mroNote">Děkujeme za pochopení.</p>
+    `
+  };
+
+  const pad2 = n => String(n).padStart(2, '0');
+  const toYMD = d => `${d.getFullYear()}-${pad2(d.getMonth() + 1)}-${pad2(d.getDate())}`;
+
+  const isWithinDate = () => {
+    const today = toYMD(new Date());
+    return today >= CONFIG.startDate && today <= CONFIG.endDate;
+  };
+
+  const storageKey = `mro_notice_ack_${CONFIG.noticeId}`;
+  const isAck = () => localStorage.getItem(storageKey) === '1';
+  const setAck = () => localStorage.setItem(storageKey, '1');
+
+  const waitForCustomer = (timeout = 60000) => new Promise((resolve) => {
+    const check = () => {
+      const el = document.querySelector('.customer .name');
+      if (el && el.textContent.trim()) return resolve(el.textContent.trim());
+      return false;
+    };
+    if (check()) return;
+
+    const obs = new MutationObserver(() => check() && obs.disconnect());
+    obs.observe(document.documentElement, { childList: true, subtree: true });
+    setTimeout(() => { obs.disconnect(); resolve(null); }, timeout);
+  });
+
+  const injectCSS = () => {
+    if (document.getElementById('mroPopupCSS')) return;
+    const style = document.createElement('style');
+    style.id = 'mroPopupCSS';
+    style.textContent = `
+      .mroOverlay{position:fixed;inset:0;background:rgba(10,20,35,.65);z-index:999999;display:flex;align-items:center;justify-content:center;padding:16px}
+      .mroModal{width:min(560px,100%);background:#fff;border-radius:14px;box-shadow:0 18px 60px rgba(0,0,0,.25);overflow:hidden}
+      .mroTop{background:linear-gradient(180deg,#0a67b0,#084f86);color:#fff;padding:14px 16px;position:relative}
+      .mroTitle{margin:0;font-weight:900;font-size:16px}
+      .mroSubtitle{margin:6px 0 0;font-size:13px;opacity:.95}
+      .mroBadge{position:absolute;top:14px;right:14px;background:#e31b23;color:#fff;font-weight:900;font-size:12px;padding:6px 10px;border-radius:999px}
+      .mroBody{padding:16px;font-size:14px;color:#1b2a3a}
+      .mroNote{background:#f4f7fb;border-left:4px solid #0a67b0;padding:10px 12px;border-radius:10px}
+      .mroActions{padding:0 16px 16px;display:flex;justify-content:flex-end}
+      .mroBtn{background:#e31b23;color:#fff;border:0;border-radius:12px;padding:10px 16px;font-weight:900;cursor:pointer}
+      @media(max-width:420px){.mroActions{justify-content:stretch}.mroBtn{width:100%}}
+    `;
+    (document.head || document.documentElement).appendChild(style);
+  };
+
+  const showPopup = () => {
+    if (document.getElementById('mroOverlay')) return;
+
+    const overlay = document.createElement('div');
+    overlay.className = 'mroOverlay';
+    overlay.id = 'mroOverlay';
+
+    overlay.innerHTML = `
+      <div class="mroModal" role="dialog" aria-modal="true">
+        <div class="mroTop">
+          <div class="mroBadge">${CONFIG.badgeText}</div>
+          <h3 class="mroTitle">${CONFIG.title}</h3>
+          <p class="mroSubtitle">${CONFIG.subtitle}</p>
+        </div>
+        <div class="mroBody">${CONFIG.messageHtml}</div>
+        <div class="mroActions">
+          <button class="mroBtn">${CONFIG.buttonText}</button>
+        </div>
+      </div>
+    `;
+
+    document.body.appendChild(overlay);
+
+    // BLOKADA zamykania inaczej niż "Rozumím":
+    overlay.querySelector('.mroBtn').addEventListener('click', () => {
+      setAck();
+      overlay.remove();
+    });
+
+    // NIE zamykaj na klik tła / ESC
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) {
+        // delikatny "shake" żeby było widać, że trzeba kliknąć przycisk
+        const modal = overlay.querySelector('.mroModal');
+        modal.animate(
+          [{ transform: 'translateX(0)' }, { transform: 'translateX(-6px)' }, { transform: 'translateX(6px)' }, { transform: 'translateX(0)' }],
+          { duration: 220 }
+        );
+      }
+    });
+
+    document.addEventListener('keydown', function onKey(e){
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    }, true);
+  };
+
+  const boot = async () => {
+    if (!isWithinDate() || isAck()) return;
+
+    // ważne przy document-start:
+    while (!document.body) await new Promise(r => requestAnimationFrame(r));
+
+    injectCSS();
+
+    const customerName = await waitForCustomer();
+    if (!customerName) return;
+
+    showPopup();
+  };
+
+  boot();
+})();
+
