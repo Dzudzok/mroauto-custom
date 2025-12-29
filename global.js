@@ -1172,7 +1172,7 @@ console.log('MROAUTO: Global helpers loaded');
   'use strict';
 
   const CONFIG = {
-    startDate: '2025-12-29',
+    startDate: '2025-12-28',
     endDate:   '2026-01-06',
 
     noticeId: 'inventory-delivery-06-01-2026-vFORCE',
