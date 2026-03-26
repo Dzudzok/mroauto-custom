@@ -1171,11 +1171,11 @@ console.log('MROAUTO: Global helpers loaded');
 (() => {
   'use strict';
 
-	console.log('Svatek 06-01-2026');
+	console.log('ceny dopravy 26-03-2026');
 
   const CONFIG = {
-    startDate: '2025-12-28',
-    endDate:   '2026-01-06',
+    startDate: '2026-03-25',
+    endDate:   '2026-03-26',
 
     noticeId: 'inventory-delivery-06-01-2026-vFORCE',
 
@@ -1185,8 +1185,8 @@ console.log('MROAUTO: Global helpers loaded');
     buttonText: 'Rozumím',
 
     messageHtml: `
-      <p><b>Dne 06.01.2026 vyjíždí pouze jeden ranní rozvoz.</b></p>
-      <p>Prosíme o objednávání dopředu, případně nejpozději na ranní trasu <b>06.01.2026</b>.</p>
+      <p><b>Od dne 26.03.2026</b></p>
+      <p>Vzhledem k aktuální situaci a rostoucím cenám paliv jsme nuceni <b>dočasně zvýšit ceny dopravy.</b>.</p>
       <p class="mroNote">Děkujeme za pochopení.</p>
     `
   };
