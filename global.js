@@ -1177,11 +1177,11 @@ console.log('MROAUTO: Global helpers loaded');
     startDate: '2026-03-25',
     endDate:   '2026-03-26',
 
-    noticeId: 'inventory-delivery-06-01-2026-vFORCE',
+    noticeId: 'inventory-delivery-26-03-2026-vFORCE',
 
     title: 'Důležité oznámení',
     subtitle: 'Omezený rozvoz',
-    badgeText: '06.01.2025',
+    badgeText: '26.03.2025',
     buttonText: 'Rozumím',
 
     messageHtml: `
