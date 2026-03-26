@@ -1180,14 +1180,14 @@ console.log('MROAUTO: Global helpers loaded');
     noticeId: 'inventory-delivery-26-03-2026-vFORCE',
 
     title: 'Důležité oznámení',
-    subtitle: 'Omezený rozvoz',
+    subtitle: 'Ceny dopravy',
     badgeText: '26.03.2025',
     buttonText: 'Rozumím',
 
     messageHtml: `
       <p><b>Od dne 26.03.2026</b></p>
-      <p>Vzhledem k aktuální situaci a rostoucím cenám paliv jsme nuceni <b>dočasně zvýšit ceny dopravy.</b>.</p>
-      <p class="mroNote">Děkujeme za pochopení.</p>
+      <p class="mroNote">Vzhledem k aktuální situaci a rostoucím cenám paliv jsme nuceni dočasně zvýšit ceny dopravy</p>
+      <p>Děkujeme za pochopení.</p>
     `
   };
 
