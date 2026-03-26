@@ -1285,8 +1285,10 @@ console.log('MROAUTO: Global helpers loaded');
     }, true);
   };
 
-  const boot = async () => {
-    if (!isWithinDate() || isAck()) return;
+	const isTargetPage = () => window.location.pathname.includes('/cs/objednavka');
+	
+	const boot = async () => {
+		if (!isTargetPage() || !isWithinDate() || isAck()) return;
 
     // ważne przy document-start:
     while (!document.body) await new Promise(r => requestAnimationFrame(r));
