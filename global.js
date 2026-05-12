@@ -781,7 +781,7 @@ console.log('MROAUTO: Global helpers loaded');
         updateHeaderLogos();
         updateInformationHeaders();
 
-        $('#SmartSearchInput').on('input', debounce(updateManufacturers, 300));
+        $('#SmartSearchInput').on('input', debounce(() => updateManufacturers(), 300));
 
         const observer = new MutationObserver(function(mutations) {
             const changedItems = [];
