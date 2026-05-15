@@ -8,6 +8,19 @@
 
    Rollback: git checkout pre-faza-B -- head.css  ALBO  git revert <sha>. */
 
+/* === Logo brand mroauto (zamiana default Nextis logo.png na Image.ashx?id=644339) ===
+   Migrowane 2026-05-15 z Head_w_nextis (poprzednio tylko #BodyContentPlaceHolder_Logo).
+   FIX: selektor poszerzony o .flex-logo bo na podstronach /cs/akce/* i /cs/katalog/univerzalni-dily
+   Nextis renderuje logo BEZ ID (tylko class). Wczesniej regula nie matchowala — domyslny
+   logo.png byl widoczny. Teraz `.flex-logo` lapie wszystkie warianty desktop. */
+#BodyContentPlaceHolder_Logo,
+.flex-logo {
+    content: url("https://www.mroauto.cz/Image.ashx?type=4&id=644339") !important;
+    width: 300px;
+    height: 130px;
+    object-fit: contain;
+}
+
   .currency-language-selection .dropdown-button .media-mobile-only > span {
     position: relative;
     display: inline-flex;
