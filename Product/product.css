@@ -1,0 +1,86 @@
+/* Style karty produktu — migrowane z Head_w_nextis 2026-05-15 (faza C1).
+   Dotyczy bloku "Opis produktu" — accordion z aplikacjami do aut + lista numerow OE.
+   Modul Product/ leci na stronach z .flex-product-detail (URL TecDoc / hledani). */
+
+/* Styl wspolny dla obu sekcji */
+div.flex-car-applications-list,
+div.flex-oe-numbers-list {
+    width: 100%;
+}
+
+/* Naglowek h3 — accordion trigger (aplikacje do aut + numery OE) */
+div.flex-car-applications-list h3,
+div.flex-oe-numbers-list h3 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    padding: 10px;
+    background-color: #ebf2f8;
+    border-bottom: 6px solid #ffffff;
+    margin: 0;
+    border-radius: 8px;
+    position: relative;
+}
+
+div.flex-car-applications-list h3:hover,
+div.flex-oe-numbers-list h3:hover {
+    background-color: #8fcdff;
+}
+
+div.flex-car-applications-list h3::after,
+div.flex-oe-numbers-list h3::after {
+    content: '+';
+    font-size: 21px;
+    transition: transform 0.3s ease;
+    color: #fe3434;
+}
+
+div.flex-oe-numbers-list h3::after {
+    font-size: 18px;
+}
+
+div.flex-car-applications-list h3.active::after,
+div.flex-oe-numbers-list h3.active::after {
+    transform: rotate(45deg);
+}
+
+/* Tresc accordionu — domyslnie ukryta, widoczna po .active na h3 */
+div.flex-car-applications-list p,
+div.flex-oe-numbers-list p {
+    display: none;
+    padding: 10px;
+    margin: 0;
+    border-bottom: 1px solid #ddd;
+}
+
+div.flex-car-applications-list h3.active + p,
+div.flex-oe-numbers-list h3.active + p {
+    display: block;
+}
+
+/* Lista numerow OE / aplikacji — punktor • na czerwono, bg ebf2f8 alpha */
+div.flex-oe-numbers-list p .flex-oe-numbers-list-items,
+div.flex-car-applications-list p .flex-car-applications-list-items {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    background-color: #ebf2f85e;
+    color: #00569d;
+    border-radius: 8px;
+}
+
+div.flex-oe-numbers-list p .flex-oe-numbers-list-items li,
+div.flex-car-applications-list p .flex-car-applications-list-items li {
+    padding: 5px 0;
+    position: relative;
+    padding-left: 44px;
+}
+
+div.flex-oe-numbers-list p .flex-oe-numbers-list-items li::before,
+div.flex-car-applications-list p .flex-car-applications-list-items li::before {
+    content: '•';
+    position: absolute;
+    left: 20px;
+    color: #ff0000;
+}
