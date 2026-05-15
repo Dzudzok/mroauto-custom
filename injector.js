@@ -165,169 +165,29 @@
       targetSelector: '.flex-product-detail',
       position: 'beforeend'
     },
+    // Wpisy ponizej zostawione tylko z `css` — pliki HTML/JS sa puste 0-bajtowe.
+    // Folder na dysku zachowany jako miejsce pod przyszly modul. Reszta wpisow
+    // (basket, carselect*, search, blog, contact, about, privacy, shipping,
+    // downloads, objednavka, summary, actions) usunieta 2026-05-15 (faza A, A1)
+    // bo wszystkie pliki byly stub'ami — fetche 0 B/404 marnowaly requesty.
+    // Rollback: git checkout pre-faza-A -- injector.js
     {
       name: 'productlist', // tylko na strankach s obrazem autem po stromie tecdoc
       pathIncludes: ['hledani', '/katalog/tecdoc/'],
       matchSelector: ['[id^="ProductItem_"]', '.flex-tecdoc-vehicle-info-box'],
-      css: 'ProductList/productlist.css',
-      html: 'ProductList/productlist.html',
-      js: 'ProductList/productlist.js',
-      targetSelector: '.flex-item.catalog-view',
-      position: 'beforeend'
+      css: 'ProductList/productlist.css'
     },
     {
       name: 'productlistsearch', // tylko na strankach z lista produktw bez auta
       pathIncludes: ['hledani', '/katalog/tecdoc/'],
       matchSelector: '[id^="ProductItem_"]',
-      css: 'ProductListSearch/productlistsearch.css',
-      html: 'ProductListSearch/productlistsearch.html',
-      js: 'ProductListSearch/productlistsearch.js',
-      targetSelector: '.flex-item.catalog-view',
-      position: 'beforeend'
-    },
-    {
-      name: 'basket',
-      pathIncludes: ['/kosik'],
-      matchSelector: '.basket, .cart, .flex-basket',
-      html: 'Basket/basket.html',
-      css: 'Basket/basket.css',
-      js: 'Basket/basket.js',
-      targetSelector: '.basket, .cart, .flex-basket',
-      position: 'beforeend'
-    },
-    {
-      name: 'carselect',
-      pathIncludes: ['/katalog/tecdoc/osobni'],
-      matchSelector: '.vehicle-selector, .car-select, .flex-tecdoc-manufacturers',
-      html: 'CarSelect/carselect.html',
-      css: 'CarSelect/carselect.css',
-      js: 'CarSelect/carselect.js',
-      targetSelector: '.vehicle-selector, .car-select, .flex-tecdoc-manufacturers',
-      position: 'beforeend'
-    },
-    {
-      name: 'carselectmodels',
-      pathIncludes: ['/katalog/tecdoc/osobni'],
-      matchSelector: '.flex-tecdoc-models',
-      html: 'CarSelect/carselectmodels.html',
-      css: 'CarSelect/carselectmodels.css',
-      js: 'CarSelect/carselectmodels.js',
-      targetSelector: '.flex-tecdoc-models',
-      position: 'beforeend'
-    },
-    {
-      name: 'carselectengines',
-      pathIncludes: ['/katalog/tecdoc/osobni'],
-      matchSelector: '.flex-tecdoc-engines',
-      html: 'CarSelect/carselectengines.html',
-      css: 'CarSelect/carselectengines.css',
-      js: 'CarSelect/carselectengines.js',
-      targetSelector: '.flex-tecdoc-engines',
-      position: 'beforeend'
-    },
-    {
-      name: 'search',
-      pathIncludes: [],
-      matchSelector: '.flex-smart-search',
-      html: 'Search/search.html',
-      css: 'Search/search.css',
-      js: 'Search/search.js',
-      targetSelector: '.flex-smart-search-input',
-      position: 'beforeend'
-    },
-    {
-      name: 'blog',
-      pathIncludes: ['/blog'],
-      matchSelector: '.blog-mainpage',
-      html: 'Blog/blog.html',
-      css: 'Blog/blog.css',
-      js: 'Blog/blog.js',
-      targetSelector: '.blog-mainpage',
-      position: 'beforeend'
+      css: 'ProductListSearch/productlistsearch.css'
     },
     {
       name: 'universal',
       pathIncludes: ['/katalog/univerzalni-dily'],
       matchSelector: '.flex-universal-parts',
-      html: 'UniversalParts/universal.html',
-      css: 'UniversalParts/universal.css',
-      js: 'UniversalParts/universal.js',
-      targetSelector: '.flex-universal-parts',
-      position: 'beforeend'
-    },
-    {
-      name: 'contact',
-      pathIncludes: ['/clanek/kontakt-mroauto-cz'],
-      html: 'Contact/contact.html',
-      css: 'Contact/contact.css',
-      js: 'Contact/contact.js',
-      targetSelector: '.flex-content',
-      position: 'beforeend'
-    },
-    {
-      name: 'about',
-      pathIncludes: ['/clanek/o-nas-cz'],
-      html: 'AboutUs/aboutus.html',
-      css: 'AboutUs/aboutus.css',
-      js: 'AboutUs/aboutus.js',
-      targetSelector: '.flex-content',
-      position: 'beforeend'
-    },
-    {
-      name: 'privacy',
-      pathIncludes: ['/clanek/obchodni-podminky-cz2'],
-      html: 'Privacy/privacy.html',
-      css: 'Privacy/privacy.css',
-      js: 'Privacy/privacy.js',
-      targetSelector: '.flex-content',
-      position: 'beforeend'
-    },
-    {
-      name: 'shipping',
-      pathIncludes: ['/clanek/platba-cena-doprava-cz'],
-      html: 'Shipping/shipping.html',
-      css: 'Shipping/shipping.css',
-      js: 'Shipping/shipping.js',
-      targetSelector: '.flex-content',
-      position: 'beforeend'
-    },
-    {
-      name: 'downloads',
-      pathIncludes: ['/clanek/soubory-ke-stazeni-cz'],
-      html: 'Downloads/downloads.html',
-      css: 'Downloads/downloads.css',
-      js: 'Downloads/downloads.js',
-      targetSelector: '.flex-content',
-      position: 'beforeend'
-    },
-    {
-      name: 'objednavka',
-      pathIncludes: ['/objednavka', '/cs/objednavka'],
-      matchSelector: '.order, .checkout, .mro-order-step, .flex-registration-step-2',
-      html: 'Order/objednavka.html',
-      css: 'Order/objednavka.css',
-      js: 'Order/objednavka.js',
-      targetSelector: '.flex-content, .mro-order-step, body, .flex-registration-step-2',
-      position: 'beforeend'
-    },
-    {
-      name: 'summary',
-      pathIncludes: ['/rekapitulace-objednavky'],
-      matchSelector: '.order-summary, .mro-order-step, .summary, .flex-order-controls',
-      html: 'Order/summary.html',
-      css: 'Order/summary.css',
-      js: 'Order/summary.js',
-      targetSelector: '.flex-content, .mro-order-step, body, .flex-order-controls',
-      position: 'beforeend'
-    },
-    {
-      name: 'actions',
-      pathIncludes: ['/akce/'],
-      html: 'Actions/actions.html',
-      css: 'Actions/actions.css',
-      js: 'Actions/actions.js',
-      targetSelector: '.flex-content',
-      position: 'beforeend'
+      css: 'UniversalParts/universal.css'
     }
 
   ];
