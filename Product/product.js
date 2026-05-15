@@ -207,9 +207,20 @@ document.querySelectorAll(".flex-delivery-time-item").forEach(firstItem => {
     </div>
   `;
 
+  // Wlasny tooltip na hover (niezalezny od Nextis flex-html-tooltip).
+  // PRZYCZYNA: Nextis tooltip JS skanuje DOM raz przy load i podpina hover'y
+  // tylko na elementach istniejacych w tym momencie. .modern-stock powstaje
+  // pozniej przez nasz kod, czasem laczy sie z Nextis listenerem (timing),
+  // czasem nie. Wlasny tooltip = deterministyczny.
   if (tooltipAttr) {
     const stockDiv = box.querySelector(".modern-stock");
-    if (stockDiv) stockDiv.setAttribute("data-flex-html-tooltip", tooltipAttr);
+    if (stockDiv) {
+      const myTooltip = document.createElement("div");
+      myTooltip.className = "modern-stock-tooltip";
+      myTooltip.innerHTML = tooltipAttr;
+      stockDiv.style.position = "relative";
+      stockDiv.appendChild(myTooltip);
+    }
   }
 
   if (tooltipBlock) {

@@ -2,6 +2,57 @@
    Dotyczy bloku "Opis produktu" — accordion z aplikacjami do aut + lista numerow OE.
    Modul Product/ leci na stronach z .flex-product-detail (URL TecDoc / hledani). */
 
+/* === Wlasny tooltip dla .modern-stock (niezalezny od Nextis flex-html-tooltip) === */
+/* Dodano 2026-05-15 fix flaky tooltip — Nextis hover JS nie zawsze lapie .modern-stock. */
+.modern-stock-tooltip {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin-top: 6px;
+    z-index: 100;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    padding: 12px;
+    min-width: 280px;
+    max-width: 420px;
+    font-size: 13px;
+    color: #333;
+    line-height: 1.5;
+}
+
+.modern-stock:hover > .modern-stock-tooltip {
+    display: block;
+}
+
+.modern-stock-tooltip table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.modern-stock-tooltip td {
+    padding: 4px 8px;
+    border-bottom: 1px solid #eee;
+}
+
+.modern-stock-tooltip td.key {
+    color: #555;
+    font-weight: 500;
+}
+
+.modern-stock-tooltip td.value {
+    text-align: right;
+    color: #00569d;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.modern-stock-tooltip tr:last-child td {
+    border-bottom: none;
+}
+
 /* Styl wspolny dla obu sekcji */
 div.flex-car-applications-list,
 div.flex-oe-numbers-list {
