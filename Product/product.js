@@ -208,28 +208,34 @@ document.querySelectorAll(".flex-delivery-time-item").forEach(firstItem => {
   `;
 
   // Wlasny tooltip na hover (niezalezny od Nextis flex-html-tooltip).
-  // data-flex-html-tooltip w Nextis to ID referencji (np. 'DeliveryTimeTooltipContent_78045479...')
-  // do ukrytego elementu w DOM z pelna tabela poboczek.
-  // .flex-on-the-way/.flex-on-stock zawiera tylko prosty status ('4 ks').
-  //
-  // Strategia: szukaj contentu po ID z tooltipAttr → fallback do tooltipBlock.innerHTML
-  //           → fallback do statycznego komunikatu.
-  if (tooltipBlock) {
+  // data-flex-html-tooltip = ID elementu w DOM z pelna tabela poboczek
+  // (np. 'DeliveryTimeTooltipContent_452057229'). Element zazwyczaj istnieje
+  // w DOM, ALE z race condition: nasz kod startuje po waitForElement('.flex-product-detail'),
+  // a #DeliveryTimeTooltipContent_* (~120 linii nizej w HTML) moze byc jeszcze
+  // nie sparsowany. Stad MutationObserver — wypelniamy tooltip gdy content sie pojawi.
+  if (tooltipBlock && tooltipAttr) {
     const stockDiv = box.querySelector(".modern-stock");
     if (stockDiv) {
-      let tooltipContent = "";
-      if (tooltipAttr) {
-        const contentEl = document.getElementById(tooltipAttr);
-        if (contentEl) tooltipContent = contentEl.innerHTML;
-      }
-      if (!tooltipContent) tooltipContent = tooltipBlock.innerHTML;
+      const myTooltip = document.createElement("div");
+      myTooltip.className = "modern-stock-tooltip";
+      stockDiv.style.position = "relative";
+      stockDiv.appendChild(myTooltip);
 
-      if (tooltipContent) {
-        const myTooltip = document.createElement("div");
-        myTooltip.className = "modern-stock-tooltip";
-        myTooltip.innerHTML = tooltipContent;
-        stockDiv.style.position = "relative";
-        stockDiv.appendChild(myTooltip);
+      const tryFill = () => {
+        const contentEl = document.getElementById(tooltipAttr);
+        if (contentEl && contentEl.innerHTML.trim()) {
+          myTooltip.innerHTML = contentEl.innerHTML;
+          return true;
+        }
+        return false;
+      };
+
+      if (!tryFill()) {
+        const observer = new MutationObserver(() => {
+          if (tryFill()) observer.disconnect();
+        });
+        observer.observe(document.body, { childList: true, subtree: true });
+        setTimeout(() => observer.disconnect(), 5000);
       }
     }
   }

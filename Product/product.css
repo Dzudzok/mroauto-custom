@@ -7,10 +7,14 @@
 .modern-stock-tooltip {
     display: none;
     position: absolute;
-    top: 100%;
-    left: 0;
-    margin-top: 6px;
+    /* Pozycjonowany NAD badge'em (bottom: 100%) zamiast pod — zapobiega zaslanianiu
+       przyciskow +/- ilosci i koszyka pod badge'em. pointer-events:none ze cursor
+       moze przez tooltip 'przelecic' do klikalnych elementow pod nim. */
+    bottom: 100%;
+    right: 0;
+    margin-bottom: 6px;
     z-index: 100;
+    pointer-events: none;
     background: #fff;
     border: 1px solid #ddd;
     border-radius: 8px;
@@ -21,6 +25,9 @@
     font-size: 13px;
     color: #333;
     line-height: 1.5;
+    /* zapobiegamy wystawaniu poza viewport prawej krawedzi */
+    max-height: 60vh;
+    overflow-y: auto;
 }
 
 .modern-stock:hover > .modern-stock-tooltip {
