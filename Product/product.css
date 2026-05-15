@@ -3,17 +3,14 @@
    Modul Product/ leci na stronach z .flex-product-detail (URL TecDoc / hledani). */
 
 /* === Wlasny tooltip dla .modern-stock (niezalezny od Nextis flex-html-tooltip) === */
-/* Dodano 2026-05-15 fix flaky tooltip — Nextis hover JS nie zawsze lapie .modern-stock. */
+/* Tooltip jest dzieckiem document.body (nie .modern-stock) — uciekamy z lokalnego
+   stacking context bo tabela produktu (.flex-product-detail) zakrywala nasz tooltip
+   nawet przy z-index:9999. position:fixed, koordynaty z JS getBoundingClientRect().
+   Show/hide przez .visible klase (toggle z JS mouseenter/mouseleave). */
 .modern-stock-tooltip {
     display: none;
-    position: absolute;
-    /* Pozycjonowany NAD badge'em (bottom: 100%) zamiast pod — zapobiega zaslanianiu
-       przyciskow +/- ilosci i koszyka pod badge'em. pointer-events:none ze cursor
-       moze przez tooltip 'przelecic' do klikalnych elementow pod nim. */
-    bottom: 100%;
-    right: 0;
-    margin-bottom: 6px;
-    z-index: 9999;
+    position: fixed;
+    z-index: 999999;
     pointer-events: none;
     background: #fff;
     border: 1px solid #ddd;
@@ -25,12 +22,11 @@
     font-size: 13px;
     color: #333;
     line-height: 1.5;
-    /* zapobiegamy wystawaniu poza viewport prawej krawedzi */
     max-height: 60vh;
     overflow-y: auto;
 }
 
-.modern-stock:hover > .modern-stock-tooltip {
+.modern-stock-tooltip.visible {
     display: block;
 }
 

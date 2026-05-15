@@ -208,18 +208,20 @@ document.querySelectorAll(".flex-delivery-time-item").forEach(firstItem => {
   `;
 
   // Wlasny tooltip na hover (niezalezny od Nextis flex-html-tooltip).
-  // data-flex-html-tooltip = ID elementu w DOM z pelna tabela poboczek
-  // (np. 'DeliveryTimeTooltipContent_452057229'). Element zazwyczaj istnieje
-  // w DOM, ALE z race condition: nasz kod startuje po waitForElement('.flex-product-detail'),
-  // a #DeliveryTimeTooltipContent_* (~120 linii nizej w HTML) moze byc jeszcze
-  // nie sparsowany. Stad MutationObserver — wypelniamy tooltip gdy content sie pojawi.
+  // STRATEGIA: tooltip dziecko document.body (nie .modern-stock) — uciekamy
+  // z lokalnego stacking context (tabela produktu z z-index gora mogla nas
+  // przykrywac mimo z-index:9999). position:fixed wzgledem viewport, koordynaty
+  // obliczane z getBoundingClientRect() na badge.
+  //
+  // RACE: #DeliveryTimeTooltipContent_* (~60 linii nizej w HTML niz nasze
+  // .flex-product-detail anchor) moze byc jeszcze nie sparsowany gdy nasz
+  // kod sie odpala — MutationObserver z auto-disconnect po 5s.
   if (tooltipBlock && tooltipAttr) {
     const stockDiv = box.querySelector(".modern-stock");
     if (stockDiv) {
       const myTooltip = document.createElement("div");
       myTooltip.className = "modern-stock-tooltip";
-      stockDiv.style.position = "relative";
-      stockDiv.appendChild(myTooltip);
+      document.body.appendChild(myTooltip);
 
       const tryFill = () => {
         const contentEl = document.getElementById(tooltipAttr);
@@ -237,6 +239,29 @@ document.querySelectorAll(".flex-delivery-time-item").forEach(firstItem => {
         observer.observe(document.body, { childList: true, subtree: true });
         setTimeout(() => observer.disconnect(), 5000);
       }
+
+      const positionTooltip = () => {
+        const rect = stockDiv.getBoundingClientRect();
+        const ttHeight = myTooltip.offsetHeight;
+        // domyslnie nad badge'em, wyrownany do prawej krawedzi
+        let top = rect.top - ttHeight - 6;
+        // jesli nie mieści sie nad — pokaz pod
+        if (top < 8) top = rect.bottom + 6;
+        const right = window.innerWidth - rect.right;
+        myTooltip.style.top = top + 'px';
+        myTooltip.style.right = right + 'px';
+      };
+
+      stockDiv.addEventListener('mouseenter', () => {
+        myTooltip.classList.add('visible');
+        positionTooltip();
+      });
+      stockDiv.addEventListener('mouseleave', () => {
+        myTooltip.classList.remove('visible');
+      });
+      window.addEventListener('scroll', () => {
+        if (myTooltip.classList.contains('visible')) positionTooltip();
+      }, { passive: true });
     }
   }
 
