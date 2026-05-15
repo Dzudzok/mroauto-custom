@@ -135,6 +135,12 @@
       css: 'WhatsApp/whatsapp.css',
       js: 'WhatsApp/whatsapp.js'
     },
+    {
+      name: 'delivery-format',
+      pathIncludes: [],
+      matchSelector: 'body',
+      js: 'DeliveryFormat/delivery-format.js'
+    },
         {
       name: 'homepage',
       pathIncludes: ['', '/', '/cs', '/cs/'],
