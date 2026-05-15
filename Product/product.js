@@ -185,9 +185,14 @@ document.querySelectorAll(".flex-delivery-time-item").forEach(firstItem => {
 
   const box = document.createElement("div");
   box.className = "modern-delivery-box";
+  // UWAGA: data-flex-html-tooltip ustawiane przez setAttribute PO innerHTML.
+  // Wartosc atrybutu z Nextis zawiera cudzyslowy " (np. <table style="...">),
+  // wstawienie do template literal `data-flex-html-tooltip="${tooltipAttr}"`
+  // zamyka atrybut w srodku — parser HTML rozjezdza sie, tooltip raz dziala
+  // raz nie. setAttribute browser sam escape'uje.
   box.innerHTML = `
     <div class="modern-line1">
-      <div class="modern-stock ${isAvailable ? "in-stock" : "not-available"} processed" ${tooltipAttr ? `data-flex-html-tooltip="${tooltipAttr}"` : ""}>
+      <div class="modern-stock ${isAvailable ? "in-stock" : "not-available"} processed">
         ${isAvailable ? "✅ <strong>" + availability + "</strong> skladem" : "❌ <strong>Není skladem</strong>"}
         ${tooltipBlock ? `<div class="show-branches" style="cursor:pointer;color:#006fd2;font-size:0.8em;font-weight:300;margin-top:6px;">ℹ️ Zobrazit dostupnost na pobočkách</div>` : ""}
       </div>
@@ -201,6 +206,11 @@ document.querySelectorAll(".flex-delivery-time-item").forEach(firstItem => {
       <div class="modern-basket-container"></div>
     </div>
   `;
+
+  if (tooltipAttr) {
+    const stockDiv = box.querySelector(".modern-stock");
+    if (stockDiv) stockDiv.setAttribute("data-flex-html-tooltip", tooltipAttr);
+  }
 
   if (tooltipBlock) {
     tooltipBlock.style.display = "none";
