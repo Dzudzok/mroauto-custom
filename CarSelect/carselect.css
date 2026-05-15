@@ -1,3 +1,155 @@
-.mro-car-manufacturer {
+/* CarSelect — styling TecDoc selector (manufacturer/model/engine) + logo marek aut.
+   Migrowane z Head_w_nextis 2026-05-15 (faza C2). Wszystkie selektory dotycza
+   natywnych elementow Nextis renderowanych na stronach TecDoc po wyborze auta. */
 
+/* === Rychle hledani (drop-down) === */
+.flex-drop-down-link {
+    display: flex !important;
+    gap: 20px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.flex-select-vehicle-wizard .flex-drop-down dt span.flex-drop-down-link {
+    height: 34px;
+}
+
+/* Placeholder ikony marki w manufacturer dropdown (40x40, contain) */
+#ManufacturerSelector_FlexDropDown dd .flex-collapsible ul li .flex-drop-down-link::before {
+    content: "";
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* === Logo marek aut (data-value to TecDoc manufacturer ID) === */
+.flex-manufacturer-selector [data-value="881"]::before  { background-image: url('/Image.ashx?type=4&id=395032'); } /* Aston Martin */
+.flex-manufacturer-selector [data-value="5"]::before    { background-image: url('/Image.ashx?type=4&id=395033'); } /* Audi */
+.flex-manufacturer-selector [data-value="16"]::before   { background-image: url('/Image.ashx?type=4&id=395034'); } /* BMW */
+.flex-manufacturer-selector [data-value="21"]::before   { background-image: url('/Image.ashx?type=4&id=395036'); } /* Citroen */
+.flex-manufacturer-selector [data-value="139"]::before  { background-image: url('/Image.ashx?type=4&id=395037'); } /* Dacia */
+.flex-manufacturer-selector [data-value="29"]::before   { background-image: url('/Image.ashx?type=4&id=395038'); } /* Dodge */
+.flex-manufacturer-selector [data-value="700"]::before  { background-image: url('/Image.ashx?type=4&id=395039'); } /* Ferrari */
+.flex-manufacturer-selector [data-value="35"]::before   { background-image: url('/Image.ashx?type=4&id=395031'); } /* Fiat */
+.flex-manufacturer-selector [data-value="36"]::before   { background-image: url('/Image.ashx?type=4&id=395040'); } /* Ford */
+.flex-manufacturer-selector [data-value="45"]::before   { background-image: url('/Image.ashx?type=4&id=395041'); } /* Honda */
+.flex-manufacturer-selector [data-value="183"]::before  { background-image: url('/Image.ashx?type=4&id=395042'); } /* Hyundai */
+.flex-manufacturer-selector [data-value="138"]::before  { background-image: url('/Image.ashx?type=4&id=395035'); } /* Chevrolet */
+.flex-manufacturer-selector [data-value="56"]::before   { background-image: url('/Image.ashx?type=4&id=395043'); } /* Jaguar */
+.flex-manufacturer-selector [data-value="882"]::before  { background-image: url('/Image.ashx?type=4&id=395044'); } /* Jeep */
+.flex-manufacturer-selector [data-value="184"]::before  { background-image: url('/Image.ashx?type=4&id=395045'); } /* Kia */
+.flex-manufacturer-selector [data-value="1820"]::before { background-image: url('/Image.ashx?type=4&id=395046'); } /* Land Rover */
+.flex-manufacturer-selector [data-value="842"]::before  { background-image: url('/Image.ashx?type=4&id=395047'); } /* Lexus */
+.flex-manufacturer-selector [data-value="72"]::before   { background-image: url('/Image.ashx?type=4&id=395048'); } /* Mazda */
+.flex-manufacturer-selector [data-value="74"]::before   { background-image: url('/Image.ashx?type=4&id=395049'); } /* Mercedes-Benz */
+.flex-manufacturer-selector [data-value="1523"]::before { background-image: url('/Image.ashx?type=4&id=395050'); } /* Mini */
+.flex-manufacturer-selector [data-value="80"]::before   { background-image: url('/Image.ashx?type=4&id=395051'); } /* Nissan */
+.flex-manufacturer-selector [data-value="84"]::before   { background-image: url('/Image.ashx?type=4&id=395052'); } /* Opel */
+.flex-manufacturer-selector [data-value="88"]::before   { background-image: url('/Image.ashx?type=4&id=395053'); } /* Peugeot */
+.flex-manufacturer-selector [data-value="93"]::before   { background-image: url('/Image.ashx?type=4&id=395058'); } /* Renault */
+.flex-manufacturer-selector [data-value="104"]::before  { background-image: url('/Image.ashx?type=4&id=395055'); } /* Seat */
+.flex-manufacturer-selector [data-value="106"]::before  { background-image: url('/Image.ashx?type=4&id=395056'); } /* Skoda */
+.flex-manufacturer-selector [data-value="3328"]::before { background-image: url('/Image.ashx?type=4&id=395054'); } /* Tesla */
+.flex-manufacturer-selector [data-value="111"]::before  { background-image: url('/Image.ashx?type=4&id=395059'); } /* Toyota */
+.flex-manufacturer-selector [data-value="120"]::before  { background-image: url('/Image.ashx?type=4&id=395057'); } /* Volvo */
+.flex-manufacturer-selector [data-value="121"]::before  { background-image: url('/Image.ashx?type=4&id=395030'); } /* VW */
+
+/* === Collapsible list w dropdown'ach === */
+.flex-collapsible ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 400px;
+    overflow-y: auto;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.flex-collapsible li {
+    padding: 4px 14px;
+    border-bottom: 1px solid #eee;
+    transition: background 0.3s;
+}
+
+.flex-collapsible li:hover {
+    background: #f9f9f9;
+    cursor: pointer;
+}
+
+/* nadpis dla .flex-drop-down-link — drugi raz zdefiniowane w oryginale, zachowuje 1:1 */
+.flex-drop-down-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+/* === Selektory Manufacturer/Model/Engine — formatowanie tekstu === */
+#ManufacturerSelector_FlexDropDown dd .flex-collapsible ul li .flex-drop-down-link .flex-text {
+    font-weight: 500;
+    font-size: 16px;
+    color: #000;
+    flex: 1;
+    margin-left: 15%;
+}
+
+#ModelSelector_FlexDropDown dd .flex-collapsible ul li .flex-drop-down-link .flex-text {
+    font-weight: 500;
+    font-size: 16px;
+    color: #000;
+    flex: 1;
+    max-width: 65%;
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+#EngineSelector_FlexDropDown dd .flex-collapsible ul li .flex-drop-down-link .flex-text {
+    font-weight: 500;
+    font-size: 16px;
+    color: #000;
+    flex: 1;
+    max-width: 80%;
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+#EngineSelector_FlexDropDown dd .flex-collapsible ul li .flex-drop-down-link .flex-additional-text {
+    font-size: 10px;
+    color: #767676;
+    text-align: right;
+    white-space: pre-line;
+    max-width: 50%;
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+.flex-additional-text {
+    font-size: 14px;
+    color: #777;
+    text-align: right;
+    white-space: nowrap;
+}
+
+.flex-drop-down dd ul li span.flex-drop-down-link {
+    position: relative;
+    cursor: pointer;
+    padding: 0;
+    color: #7f7f7f;
+    text-decoration: none;
+}
+
+.flex-drop-down dd .flex-collapsible {
+    border-radius: 12px;
+    background: #ffffff00;
+}
+
+/* === Shortcuts — kafelki kategorii na landing TecDoc === */
+.shortcuts > a > .name {
+    border: 1px solid #00000042;
+    border-radius: 8px;
 }

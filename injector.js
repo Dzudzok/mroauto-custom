@@ -162,6 +162,18 @@
       css: 'Garage/garage.css',
       js: 'Garage/garage.js'
     },
+    {
+      name: 'oil-widget',
+      pathIncludes: [],
+      matchSelector: '.oil-widget', // widget renderowany przez Nextis na wybranych stronach
+      css: 'OilWidget/oil-widget.css'
+    },
+    {
+      name: 'carselect',
+      pathIncludes: ['/katalog/tecdoc/'],
+      matchSelector: '.flex-select-vehicle-wizard, .flex-manufacturer-selector, .flex-collapsible',
+      css: 'CarSelect/carselect.css'
+    },
         {
       name: 'homepage',
       pathIncludes: ['', '/', '/cs', '/cs/'],

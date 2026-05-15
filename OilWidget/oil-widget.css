@@ -1,0 +1,113 @@
+/* Oil widget — slide-out widget z prawej strony.
+   Migrowane z Head_w_nextis 2026-05-15 (faza C2).
+   Element .oil-widget renderowany przez Nextis (override stylu natywnego). */
+
+.oil-widget {
+    position: fixed;
+    top: 50%;
+    right: -300px; /* poczatkowo schowany */
+    width: 104px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 15px 0 0 15px;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+    padding: 15px;
+    transition: right 0.3s ease-in-out;
+    z-index: 1000;
+    transform: translateY(-50%);
+}
+
+.oil-widget.active {
+    right: 0;
+}
+
+.oil-widget.collapsed {
+    right: -138px;
+}
+
+.oil-widget h3 {
+    margin: 0 0 10px;
+    font-size: 16px;
+    color: #333;
+}
+
+.oil-widget p {
+    margin: 0 0 10px;
+    font-size: 14px;
+    color: #666;
+}
+
+.oil-widget a {
+    display: inline-block;
+    padding: 8px 15px;
+    background: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.oil-widget a:hover {
+    background: #0056b3;
+}
+
+.oil-widget .toggle-btn {
+    position: absolute;
+    left: -40px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    background: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 4px 0 0 4px;
+}
+
+.oil-widget .toggle-btn:hover {
+    background: #0056b3;
+}
+
+.oil-widget .widget-image {
+    width: 100px;
+    height: auto;
+    margin-bottom: 10px;
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .oil-widget {
+        width: 86px;
+        padding: 10px;
+    }
+
+    .oil-widget.collapsed {
+        right: -112px;
+    }
+
+    .oil-widget h3 {
+        font-size: 14px;
+    }
+
+    .oil-widget p {
+        font-size: 12px;
+    }
+
+    .oil-widget a {
+        padding: 6px 10px;
+        font-size: 12px;
+    }
+
+    .oil-widget .toggle-btn {
+        left: -30px;
+        width: 30px;
+        height: 60px;
+        font-size: 16px;
+    }
+
+    .oil-widget .widget-image {
+        width: 80px;
+    }
+}
