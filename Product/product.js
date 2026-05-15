@@ -227,6 +227,12 @@ document.querySelectorAll(".flex-delivery-time-item").forEach(firstItem => {
         const contentEl = document.getElementById(tooltipAttr);
         if (contentEl && contentEl.innerHTML.trim()) {
           myTooltip.innerHTML = contentEl.innerHTML;
+          // Czerwony kolor dla pobocek z '0 ks' (brak na stanie)
+          myTooltip.querySelectorAll('.order-time-other-branches td.value').forEach(td => {
+            if (/^\s*0\s*ks\s*$/i.test(td.textContent)) {
+              td.style.color = '#dc2626';
+            }
+          });
           return true;
         }
         return false;

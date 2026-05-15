@@ -13,22 +13,177 @@
     z-index: 999999;
     pointer-events: none;
     background: #fff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    padding: 12px;
-    min-width: 280px;
-    max-width: 420px;
+    border: none;
+    border-radius: 14px;
+    box-shadow:
+        0 12px 40px rgba(0, 86, 157, 0.12),
+        0 4px 12px rgba(0, 0, 0, 0.08),
+        0 0 0 1px rgba(0, 86, 157, 0.08);
+    overflow: hidden;
+    min-width: 340px;
+    max-width: 440px;
     font-size: 13px;
-    color: #333;
+    color: #1f2937;
     line-height: 1.5;
-    max-height: 60vh;
+    max-height: 70vh;
     overflow-y: auto;
+    font-family: inherit;
 }
 
 .modern-stock-tooltip.visible {
     display: block;
+    animation: modernStockTooltipFadeIn 0.18s ease-out;
 }
+
+@keyframes modernStockTooltipFadeIn {
+    from { opacity: 0; transform: translateY(-4px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* === Naglowek "Doba dodani pri objednavce Dnes do 23:00" === */
+.modern-stock-tooltip .order-time-current > .title,
+.modern-stock-tooltip > .flex-order-times > .order-time-current > .title {
+    background: linear-gradient(135deg, #00569d 0%, #003e72 100%);
+    color: #fff;
+    padding: 11px 16px;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.2px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.modern-stock-tooltip .order-time-current > .title::before {
+    content: '🚚';
+    font-size: 15px;
+}
+
+.modern-stock-tooltip .order-time-current > .title .treshold {
+    background: rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(4px);
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0;
+    margin-left: auto;
+    white-space: nowrap;
+}
+
+/* === Tabela czasow dostaw (GLS / Osobne) === */
+.modern-stock-tooltip .order-time-current table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0;
+    background: #fff;
+}
+
+.modern-stock-tooltip .order-time-current td {
+    padding: 10px 16px;
+    border-bottom: 1px solid #f0f4f8;
+    vertical-align: middle;
+    background: transparent;
+}
+
+.modern-stock-tooltip .order-time-current tr:last-child td {
+    border-bottom: none;
+}
+
+.modern-stock-tooltip .order-time-current td.key {
+    color: #4b5563;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.modern-stock-tooltip .order-time-current td.key .time {
+    display: inline-block;
+    color: #00569d;
+    font-weight: 600;
+    margin-left: 4px;
+}
+
+.modern-stock-tooltip .order-time-current td.value {
+    text-align: right;
+    color: #00569d;
+    font-weight: 700;
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+/* === Naglowek sekcji "Dostupnost na ostatnich pobockach" === */
+.modern-stock-tooltip .order-time-other-branches > .title {
+    background: #f5f9fc;
+    color: #00569d;
+    padding: 9px 16px;
+    font-weight: 700;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    border-top: 1px solid #e5edf5;
+    border-bottom: 1px solid #e5edf5;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.modern-stock-tooltip .order-time-other-branches > .title::before {
+    content: '📍';
+    font-size: 13px;
+}
+
+/* === Tabela poboczek === */
+.modern-stock-tooltip .order-time-other-branches table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0;
+    background: #fff;
+}
+
+.modern-stock-tooltip .order-time-other-branches td {
+    padding: 9px 16px;
+    border-bottom: 1px solid #f5f7fa;
+    vertical-align: middle;
+}
+
+.modern-stock-tooltip .order-time-other-branches tr:last-child td {
+    border-bottom: none;
+}
+
+.modern-stock-tooltip .order-time-other-branches td.key {
+    color: #4b5563;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.modern-stock-tooltip .order-time-other-branches td.value {
+    text-align: right;
+    font-weight: 700;
+    font-size: 12px;
+    white-space: nowrap;
+    color: #16a34a; /* domyslnie zielony (na stanie) */
+}
+
+/* Wyrozniony main-stock (Sklad MROAUTO) */
+.modern-stock-tooltip .order-time-other-branches tr.main-stock td {
+    background: linear-gradient(180deg, #f0f9ff 0%, #e6f3fc 100%);
+    font-weight: 700;
+    border-bottom: 1px solid #d6e9f5;
+}
+
+.modern-stock-tooltip .order-time-other-branches tr.main-stock td.key {
+    color: #00569d;
+    font-weight: 700;
+}
+
+/* Wartosc "0 ks" jako czerwona (brak na stanie) — dziala na content "0 ks" */
+.modern-stock-tooltip .order-time-other-branches td.value:not(:empty) {
+    position: relative;
+}
+
+/* Niestety nie da sie warunkowac koloru z CSS po tekscie — domyslnie zielony.
+   Czerwony zostanie zaaplikowany przez JS gdy znajdziemy '0 ks' w cellu. */
 
 .modern-stock-tooltip table {
     width: 100%;
