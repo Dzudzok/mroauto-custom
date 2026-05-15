@@ -3,3 +3,7 @@ reszta maps copy.txt
 head aktualny.html
 body aktualny.html
 skript.html
+
+# Backup wycinka panelu Nextis CMS (poza repo — zarzadzane recznie)
+Body_w_nextis
+Head_w_nextis
