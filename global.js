@@ -32,36 +32,11 @@
     setTimeout(() => { obs.disconnect(); res(null); }, timeout);
   });
 
-  function isLoggedIn() {
-    try {
-      const userMenu  = document.querySelector('#ctl00\\$ctl00\\$BodyContentPlaceHolder\\$UserMenu .customer-name');
-      const loginForm = document.getElementById('ctl00$ctl00$BodyContentPlaceHolder$LoginForm');
-      if (userMenu) return true;
-      if (loginForm && !userMenu) return false;
-      return !!userMenu;
-    } catch { return false; }
-  }
-
-  function isB2B() {
-    try {
-      if (window.__MRO_IS_B2B === true) return true;
-
-      const userRoot = document.getElementById('ctl00$ctl00$BodyContentPlaceHolder$UserMenu');
-      if (userRoot) {
-        if (userRoot.querySelector('.customer .id, .customer .name')) return true;
-        const nameTxt = (userRoot.querySelector('.customer-name')?.textContent || '').trim();
-        const legalRe = /(s\.r\.o\.|a\.s\.|sp\. z o\.o\.|s\.c\.|gmbh|ag|sarl|s\.à r\.l\.|kft|srl|oy|bv|nv|oü|s\.a\.|sa)\b/i;
-        if (legalRe.test(nameTxt)) return true;
-        if (nameTxt && nameTxt === nameTxt.toUpperCase() && nameTxt.length >= 6) return true;
-      }
-      const txt = (document.getElementById('ctl00$ctl00$BodyContentPlaceHolder$UserMenu')?.textContent || '').trim();
-      if (/\bIČ\b|\bIČO\b|\bDIČ\b/i.test(txt)) return true;
-      if (/\bcustomerType=B2B\b/i.test(document.cookie)) return true;
-      if (document.querySelector('[data-customer-type="b2b"], .user-is-b2b')) return true;
-      if (window.nextisUser && (window.nextisUser.isB2B || /B2B/i.test(window.nextisUser.customerType||''))) return true;
-    } catch {}
-    return false;
-  }
+  // isLoggedIn / isB2B wyciagniete do window.MRO_HELPERS (faza A4, 2026-05-15).
+  // Fallback: jesli z jakiegos powodu MRO_HELPERS nie istnieje (load order),
+  // zwracamy false — VIN-search bedzie zablokowany overlay'em "zaloguj sie".
+  const isLoggedIn = () => window.MRO_HELPERS?.isLoggedIn?.() ?? false;
+  const isB2B      = () => window.MRO_HELPERS?.isB2B?.() ?? false;
 
   /* ===== STYLES ===== */
   function injectCSS() {
