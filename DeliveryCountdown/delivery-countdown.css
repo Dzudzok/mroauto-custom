@@ -1,0 +1,118 @@
+/* Tooltip delivery countdown — migrowane z Body_w_nextis 2026-05-15 (faza B4).
+   Fixed badge top-right ze odliczaniem deadline transportu + tooltip z trasami. */
+
+.transport-deadline-countdown {
+    position: fixed !important;
+    right: 20px !important;
+    top: 5px !important;
+    width: auto !important;
+    padding: 8px 15px !important;
+    background: #ffffff !important;
+    border-radius: 8px !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) !important;
+    color: #7b7b7b !important;
+    font-weight: bold !important;
+    font-size: 14px !important;
+    z-index: 2001 !important;
+    display: flex !important;
+    align-items: center !important;
+    font-family: 'Arial', sans-serif !important;
+    cursor: pointer !important;
+    border: 1px solid #006fd2 !important;
+}
+
+.transport-deadline-countdown-timer {
+    margin-left: 5px !important;
+    font-size: 14px !important;
+}
+
+.transport-deadline-countdown.scrolled {
+    top: 5px !important;
+}
+
+.mro-delivery-tooltip {
+    position: absolute !important;
+    top: 100% !important;
+    right: 0 !important;
+    background: white !important;
+    color: #3b5060 !important;
+    font-family: 'Arial', sans-serif !important;
+    font-size: 14px !important;
+    padding: 10px 15px !important;
+    border-radius: 8px !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) !important;
+    z-index: 2000 !important;
+    display: none !important;
+    width: 514px !important;
+    border: 2px solid #006fd2 !important;
+    max-height: 420px !important;
+    overflow-y: auto !important;
+}
+
+.transport-deadline-countdown:hover .mro-delivery-tooltip,
+.transport-deadline-countdown.active .mro-delivery-tooltip {
+    display: block !important;
+}
+
+.mro-delivery-items {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 5px !important;
+}
+
+.mro-delivery-item {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    padding: 5px !important;
+    border: 1px solid #e0e0e0 !important;
+    border-radius: 4px !important;
+}
+
+.mro-delivery-item:hover {
+    background-color: #5db9ff4f;
+}
+
+.mro-delivery-item i {
+    font-size: 16px !important;
+    color: #ff0000 !important;
+}
+
+.mro-delivery-item span {
+    font-weight: 500 !important;
+    white-space: nowrap !important;
+}
+
+.mro-delivery-info {
+    margin-top: 10px !important;
+    font-size: 12px !important;
+    color: #666 !important;
+    font-style: italic !important;
+    padding-top: 5px !important;
+    border-top: 1px solid #e0e0e0 !important;
+}
+
+@media (max-width: 768px) {
+    .transport-deadline-countdown {
+        right: 10px !important;
+        padding: 5px 10px !important;
+        font-size: 12px !important;
+    }
+    .transport-deadline-countdown-timer {
+        font-size: 12px !important;
+    }
+    .mro-delivery-tooltip {
+        width: 250px !important;
+        font-size: 12px !important;
+        max-height: 300px !important;
+    }
+    .mro-delivery-item i {
+        font-size: 14px !important;
+    }
+    .mro-delivery-item {
+        padding: 3px !important;
+    }
+    .mro-delivery-info {
+        font-size: 10px !important;
+    }
+}

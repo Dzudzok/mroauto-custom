@@ -141,6 +141,13 @@
       matchSelector: 'body',
       js: 'DeliveryFormat/delivery-format.js'
     },
+    {
+      name: 'delivery-countdown',
+      pathIncludes: [],
+      matchSelector: '.flex-user-menu', // tylko dla zalogowanych — element .transport-deadline-countdown rownież sprawdzany w JS
+      css: 'DeliveryCountdown/delivery-countdown.css',
+      js: 'DeliveryCountdown/delivery-countdown.js'
+    },
         {
       name: 'homepage',
       pathIncludes: ['', '/', '/cs', '/cs/'],
