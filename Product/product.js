@@ -204,10 +204,17 @@ document.querySelectorAll(".flex-delivery-time-item").forEach(firstItem => {
     }
   });
 
-  // Wrapper maxHeight USUNIETO 2026-05-15 — staty hack ktory ograniczal wrapper
-  // do scrollHeight w momencie initial render. Po dodaniu nowego (wyzszego)
-  // .modern-delivery-box dolny brzeg karty byl uciety, a Porovnat link pod nim
-  // kolidowal z dolna ramka. Wrapper zostaje z natural height.
+  // Wrapper i firstItem moga miec overflow:hidden + max-height z Nextis CSS
+  // (lub po starym kodzie). Wymuszamy visible + max-height:none zeby caly
+  // nasz nowy .modern-delivery-box byl widoczny (v13: header + cena + dostawa
+  // + akcja jest wyzsze niz oryginalny element).
+  firstItem.style.overflow = "visible";
+  firstItem.style.maxHeight = "none";
+  const wrapper = firstItem.closest(".wrapper");
+  if (wrapper) {
+    wrapper.style.overflow = "visible";
+    wrapper.style.maxHeight = "none";
+  }
 });
   }
 

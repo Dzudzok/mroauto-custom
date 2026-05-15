@@ -11,6 +11,14 @@
    Inline SVG icons (lucide-style stroke icons) zamiast emoji dla cleaner look.
    ============================================================================ */
 
+/* Override Nextis ktory dusi nasz box przez overflow/max-height. JS tez to
+   robi (firstItem.style + wrapper.style) ale CSS jako fallback. */
+.flex-delivery-time-item:has(.modern-delivery-box),
+.flex-delivery-time-item:has(.modern-delivery-box) .wrapper {
+    overflow: visible !important;
+    max-height: none !important;
+}
+
 .modern-delivery-box {
     --brand: #00569d;
     --brand-dark: #003e72;
