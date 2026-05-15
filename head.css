@@ -9,12 +9,22 @@
    Rollback: git checkout pre-faza-B -- head.css  ALBO  git revert <sha>. */
 
 /* === Logo brand mroauto (zamiana default Nextis logo.png na Image.ashx?id=644339) ===
-   Migrowane 2026-05-15 z Head_w_nextis (poprzednio tylko #BodyContentPlaceHolder_Logo).
-   FIX: selektor poszerzony o .flex-logo bo na podstronach /cs/akce/* i /cs/katalog/univerzalni-dily
-   Nextis renderuje logo BEZ ID (tylko class). Wczesniej regula nie matchowala — domyslny
-   logo.png byl widoczny. Teraz `.flex-logo` lapie wszystkie warianty desktop. */
-#BodyContentPlaceHolder_Logo,
-.flex-logo {
+   Migrowane 2026-05-15 z Head_w_nextis. Wersjonowanie pomyslu:
+     - v1: #BodyContentPlaceHolder_Logo (tylko home, na podstronach BUG bo brak ID)
+     - v2: .flex-logo (BUG — lapal logo producentow w whisperer wynikach wyszukiwania)
+     - v3: #LogoHyperLink img + warianty (precyzyjnie header logo, nie producenci)
+
+   Logo header jest opakowane w <a> z ID:
+     - Home (.cs): #BodyContentPlaceHolder_LogoHyperLink (desktop) /
+                   #BodyContentPlaceHolder_LogoMobileHyperLink (mobile)
+     - Podstrony (/cs/akce, /cs/katalog/*): #LogoHyperLink (desktop) /
+                                            #LogoMobileHyperLink (mobile)
+
+   Reklama mini-logo producentow w whisperer ma class .flex-logo bez powyzszych
+   id-kow wrapper-a — selektor ich nie lapie. */
+#BodyContentPlaceHolder_LogoHyperLink img,
+#LogoHyperLink img,
+#BodyContentPlaceHolder_Logo {
     content: url("https://www.mroauto.cz/Image.ashx?type=4&id=644339") !important;
     width: 300px;
     height: 130px;
