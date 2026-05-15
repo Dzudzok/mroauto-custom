@@ -208,16 +208,18 @@ document.querySelectorAll(".flex-delivery-time-item").forEach(firstItem => {
   `;
 
   // Wlasny tooltip na hover (niezalezny od Nextis flex-html-tooltip).
-  // PRZYCZYNA: Nextis tooltip JS skanuje DOM raz przy load i podpina hover'y
-  // tylko na elementach istniejacych w tym momencie. .modern-stock powstaje
-  // pozniej przez nasz kod, czasem laczy sie z Nextis listenerem (timing),
-  // czasem nie. Wlasny tooltip = deterministyczny.
-  if (tooltipAttr) {
+  // Uwaga: data-flex-html-tooltip w Nextis to NIE content, tylko ID referencji
+  // (np. 'DeliveryTimeTooltipContent_78045479...'). Nextis loaduje content lazy
+  // z mapping ID->HTML gdzies w globalnym store. Stad pierwsza proba (innerHTML=tooltipAttr)
+  // pokazywala surowe ID.
+  // FIX: uzywamy tooltipBlock.innerHTML — element .flex-on-the-way/.flex-on-stock
+  // jest w DOM (schowany przez display:none), zawiera GOTOWY HTML z czasami dostaw.
+  if (tooltipBlock) {
     const stockDiv = box.querySelector(".modern-stock");
     if (stockDiv) {
       const myTooltip = document.createElement("div");
       myTooltip.className = "modern-stock-tooltip";
-      myTooltip.innerHTML = tooltipAttr;
+      myTooltip.innerHTML = tooltipBlock.innerHTML;
       stockDiv.style.position = "relative";
       stockDiv.appendChild(myTooltip);
     }
