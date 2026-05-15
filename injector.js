@@ -135,7 +135,7 @@
       matchSelector: null,
       css: 'HomePage/homepage.css',
       html: 'HomePage/homepage.html',
-      js: 'HomePage/homepage.js',
+      // js usuniete 2026-05-15 (faza A3): VIN-search dziala szerzej z global.js.
       targetSelector: '.flex-selected-categories-container',
       position: 'afterend'
     },
