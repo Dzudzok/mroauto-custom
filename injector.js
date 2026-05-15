@@ -128,6 +128,13 @@
       targetSelector: 'head',
       position: 'afterbegin'
     },
+    {
+      name: 'whatsapp',
+      pathIncludes: [],
+      matchSelector: 'body',
+      css: 'WhatsApp/whatsapp.css',
+      js: 'WhatsApp/whatsapp.js'
+    },
         {
       name: 'homepage',
       pathIncludes: ['', '/', '/cs', '/cs/'],

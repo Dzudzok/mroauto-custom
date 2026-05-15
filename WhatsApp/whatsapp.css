@@ -1,0 +1,42 @@
+/* Floating WhatsApp button — migrowane z Body_w_nextis 2026-05-15 (faza B2). */
+
+.whatsapp-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: linear-gradient(163deg, #2ef97a, #177b3d);
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    font-size: 30px;
+    transition: transform 0.3s ease;
+    z-index: 1000;
+}
+
+.whatsapp-btn:hover {
+    transform: scale(1.1);
+}
+
+.whatsapp-btn::after {
+    content: "Napište nám na WhatsApp";
+    position: absolute;
+    bottom: 67px;
+    right: 0px;
+    background-color: #333;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 8px;
+    font-size: 14px;
+    display: none;
+    width: 167px;
+}
+
+.whatsapp-btn:hover::after {
+    display: block;
+}
