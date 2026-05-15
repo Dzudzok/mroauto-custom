@@ -155,6 +155,13 @@
       css: 'CategoryTiles/category-tiles.css',
       js: 'CategoryTiles/category-tiles.js'
     },
+    {
+      name: 'garage',
+      pathIncludes: [],
+      matchSelector: '.flex-user-menu', // tylko dla zalogowanych
+      css: 'Garage/garage.css',
+      js: 'Garage/garage.js'
+    },
         {
       name: 'homepage',
       pathIncludes: ['', '/', '/cs', '/cs/'],
