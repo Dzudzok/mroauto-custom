@@ -1,4 +1,12 @@
 (() => {
+  // Guard przeciw podwojnemu wykonaniu (ASP.NET UpdatePanel / partial postback moze
+  // ponownie wstrzyknac <script src="injector.js">. Bez tego HTML/CSS leci 2x).
+  if (window.__MRO_INJECTOR_RAN) {
+    console.info('MROAUTO: injector.js juz wykonany, pomijam.');
+    return;
+  }
+  window.__MRO_INJECTOR_RAN = true;
+
   const defaultBase = 'https://dzudzok.github.io/mroauto-custom/';
   const bases = (Array.isArray(window.MRO_BASES) && window.MRO_BASES.length)
     ? window.MRO_BASES
