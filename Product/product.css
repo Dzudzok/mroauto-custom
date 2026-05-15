@@ -1,6 +1,210 @@
 /* Style karty produktu — migrowane z Head_w_nextis 2026-05-15 (faza C1).
    Dotyczy bloku "Opis produktu" — accordion z aplikacjami do aut + lista numerow OE.
-   Modul Product/ leci na stronach z .flex-product-detail (URL TecDoc / hledani). */
+   Plus modern-delivery-box (badge skladem + cena + spinner + date box) migrowane
+   z inline style w product.js 2026-05-15. Modul Product/ leci na stronach
+   z .flex-product-detail (URL TecDoc / hledani). */
+
+/* ============================================================================
+   Modern delivery box — badge stock + cena + spinner/koszyk + data dostawy
+   ============================================================================ */
+
+.modern-delivery-box {
+    border-radius: 14px;
+    padding: 12px 14px;
+    font-family: inherit;
+    margin: 14px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: linear-gradient(180deg, #fafcff 0%, #f5f9fc 100%);
+    border: 1px solid #e5edf5;
+    box-shadow: 0 1px 3px rgba(0, 86, 157, 0.04);
+}
+
+.modern-line1 {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+.modern-line2 {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: stretch;
+    color: #1f2937;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+/* === Badge "X ks skladem" === */
+.modern-stock {
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: default;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.modern-stock.in-stock {
+    background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+    color: #14532d;
+    border: 1px solid #86efac;
+    box-shadow: 0 2px 6px rgba(34, 197, 94, 0.12);
+}
+
+.modern-stock.in-stock:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(34, 197, 94, 0.18);
+}
+
+.modern-stock.not-available {
+    background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+    color: #7f1d1d;
+    border: 1px solid #fca5a5;
+    box-shadow: 0 2px 6px rgba(220, 38, 38, 0.1);
+}
+
+.modern-stock .show-branches {
+    cursor: pointer;
+    color: #00569d !important;
+    font-size: 11px !important;
+    font-weight: 500 !important;
+    margin-top: 6px !important;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 8px;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.6);
+    transition: background 0.15s ease;
+}
+
+.modern-stock .show-branches:hover {
+    background: rgba(255, 255, 255, 0.95);
+}
+
+/* === Cena === */
+.modern-price {
+    font-size: 28px;
+    font-weight: 800;
+    color: #1f2937;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    letter-spacing: -0.5px;
+}
+
+.modern-price > strong {
+    border-bottom: 2px solid #e30613;
+    padding-bottom: 2px;
+    line-height: 1.1;
+}
+
+.modern-vat {
+    display: block;
+    font-size: 12px;
+    color: #6b7280;
+    font-weight: 400;
+    margin-top: 6px;
+    letter-spacing: 0;
+}
+
+/* === Spinner + koszyk === */
+.modern-basket {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.modern-basket-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* === Data dostawy — header w stylu tooltipa === */
+.modern-date {
+    display: flex;
+    gap: 4px;
+    flex-direction: column;
+    font-weight: 700;
+    border: 1px solid #d6e9f5;
+    background: linear-gradient(180deg, #ffffff 0%, #f0f9ff 100%);
+    box-shadow: 0 2px 6px rgba(0, 86, 157, 0.08);
+    border-radius: 10px;
+    padding: 12px 14px;
+    color: #00569d;
+    font-size: 14px;
+    line-height: 1.4;
+    position: relative;
+    overflow: hidden;
+    min-width: 200px;
+}
+
+.modern-date::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, #00569d, #003e72);
+}
+
+.modern-date small {
+    font-size: 11px;
+    margin-top: 2px;
+    font-weight: 500;
+    color: #6b7280;
+    letter-spacing: 0;
+}
+
+.modern-deadline {
+    font-size: 11px;
+    color: #4b5563;
+    font-weight: 500;
+    margin-top: 4px;
+    padding-top: 6px;
+    border-top: 1px solid #d6e9f5;
+}
+
+/* === Responsive mobile === */
+@media (max-width: 480px) {
+    .modern-delivery-box {
+        padding: 10px;
+        gap: 8px;
+    }
+    .modern-line1 {
+        flex-direction: row;
+    }
+    .modern-line2 {
+        flex-direction: row;
+        flex-wrap: unset;
+        align-items: stretch;
+    }
+    .modern-basket-container {
+        justify-content: flex-end;
+    }
+    .modern-price {
+        font-size: 22px;
+    }
+    .modern-date {
+        max-width: 55%;
+        font-size: 12px;
+        padding: 10px 12px;
+    }
+    .modern-stock {
+        padding: 8px 12px;
+        font-size: 13px;
+    }
+}
+
+
 
 /* === Wlasny tooltip dla .modern-stock (niezalezny od Nextis flex-html-tooltip) === */
 /* Tooltip jest dzieckiem document.body (nie .modern-stock) — uciekamy z lokalnego
