@@ -64,28 +64,41 @@ document.querySelectorAll(".flex-delivery-time-item").forEach(firstItem => {
     (_, m, d, y) => `${d}.${m}.${y}`
   );
 
+  // Wyodrebniony dzien tygodnia + data (np. "Pondeli 18.05.2026" → ["Pondeli", "18.05.2026"])
+  const dateMatch = deliveryDate.match(/^([\p{L}]+)\s+(\d{1,2}\.\d{1,2}\.\d{4})/u);
+  const dayName = dateMatch ? dateMatch[1] : "";
+  const dateOnly = dateMatch ? dateMatch[2] : deliveryDate;
+
   const box = document.createElement("div");
   box.className = "modern-delivery-box";
-  // UWAGA: data-flex-html-tooltip ustawiane przez setAttribute PO innerHTML.
-  // Wartosc atrybutu z Nextis zawiera cudzyslowy " (np. <table style="...">),
-  // wstawienie do template literal `data-flex-html-tooltip="${tooltipAttr}"`
-  // zamyka atrybut w srodku — parser HTML rozjezdza sie, tooltip raz dziala
-  // raz nie. setAttribute browser sam escape'uje.
   box.innerHTML = `
-    <div class="modern-line1">
-      <div class="modern-stock ${isAvailable ? "in-stock" : "not-available"} processed">
-        ${isAvailable ? "✅ <strong>" + availability + "</strong> skladem" : "❌ <strong>Není skladem</strong>"}
-        ${tooltipBlock ? `<div class="show-branches" style="cursor:pointer;color:#006fd2;font-size:0.8em;font-weight:300;margin-top:6px;">ℹ️ Zobrazit dostupnost na pobočkách</div>` : ""}
+    <div class="modern-status-row ${isAvailable ? "in-stock" : "not-available"}">
+      <div class="modern-stock">
+        <span class="modern-stock-icon">${isAvailable ? "✓" : "✗"}</span>
+        <span class="modern-stock-text">${isAvailable ? `<strong>${availability}</strong> skladem` : "<strong>Není skladem</strong>"}</span>
       </div>
-      ${isAvailable ? `<div class="modern-price"><strong>${price}</strong> <span class="modern-vat">${priceWithoutVat}</span></div>` : ""}
+      ${tooltipBlock ? `<button type="button" class="modern-branches-link" title="Zobrazit dostupnost na pobočkách"><span class="modern-branches-icon">📍</span><span class="modern-branches-text">Pobočky</span></button>` : ""}
     </div>
-    <div class="modern-line2">
-      <div class="modern-date">
-        📦 ${deliveryDate} ${tresholdText ? `<small>(${tresholdText})</small>` : ""}
-        ${deadline ? `<div class="modern-deadline">${deadline}</div>` : ""}
+
+    ${isAvailable ? `
+    <div class="modern-price-row">
+      <div class="modern-price-main">${price}</div>
+      <div class="modern-price-vat"><span class="modern-vat-value">${priceWithoutVat}</span> <span class="modern-vat-label">bez DPH</span></div>
+    </div>` : ""}
+
+    <div class="modern-delivery-row">
+      <div class="modern-delivery-icon">📦</div>
+      <div class="modern-delivery-content">
+        <div class="modern-delivery-date-line">
+          ${dayName ? `<span class="modern-delivery-dayname">${dayName}</span>` : ""}
+          <span class="modern-delivery-date">${dateOnly}</span>
+          ${tresholdText ? `<span class="modern-delivery-treshold">${tresholdText}</span>` : ""}
+        </div>
+        ${deadline ? `<div class="modern-delivery-deadline">⏰ ${deadline}</div>` : ""}
       </div>
-      <div class="modern-basket-container"></div>
     </div>
+
+    ${isAvailable ? `<div class="modern-action-row"><div class="modern-basket-container"></div></div>` : ""}
   `;
 
   // Wlasny tooltip na hover (niezalezny od Nextis flex-html-tooltip).
@@ -98,7 +111,7 @@ document.querySelectorAll(".flex-delivery-time-item").forEach(firstItem => {
   // .flex-product-detail anchor) moze byc jeszcze nie sparsowany gdy nasz
   // kod sie odpala — MutationObserver z auto-disconnect po 5s.
   if (tooltipBlock && tooltipAttr) {
-    const stockDiv = box.querySelector(".modern-stock");
+    const stockDiv = box.querySelector(".modern-status-row .modern-stock");
     if (stockDiv) {
       const myTooltip = document.createElement("div");
       myTooltip.className = "modern-stock-tooltip";
@@ -154,10 +167,11 @@ document.querySelectorAll(".flex-delivery-time-item").forEach(firstItem => {
 
   if (tooltipBlock) {
     tooltipBlock.style.display = "none";
-    const toggleBtn = box.querySelector(".show-branches");
+    const toggleBtn = box.querySelector(".modern-branches-link");
     toggleBtn?.addEventListener("click", () => {
       const isVisible = tooltipBlock.style.display === "block";
       tooltipBlock.style.display = isVisible ? "none" : "block";
+      toggleBtn.classList.toggle("active", !isVisible);
     });
   }
 

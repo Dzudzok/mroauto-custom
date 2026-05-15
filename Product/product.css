@@ -5,202 +5,248 @@
    z .flex-product-detail (URL TecDoc / hledani). */
 
 /* ============================================================================
-   Modern delivery box — badge stock + cena + spinner/koszyk + data dostawy
+   Modern delivery box — REDESIGN 2026-05-15 (v12)
+   Cztery sekcje pionowe (header/cena/dostawa/akcja) z gradientem brand color.
+   Stylistyka spojna z .modern-stock-tooltip (gradient #00569d, border-radius 14,
+   subtle shadow, ikony emoji).
    ============================================================================ */
 
 .modern-delivery-box {
     border-radius: 14px;
-    padding: 12px 14px;
     font-family: inherit;
     margin: 14px 0;
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    background: linear-gradient(180deg, #fafcff 0%, #f5f9fc 100%);
+    background: #fff;
     border: 1px solid #e5edf5;
-    box-shadow: 0 1px 3px rgba(0, 86, 157, 0.04);
+    box-shadow:
+        0 8px 24px rgba(0, 86, 157, 0.08),
+        0 0 0 1px rgba(0, 86, 157, 0.04);
+    overflow: hidden; /* zeby header z gradientem nie wystawal poza border-radius */
 }
 
-.modern-line1 {
+/* === Sekcja 1: STATUS HEADER (badge skladem + link poboczki) === */
+.modern-status-row {
     display: flex;
-    flex-direction: row-reverse;
-    justify-content: space-between;
     align-items: center;
-    gap: 14px;
-    flex-wrap: wrap;
-}
-
-.modern-line2 {
-    display: flex;
-    flex-direction: row-reverse;
     justify-content: space-between;
-    align-items: stretch;
-    color: #1f2937;
-    flex-wrap: wrap;
     gap: 10px;
-}
-
-/* === Badge "X ks skladem" === */
-.modern-stock {
     padding: 10px 14px;
-    border-radius: 10px;
     font-weight: 700;
     font-size: 14px;
-    cursor: default;
-    transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
-.modern-stock.in-stock {
-    background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
-    color: #14532d;
-    border: 1px solid #86efac;
-    box-shadow: 0 2px 6px rgba(34, 197, 94, 0.12);
+.modern-status-row.in-stock {
+    background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+    color: #fff;
 }
 
-.modern-stock.in-stock:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(34, 197, 94, 0.18);
+.modern-status-row.not-available {
+    background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+    color: #fff;
 }
 
-.modern-stock.not-available {
-    background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
-    color: #7f1d1d;
-    border: 1px solid #fca5a5;
-    box-shadow: 0 2px 6px rgba(220, 38, 38, 0.1);
-}
-
-.modern-stock .show-branches {
-    cursor: pointer;
-    color: #00569d !important;
-    font-size: 11px !important;
-    font-weight: 500 !important;
-    margin-top: 6px !important;
+.modern-status-row .modern-stock {
     display: inline-flex;
     align-items: center;
-    gap: 4px;
-    padding: 3px 8px;
-    border-radius: 6px;
-    background: rgba(255, 255, 255, 0.6);
+    gap: 8px;
+    flex: 1;
+    min-width: 0;
+}
+
+.modern-status-row .modern-stock-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(4px);
+    font-size: 12px;
+    font-weight: 900;
+    flex-shrink: 0;
+}
+
+.modern-status-row .modern-stock-text {
+    font-size: 14px;
+    line-height: 1.2;
+}
+
+.modern-status-row .modern-stock-text strong {
+    font-weight: 800;
+}
+
+.modern-branches-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 10px;
+    border: none;
+    background: rgba(255, 255, 255, 0.18);
+    color: #fff;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
     transition: background 0.15s ease;
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
-.modern-stock .show-branches:hover {
-    background: rgba(255, 255, 255, 0.95);
+.modern-branches-link:hover,
+.modern-branches-link.active {
+    background: rgba(255, 255, 255, 0.32);
 }
 
-/* === Cena === */
-.modern-price {
-    font-size: 28px;
+.modern-branches-icon {
+    font-size: 12px;
+}
+
+/* === Sekcja 2: CENA === */
+.modern-price-row {
+    padding: 14px 16px 10px;
+    text-align: right;
+    border-bottom: 1px solid #f0f4f8;
+}
+
+.modern-price-main {
+    font-size: 30px;
     font-weight: 800;
     color: #1f2937;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
     letter-spacing: -0.5px;
-}
-
-.modern-price > strong {
-    border-bottom: 2px solid #e30613;
-    padding-bottom: 2px;
     line-height: 1.1;
+    border-bottom: 2px solid #e30613;
+    padding-bottom: 3px;
+    display: inline-block;
 }
 
-.modern-vat {
-    display: block;
+.modern-price-vat {
+    margin-top: 6px;
     font-size: 12px;
     color: #6b7280;
-    font-weight: 400;
-    margin-top: 6px;
-    letter-spacing: 0;
 }
 
-/* === Spinner + koszyk === */
-.modern-basket {
+.modern-vat-value {
+    font-weight: 600;
+}
+
+.modern-vat-label {
+    font-weight: 400;
+    color: #9ca3af;
+}
+
+/* === Sekcja 3: DOSTAWA === */
+.modern-delivery-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 16px;
+    background: linear-gradient(180deg, #f8fbff 0%, #f0f7fc 100%);
+    border-bottom: 1px solid #e5edf5;
+}
+
+.modern-delivery-icon {
+    font-size: 24px;
+    line-height: 1;
+    margin-top: 2px;
+    flex-shrink: 0;
+}
+
+.modern-delivery-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.modern-delivery-date-line {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 6px;
+    color: #00569d;
+}
+
+.modern-delivery-dayname {
+    font-size: 13px;
+    font-weight: 600;
+    color: #4b5563;
+    text-transform: capitalize;
+}
+
+.modern-delivery-date {
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: -0.2px;
+}
+
+.modern-delivery-treshold {
+    font-size: 11px;
+    color: #6b7280;
+    font-weight: 500;
+    font-style: italic;
+}
+
+.modern-delivery-deadline {
+    margin-top: 4px;
+    padding: 4px 8px;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 6px;
+    border-left: 3px solid #00569d;
+    font-size: 11px;
+    font-weight: 600;
+    color: #1f2937;
+    display: inline-block;
+}
+
+/* === Sekcja 4: AKCJA (spinner + koszyk) === */
+.modern-action-row {
+    padding: 12px 16px;
     display: flex;
     align-items: center;
-    gap: 8px;
+    justify-content: flex-end;
 }
 
 .modern-basket-container {
     display: flex;
     align-items: center;
     gap: 8px;
+    width: 100%;
+    justify-content: flex-end;
 }
 
-/* === Data dostawy — header w stylu tooltipa === */
-.modern-date {
+.modern-basket {
     display: flex;
-    gap: 4px;
-    flex-direction: column;
-    font-weight: 700;
-    border: 1px solid #d6e9f5;
-    background: linear-gradient(180deg, #ffffff 0%, #f0f9ff 100%);
-    box-shadow: 0 2px 6px rgba(0, 86, 157, 0.08);
-    border-radius: 10px;
-    padding: 12px 14px;
-    color: #00569d;
-    font-size: 14px;
-    line-height: 1.4;
-    position: relative;
-    overflow: hidden;
-    min-width: 200px;
-}
-
-.modern-date::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 4px;
-    height: 100%;
-    background: linear-gradient(180deg, #00569d, #003e72);
-}
-
-.modern-date small {
-    font-size: 11px;
-    margin-top: 2px;
-    font-weight: 500;
-    color: #6b7280;
-    letter-spacing: 0;
-}
-
-.modern-deadline {
-    font-size: 11px;
-    color: #4b5563;
-    font-weight: 500;
-    margin-top: 4px;
-    padding-top: 6px;
-    border-top: 1px solid #d6e9f5;
+    align-items: center;
+    gap: 8px;
 }
 
 /* === Responsive mobile === */
 @media (max-width: 480px) {
-    .modern-delivery-box {
-        padding: 10px;
-        gap: 8px;
-    }
-    .modern-line1 {
-        flex-direction: row;
-    }
-    .modern-line2 {
-        flex-direction: row;
-        flex-wrap: unset;
-        align-items: stretch;
-    }
-    .modern-basket-container {
-        justify-content: flex-end;
-    }
-    .modern-price {
-        font-size: 22px;
-    }
-    .modern-date {
-        max-width: 55%;
-        font-size: 12px;
-        padding: 10px 12px;
-    }
-    .modern-stock {
+    .modern-status-row {
         padding: 8px 12px;
         font-size: 13px;
+    }
+    .modern-price-row {
+        padding: 12px 14px 8px;
+    }
+    .modern-price-main {
+        font-size: 24px;
+    }
+    .modern-delivery-row {
+        padding: 10px 14px;
+        gap: 10px;
+    }
+    .modern-delivery-icon {
+        font-size: 20px;
+    }
+    .modern-delivery-date {
+        font-size: 16px;
+    }
+    .modern-action-row {
+        padding: 10px 14px;
+    }
+    .modern-branches-link .modern-branches-text {
+        display: none; /* na mobile zostaje tylko ikona */
     }
 }
 
