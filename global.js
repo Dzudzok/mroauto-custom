@@ -341,6 +341,38 @@ window.MRO_HELPERS.onReady = function(callback) {
     }
 };
 
+// Detekcja zalogowania (Nextis ASP.NET WebForms — UserMenu/LoginForm w BodyContentPlaceHolder)
+window.MRO_HELPERS.isLoggedIn = function() {
+    try {
+        const userMenu  = document.querySelector('#ctl00\\$ctl00\\$BodyContentPlaceHolder\\$UserMenu .customer-name');
+        const loginForm = document.getElementById('ctl00$ctl00$BodyContentPlaceHolder$LoginForm');
+        if (userMenu) return true;
+        if (loginForm && !userMenu) return false;
+        return !!userMenu;
+    } catch (e) { return false; }
+};
+
+// Detekcja klienta B2B (nazwa firmy, IČ/IČO/DIČ, cookie, flagi nextisUser)
+window.MRO_HELPERS.isB2B = function() {
+    try {
+        if (window.__MRO_IS_B2B === true) return true;
+        const userRoot = document.getElementById('ctl00$ctl00$BodyContentPlaceHolder$UserMenu');
+        if (userRoot) {
+            if (userRoot.querySelector('.customer .id, .customer .name')) return true;
+            const nameTxt = (userRoot.querySelector('.customer-name')?.textContent || '').trim();
+            const legalRe = /(s\.r\.o\.|a\.s\.|sp\. z o\.o\.|s\.c\.|gmbh|ag|sarl|s\.à r\.l\.|kft|srl|oy|bv|nv|oü|s\.a\.|sa)\b/i;
+            if (legalRe.test(nameTxt)) return true;
+            if (nameTxt && nameTxt === nameTxt.toUpperCase() && nameTxt.length >= 6) return true;
+        }
+        const txt = (document.getElementById('ctl00$ctl00$BodyContentPlaceHolder$UserMenu')?.textContent || '').trim();
+        if (/\bIČ\b|\bIČO\b|\bDIČ\b/i.test(txt)) return true;
+        if (/\bcustomerType=B2B\b/i.test(document.cookie)) return true;
+        if (document.querySelector('[data-customer-type="b2b"], .user-is-b2b')) return true;
+        if (window.nextisUser && (window.nextisUser.isB2B || /B2B/i.test(window.nextisUser.customerType || ''))) return true;
+    } catch (e) {}
+    return false;
+};
+
 console.log('MROAUTO: Global helpers loaded');
 
 // <!-- Global manufacturer logos updater -->
