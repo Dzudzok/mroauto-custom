@@ -69,36 +69,41 @@ document.querySelectorAll(".flex-delivery-time-item").forEach(firstItem => {
   const dayName = dateMatch ? dateMatch[1] : "";
   const dateOnly = dateMatch ? dateMatch[2] : deliveryDate;
 
+  // Nextis zwraca priceWithoutVat juz z " bez DPH" suffix w textContent —
+  // strip zeby nie duplikowac labela
+  const priceVatClean = priceWithoutVat.replace(/\s*bez\s*DPH\s*$/i, '').trim();
+
   const box = document.createElement("div");
   box.className = "modern-delivery-box";
   box.innerHTML = `
-    <div class="modern-status-row ${isAvailable ? "in-stock" : "not-available"}">
-      <div class="modern-stock">
-        <span class="modern-stock-icon">${isAvailable ? "✓" : "✗"}</span>
-        <span class="modern-stock-text">${isAvailable ? `<strong>${availability}</strong> skladem` : "<strong>Není skladem</strong>"}</span>
-      </div>
-      ${tooltipBlock ? `<button type="button" class="modern-branches-link" title="Zobrazit dostupnost na pobočkách"><span class="modern-branches-icon">📍</span><span class="modern-branches-text">Pobočky</span></button>` : ""}
+    <div class="modern-status-bar ${isAvailable ? "in-stock" : "not-available"}">
+      <span class="modern-status-dot"></span>
+      <span class="modern-status-text">${isAvailable ? `Skladem · <strong>${availability}</strong>` : "Není skladem"}</span>
+      ${tooltipBlock ? `<button type="button" class="modern-branches-link" title="Zobrazit dostupnost na pobočkách"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><span class="modern-branches-text">Pobočky</span></button>` : ""}
     </div>
 
     ${isAvailable ? `
-    <div class="modern-price-row">
+    <div class="modern-price-section">
       <div class="modern-price-main">${price}</div>
-      <div class="modern-price-vat"><span class="modern-vat-value">${priceWithoutVat}</span> <span class="modern-vat-label">bez DPH</span></div>
+      <div class="modern-price-vat">${priceVatClean} <span class="modern-vat-label">bez DPH</span></div>
     </div>` : ""}
 
-    <div class="modern-delivery-row">
-      <div class="modern-delivery-icon">📦</div>
+    <div class="modern-delivery-section">
+      <div class="modern-delivery-label">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="13" rx="2"/><path d="M3 8l9-5 9 5"/><path d="M9 21V12h6v9"/></svg>
+        <span>Doručení</span>
+      </div>
       <div class="modern-delivery-content">
         <div class="modern-delivery-date-line">
           ${dayName ? `<span class="modern-delivery-dayname">${dayName}</span>` : ""}
           <span class="modern-delivery-date">${dateOnly}</span>
-          ${tresholdText ? `<span class="modern-delivery-treshold">${tresholdText}</span>` : ""}
         </div>
-        ${deadline ? `<div class="modern-delivery-deadline">⏰ ${deadline}</div>` : ""}
+        ${tresholdText ? `<div class="modern-delivery-treshold">${tresholdText}</div>` : ""}
+        ${deadline ? `<div class="modern-delivery-deadline"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> ${deadline}</div>` : ""}
       </div>
     </div>
 
-    ${isAvailable ? `<div class="modern-action-row"><div class="modern-basket-container"></div></div>` : ""}
+    ${isAvailable ? `<div class="modern-action-section"><div class="modern-basket-container"></div></div>` : ""}
   `;
 
   // Wlasny tooltip na hover (niezalezny od Nextis flex-html-tooltip).
@@ -111,7 +116,7 @@ document.querySelectorAll(".flex-delivery-time-item").forEach(firstItem => {
   // .flex-product-detail anchor) moze byc jeszcze nie sparsowany gdy nasz
   // kod sie odpala — MutationObserver z auto-disconnect po 5s.
   if (tooltipBlock && tooltipAttr) {
-    const stockDiv = box.querySelector(".modern-status-row .modern-stock");
+    const stockDiv = box.querySelector(".modern-status-bar");
     if (stockDiv) {
       const myTooltip = document.createElement("div");
       myTooltip.className = "modern-stock-tooltip";
@@ -199,11 +204,10 @@ document.querySelectorAll(".flex-delivery-time-item").forEach(firstItem => {
     }
   });
 
-  const wrapper = firstItem.closest(".wrapper");
-  if (wrapper) {
-    wrapper.style.overflow = "hidden";
-    wrapper.style.maxHeight = firstItem.scrollHeight + "px";
-  }
+  // Wrapper maxHeight USUNIETO 2026-05-15 — staty hack ktory ograniczal wrapper
+  // do scrollHeight w momencie initial render. Po dodaniu nowego (wyzszego)
+  // .modern-delivery-box dolny brzeg karty byl uciety, a Porovnat link pod nim
+  // kolidowal z dolna ramka. Wrapper zostaje z natural height.
 });
   }
 
