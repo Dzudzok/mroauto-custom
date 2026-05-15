@@ -249,24 +249,21 @@ document.querySelectorAll(".flex-delivery-time-item").forEach(firstItem => {
     });
   }
 
-	if (isAvailable) {
-	  const basketClone = basketEl.cloneNode(true);
-	  basketClone.classList.add("modern-basket");
-
-	  const amountInput = basketClone.querySelector("input[type=text][id]");
-	  const addButton = basketClone.querySelector("input[type=button][onclick]");
-
-	  if (amountInput && addButton) {
-		const newId = "modern_amount_" + Math.floor(Math.random() * 1000000);
-		amountInput.setAttribute("id", newId);
-
-		const oldOnClick = addButton.getAttribute("onclick");
-		const newOnClick = oldOnClick.replace(/find\('.*?'\)/, `find('#${newId}')`);
-		addButton.setAttribute("onclick", newOnClick);
-	  }
-
-	  box.querySelector(".modern-basket-container").appendChild(basketClone);
-	}
+  if (isAvailable) {
+    // PRZENIESIENIE basketEl zamiast klonowania (fix 2026-05-15).
+    // cloneNode(true) kopiuje atrybuty ale NIE event listenery JS Nextisa.
+    // Nextis spinner +/- (.flex-spinner-increment/decrement-button) ma
+    // listenery podpiete do KONKRETNYCH elementow DOM. Klon ich nie ma —
+    // spinner wyglada ale klik nie dziala (raz tak raz nie, bo czasem
+    // Nextis ma event delegation a czasem nie).
+    //
+    // appendChild na elemencie ktory juz jest w DOM = MOVE (nie copy).
+    // basketEl jest przenoszony z .flex-amount-info (ktore i tak hide'ujemy
+    // ponizej) do naszego .modern-basket-container. ID inputu i spinner
+    // data-flex-spinner-input bez zmian — JS Nextisa wciaz dziala.
+    basketEl.classList.add("modern-basket");
+    box.querySelector(".modern-basket-container").appendChild(basketEl);
+  }
 
   firstItem.insertBefore(box, firstItem.firstChild);
 
