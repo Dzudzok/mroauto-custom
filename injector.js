@@ -148,6 +148,13 @@
       css: 'DeliveryCountdown/delivery-countdown.css',
       js: 'DeliveryCountdown/delivery-countdown.js'
     },
+    {
+      name: 'category-tiles',
+      pathIncludes: ['/katalog/tecdoc/'],
+      matchSelector: '.shortcuts', // skroty do kategorii tylko po wyborze auta
+      css: 'CategoryTiles/category-tiles.css',
+      js: 'CategoryTiles/category-tiles.js'
+    },
         {
       name: 'homepage',
       pathIncludes: ['', '/', '/cs', '/cs/'],
