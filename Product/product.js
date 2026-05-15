@@ -36,7 +36,17 @@
     // Wczesniej byly tu inline jako document.head.appendChild(style) — niewersjonowalne,
     // trudne w iteracji. Teraz wszystko w product.css.
 
-document.querySelectorAll(".flex-delivery-time-item").forEach(firstItem => {
+document.querySelectorAll(".flex-delivery-time-item").forEach((firstItem, index) => {
+  // Nextis renderuje WIELE .flex-delivery-time-item per produkt (rozne opcje
+  // dostawy: kurierzy GLS/DPD/PPL, deadliny Dnes/Jutro/Za 3 dny). Pokazujemy
+  // tylko PIERWSZA (najszybsza) w modern karcie, pozostale chowamy. Wczesniej
+  // robil to wrapper.maxHeight hack — usuniety w v13 zeby nasza karta nie byla
+  // cieta. Teraz hide explicit.
+  if (index > 0) {
+    firstItem.style.display = "none";
+    return;
+  }
+
   const stockEl = firstItem.querySelector(".flex-total-amount span");
   const dateEl = firstItem.querySelector(".flex-delivery-to-time-text");
   const deadlineEl = firstItem.querySelector(".order-end-time");
