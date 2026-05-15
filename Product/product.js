@@ -208,20 +208,29 @@ document.querySelectorAll(".flex-delivery-time-item").forEach(firstItem => {
   `;
 
   // Wlasny tooltip na hover (niezalezny od Nextis flex-html-tooltip).
-  // Uwaga: data-flex-html-tooltip w Nextis to NIE content, tylko ID referencji
-  // (np. 'DeliveryTimeTooltipContent_78045479...'). Nextis loaduje content lazy
-  // z mapping ID->HTML gdzies w globalnym store. Stad pierwsza proba (innerHTML=tooltipAttr)
-  // pokazywala surowe ID.
-  // FIX: uzywamy tooltipBlock.innerHTML — element .flex-on-the-way/.flex-on-stock
-  // jest w DOM (schowany przez display:none), zawiera GOTOWY HTML z czasami dostaw.
+  // data-flex-html-tooltip w Nextis to ID referencji (np. 'DeliveryTimeTooltipContent_78045479...')
+  // do ukrytego elementu w DOM z pelna tabela poboczek.
+  // .flex-on-the-way/.flex-on-stock zawiera tylko prosty status ('4 ks').
+  //
+  // Strategia: szukaj contentu po ID z tooltipAttr → fallback do tooltipBlock.innerHTML
+  //           → fallback do statycznego komunikatu.
   if (tooltipBlock) {
     const stockDiv = box.querySelector(".modern-stock");
     if (stockDiv) {
-      const myTooltip = document.createElement("div");
-      myTooltip.className = "modern-stock-tooltip";
-      myTooltip.innerHTML = tooltipBlock.innerHTML;
-      stockDiv.style.position = "relative";
-      stockDiv.appendChild(myTooltip);
+      let tooltipContent = "";
+      if (tooltipAttr) {
+        const contentEl = document.getElementById(tooltipAttr);
+        if (contentEl) tooltipContent = contentEl.innerHTML;
+      }
+      if (!tooltipContent) tooltipContent = tooltipBlock.innerHTML;
+
+      if (tooltipContent) {
+        const myTooltip = document.createElement("div");
+        myTooltip.className = "modern-stock-tooltip";
+        myTooltip.innerHTML = tooltipContent;
+        stockDiv.style.position = "relative";
+        stockDiv.appendChild(myTooltip);
+      }
     }
   }
 
