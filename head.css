@@ -168,7 +168,7 @@ li[data-target-input-id="PaymentMethod3"] .fa-money-bill:before {
 li[data-target-input-id="PaymentMethod7"] .fa-money-bill:before {
   content: "\1" !important;
   font-size: 32px;
-  background: url(/Image.ashx?type=4&id=405320) no-repeat center/contain;
+  background: url(https://www.mroauto.cz/Image.ashx?type=4&id=405320) no-repeat center/contain;
 }
 
 /* Tekst dodatkowy PaymentMethod7 */
@@ -339,37 +339,37 @@ li[data-target-input-id="TransportMethod30"] .flex-text-wrapper span:before {
 /* TransportMethod tła */
 li[data-target-input-id="TransportMethod20"],
 li[data-target-input-id="TransportMethod46"] {
-  background: url(/Image.ashx?type=4&id=405313) left 20px center no-repeat !important;
+  background: url(https://www.mroauto.cz/Image.ashx?type=4&id=405313) left 20px center no-repeat !important;
   background-size: 80px !important;
 }
 li[data-target-input-id="TransportMethod28"] {
-  background: url(/Image.ashx?type=4&id=405310) left 20px center no-repeat !important;
+  background: url(https://www.mroauto.cz/Image.ashx?type=4&id=405310) left 20px center no-repeat !important;
   background-size: 80px !important;
 }
 li[data-target-input-id="TransportMethod39"] {
-  background: url(/Image.ashx?type=4&id=405311) left 20px center no-repeat !important;
+  background: url(https://www.mroauto.cz/Image.ashx?type=4&id=405311) left 20px center no-repeat !important;
   background-size: 80px !important;
 }
 li[data-target-input-id="TransportMethod7"],
 li[data-target-input-id="TransportMethod17"] {
-  background: url(/Image.ashx?type=4&id=405315) left 20px center no-repeat !important;
+  background: url(https://www.mroauto.cz/Image.ashx?type=4&id=405315) left 20px center no-repeat !important;
   background-size: 80px !important;
 }
 li[data-target-input-id="TransportMethod8"],
 li[data-target-input-id="TransportMethod49"],
 li[data-target-input-id="TransportMethod10"] {
-  background: url(/Image.ashx?type=4&id=405314) left 20px center no-repeat !important;
+  background: url(https://www.mroauto.cz/Image.ashx?type=4&id=405314) left 20px center no-repeat !important;
   background-size: 80px !important;
 }
 
 li[data-target-input-id="TransportMethod49"] {
-  background: url(/Image.ashx?type=4&id=440914) left 20px center no-repeat !important;
+  background: url(https://www.mroauto.cz/Image.ashx?type=4&id=440914) left 20px center no-repeat !important;
   background-size: 80px !important;
 }
 
 
 li[data-target-input-id="TransportMethod12"] {
-  background: url(/Image.ashx?type=4&id=405316) left 20px center no-repeat !important;
+  background: url(https://www.mroauto.cz/Image.ashx?type=4&id=405316) left 20px center no-repeat !important;
   background-size: 80px !important;
 }
 li[data-target-input-id="TransportMethod9"],
@@ -380,15 +380,15 @@ li[data-target-input-id="TransportMethod3"],
 li[data-target-input-id="TransportMethod4"],
 li[data-target-input-id="TransportMethod5"],
 li[data-target-input-id="TransportMethod35"] {
-  background: url(/Image.ashx?type=4&id=405317) left 20px center no-repeat !important;
+  background: url(https://www.mroauto.cz/Image.ashx?type=4&id=405317) left 20px center no-repeat !important;
   background-size: 80px !important;
 }
 li[data-target-input-id="TransportMethod38"] {
-  background: url(/Image.ashx?type=4&id=405318) left 20px center no-repeat !important;
+  background: url(https://www.mroauto.cz/Image.ashx?type=4&id=405318) left 20px center no-repeat !important;
   background-size: 80px !important;
 }
 li[data-target-input-id="TransportMethod30"] {
-  background: url(/Image.ashx?type=4&id=405319) left 20px center no-repeat !important;
+  background: url(https://www.mroauto.cz/Image.ashx?type=4&id=405319) left 20px center no-repeat !important;
   background-size: 80px !important;
 }
 
@@ -768,13 +768,13 @@ text-align: center;
 
 @media only screen and (max-width: 768px) {
     .flex-main-menu .flex-menu .flex-close-menu-button {
-        background: url(/Plugins/FlexView/Images/FlexDownArrowMobileIcon.png) center center no-repeat !important;
+        background: url(https://www.mroauto.cz/Plugins/FlexView/Images/FlexDownArrowMobileIcon.png) center center no-repeat !important;
 }
 }
 
 @media only screen and (max-width: 768px) {
     .flex-main-menu .flex-menu .flex-close-menu-button.selected {
-        background: url(/Plugins/FlexView/Images/FlexUpArrowMobileIcon.png) center center no-repeat !important;
+        background: url(https://www.mroauto.cz/Plugins/FlexView/Images/FlexUpArrowMobileIcon.png) center center no-repeat !important;
 }
 }
 
