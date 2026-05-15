@@ -344,20 +344,3 @@ document.querySelectorAll(".flex-delivery-time-item").forEach(firstItem => {
     // Call init
     init();
 })();
-
-
-// <!-- Heureka.cz PRODUCT DETAIL pixel (migrowane z Body_w_nextis 2026-05-15, faza B1) -->
-(function() {
-    if (window.__MRO_HEUREKA_PIXEL_LOADED) return;
-    window.__MRO_HEUREKA_PIXEL_LOADED = true;
-    (function(t, r, a, c, k, i, n, g) {
-        t['ROIDataObject'] = k;
-        t[k] = t[k] || function() { (t[k].q = t[k].q || []).push(arguments) };
-        t[k].c = i;
-        n = r.createElement(a);
-        g = r.getElementsByTagName(a)[0];
-        n.async = 1;
-        n.src = c;
-        g.parentNode.insertBefore(n, g);
-    })(window, document, 'script', '//www.heureka.cz/ocm/sdk.js?version=2&page=product_detail', 'heureka', 'cz');
-})();
