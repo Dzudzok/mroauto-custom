@@ -2568,3 +2568,78 @@ box-shadow: 6px 8px 4px 0px rgb(0 0 0 / 10%);
 }
 
 
+/* ============================================================================
+   MOBILE HEADER (max-width: 768px) — dodane 2026-05-16
+   Logo mniejsze + 4 kafelki w spojnym wizualu (user / cart / Cesky / hamburger)
+   ============================================================================ */
+@media (max-width: 768px) {
+    /* Logo mobile — mniejsze */
+    #BodyContentPlaceHolder_MobileLogo,
+    #MobileLogo,
+    .flex-logo-mobile {
+        max-width: 130px !important;
+        max-height: 50px !important;
+        width: auto !important;
+        height: auto !important;
+        object-fit: contain !important;
+    }
+
+    /* 4 kafelki — spojny look (user, cart, Cesky, hamburger) */
+    .flex-dock-right .flex-login-mobile-button,
+    .flex-dock-right .flex-basket-mobile-button,
+    .flex-dock-right .currency-language-selection .dropdown-button,
+    .flex-main-menu .flex-menu-button,
+    .flex-dock-left .flex-menu .flex-menu-button {
+        width: 42px !important;
+        height: 42px !important;
+        min-width: 42px !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        border: 1px solid #e5e7eb !important;
+        border-radius: 10px !important;
+        background: #fff !important;
+        cursor: pointer !important;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04) !important;
+        transition: border-color 0.15s ease, background 0.15s ease !important;
+        padding: 0 !important;
+        flex-shrink: 0 !important;
+        margin: 0 !important;
+    }
+
+    .flex-dock-right .flex-login-mobile-button:hover,
+    .flex-dock-right .flex-basket-mobile-button:hover,
+    .flex-dock-right .currency-language-selection .dropdown-button:hover,
+    .flex-main-menu .flex-menu-button:hover,
+    .flex-dock-left .flex-menu .flex-menu-button:hover {
+        border-color: #00569d !important;
+        background: #f0f7fc !important;
+    }
+
+    /* Cesky dropdown — flaga widoczna, scentrowana */
+    .flex-dock-right .currency-language-selection .dropdown-button .media-mobile-only {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+
+    /* Hide nasz #mro-lang-inline na mobile (zostawiamy natywny Cesky jako 4ty kafelek) */
+    #mro-lang-inline {
+        display: none !important;
+    }
+
+    /* Spacing miedzy 3 kafelki w prawej dock */
+    .flex-dock-right {
+        display: flex !important;
+        align-items: center !important;
+        gap: 6px !important;
+    }
+
+    /* Refund percent status (zwykle empty) — hide if empty */
+    .flex-dock-right .refund-percent-status:empty {
+        display: none !important;
+    }
+}
+
+
+
