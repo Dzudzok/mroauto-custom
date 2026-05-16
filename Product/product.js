@@ -19,43 +19,10 @@
     });
   };
 
-  // Wstrzykuje brand pill PRZED <h1> w .flex-informations (prawa kolumna karty).
-  // Wczesniej wypelnialismy .mro-product-top — ale to placeholder na poczatku
-  // .flex-product-detail (przed .flex-images), wiec brand pill ladowal nad foto
-  // a nie nad tytulem. Teraz wstrzykujemy bezposrednio do .flex-informations.
-  function populateBrandPill() {
-    const info = document.querySelector('.flex-product-detail .flex-informations:not(.flex-tab)');
-    if (!info) return;
-    if (info.querySelector(':scope > .mro-brand-strip')) return; // juz wstrzykniete
-
-    const manufacturerEl = info.querySelector('.flex-manufacturer .flex-value');
-    const codeEl = info.querySelector('.flex-code .flex-value');
-    const tecdocEl = info.querySelector('.flex-tecdoc-number .flex-value');
-
-    const manufacturer = manufacturerEl ? manufacturerEl.textContent.trim() : '';
-    const code = codeEl ? (codeEl.value || codeEl.textContent || '').trim() : '';
-    const tecdoc = tecdocEl ? tecdocEl.textContent.trim() : '';
-
-    if (!manufacturer) return;
-
-    const strip = document.createElement('div');
-    strip.className = 'mro-brand-strip';
-    const mark = manufacturer.slice(0, 3).toUpperCase();
-    strip.innerHTML = `
-      <span class="mro-brand-pill">
-        <span class="mro-brand-pill-mark">${mark}</span>
-        <span class="mro-brand-pill-name">${manufacturer}</span>
-      </span>
-      ${code ? `<span class="mro-product-meta"><span class="mro-product-meta-label">Kód</span> <strong>${code}</strong></span>` : ''}
-      ${tecdoc && tecdoc !== code ? `<span class="mro-product-meta"><span class="mro-product-meta-label">TecDoc®</span> <strong>${tecdoc}</strong></span>` : ''}
-    `;
-    const h1 = info.querySelector(':scope > h1');
-    if (h1) {
-      info.insertBefore(strip, h1);
-    } else {
-      info.insertBefore(strip, info.firstChild);
-    }
-  }
+  // Brand pill USUNIETO 2026-05-16 — duplikat info ktore juz pokazuje logo
+  // producenta w h1 (.info-manufacturer-logo z global.js:766) plus tabela
+  // .flex-basic-params (Vyrobce/Kod/TecDoc). User feedback: 'logo producenta
+  // jest lepxsze niz to'.
 
   // Mountowanie modern-delivery-box. Wywolywane na init() + watchdog re-mount
   // jesli Nextis re-renderowal DOM po naszym pierwszym mount.
@@ -287,14 +254,12 @@ document.querySelectorAll(".flex-delivery-time-item").forEach((firstItem, index)
 
     // Try initial mount
     mountModernBox();
-    populateBrandPill();
 
     // Retry przez 8s, co 300ms. Pokrywa wszystkie race conditions z Nextis.
     let retries = 0;
     const retryInterval = setInterval(() => {
       retries++;
       mountModernBox(); // idempotent — guard sprawdza czy juz jest
-      populateBrandPill(); // idempotent (skip jesli juz wstrzykniete)
       if (retries >= 26) clearInterval(retryInterval); // 8s
     }, 300);
 
@@ -303,7 +268,6 @@ document.querySelectorAll(".flex-delivery-time-item").forEach((firstItem, index)
     // przestaje istniec.
     const observer = new MutationObserver(() => {
       mountModernBox(); // idempotent
-      populateBrandPill();
     });
     observer.observe(document.body, { childList: true, subtree: true });
 
