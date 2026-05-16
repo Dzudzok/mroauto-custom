@@ -1627,6 +1627,37 @@ font-size: 12px !important;
 width: 286px !important;
 }
 
+/* Mobile fix: home-page-login-form ucieka w prawo bo Nextis ma hardcoded
+   width: 286px na inputach. Na mobile (<768) width 100% + column layout. */
+@media (max-width: 768px) {
+    .flex-login-container input[type="button"],
+    .flex-login-container input[type="text"],
+    .flex-login-container input[type="password"],
+    .flex-login-container input[type="email"] {
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+    }
+    .home-page-login-form,
+    .home-page-login-form .wrapper,
+    .home-page-login-form .login-box,
+    .home-page-login-form .lost-password-box,
+    .home-page-login-form .inputs {
+        max-width: 100% !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+    .flex-login-container .buttons {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 8px !important;
+        width: 100% !important;
+    }
+    .flex-login-container .controls {
+        width: 100% !important;
+    }
+}
+
 .tree>.node>.wrapper>a {
 background-color: #ffffff !important;
 background-position: 6px center;
