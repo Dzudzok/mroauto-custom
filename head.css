@@ -2911,6 +2911,115 @@ box-shadow: 6px 8px 4px 0px rgb(0 0 0 / 10%);
         align-items: center !important;
     }
 
+    /* ROZWINIETY DROPDOWN (lista marek / model / engine) — modern look */
+    .flex-select-vehicle-wizard .flex-drop-down dd .flex-collapsible {
+        background: #fff !important;
+        border-radius: 12px !important;
+        box-shadow: 0 8px 24px rgba(0, 86, 157, 0.15), 0 1px 3px rgba(0, 0, 0, 0.08) !important;
+        border: 1px solid #e0ecf5 !important;
+        overflow: hidden !important;
+        margin-top: 4px !important;
+        padding: 0 !important;
+    }
+
+    /* Search input w dropdown */
+    .flex-select-vehicle-wizard .flex-drop-down .flex-drop-down-search {
+        padding: 10px !important;
+        background: #fafbfd !important;
+        border-bottom: 1px solid #e5e7eb !important;
+        display: flex !important;
+        gap: 6px !important;
+    }
+
+    .flex-select-vehicle-wizard .flex-drop-down .flex-drop-down-search input[type="text"] {
+        flex: 1 !important;
+        height: 38px !important;
+        padding: 0 12px !important;
+        border: 1px solid #d1dce6 !important;
+        border-radius: 8px !important;
+        background: #fff !important;
+        font-size: 13px !important;
+        font-weight: 500 !important;
+        color: #111827 !important;
+        outline: none !important;
+        transition: border-color 0.15s, box-shadow 0.15s !important;
+    }
+
+    .flex-select-vehicle-wizard .flex-drop-down .flex-drop-down-search input[type="text"]:focus {
+        border-color: #00569d !important;
+        box-shadow: 0 0 0 3px rgba(0, 86, 157, 0.1) !important;
+    }
+
+    .flex-select-vehicle-wizard .flex-drop-down .flex-drop-down-search input[type="button"] {
+        width: 38px !important;
+        height: 38px !important;
+        background-color: #00569d !important;
+        border: none !important;
+        border-radius: 8px !important;
+        cursor: pointer !important;
+        flex-shrink: 0 !important;
+    }
+
+    /* Lista items */
+    .flex-select-vehicle-wizard .flex-drop-down dd .flex-collapsible ul {
+        max-height: 320px !important;
+        overflow-y: auto !important;
+        background: #fff !important;
+        margin: 0 !important;
+        padding: 4px 0 !important;
+        list-style: none !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+    }
+
+    .flex-select-vehicle-wizard .flex-drop-down dd .flex-collapsible ul li {
+        padding: 0 !important;
+        border-bottom: 1px solid #f3f4f6 !important;
+        background: transparent !important;
+        transition: background 0.12s ease !important;
+    }
+
+    .flex-select-vehicle-wizard .flex-drop-down dd .flex-collapsible ul li:last-child {
+        border-bottom: none !important;
+    }
+
+    .flex-select-vehicle-wizard .flex-drop-down dd .flex-collapsible ul li:hover,
+    .flex-select-vehicle-wizard .flex-drop-down dd .flex-collapsible ul li:active {
+        background: #f0f7fc !important;
+    }
+
+    .flex-select-vehicle-wizard .flex-drop-down dd .flex-collapsible ul li .flex-drop-down-link {
+        display: flex !important;
+        align-items: center !important;
+        padding: 12px 16px !important;
+        font-size: 14px !important;
+        font-weight: 600 !important;
+        color: #1f2937 !important;
+        cursor: pointer !important;
+        line-height: 1.3 !important;
+        min-height: 44px !important;
+    }
+
+    .flex-select-vehicle-wizard .flex-drop-down dd .flex-collapsible ul li .flex-drop-down-link.selected {
+        background: #f0f7fc !important;
+        color: #00569d !important;
+    }
+
+    /* Scrollbar custom dla mobile dropdown */
+    .flex-select-vehicle-wizard .flex-drop-down dd .flex-collapsible ul::-webkit-scrollbar {
+        width: 6px;
+    }
+    .flex-select-vehicle-wizard .flex-drop-down dd .flex-collapsible ul::-webkit-scrollbar-track {
+        background: transparent;
+    }
+    .flex-select-vehicle-wizard .flex-drop-down dd .flex-collapsible ul::-webkit-scrollbar-thumb {
+        background: #d1dce6;
+        border-radius: 3px;
+    }
+    .flex-select-vehicle-wizard .flex-drop-down dd .flex-collapsible ul::-webkit-scrollbar-thumb:hover {
+        background: #00569d;
+    }
+
     /* HLEDAT DILY — premium CTA */
     .flex-select-vehicle-wizard .flex-content .flex-controls {
         margin-top: 4px !important;
