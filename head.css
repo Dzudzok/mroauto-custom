@@ -2586,15 +2586,17 @@ box-shadow: 6px 8px 4px 0px rgb(0 0 0 / 10%);
 
     /* 4 kafelki — spojny look (user, cart, Cesky, hamburger).
        UWAGA: background-color (nie background) zeby NIE wymazac bg-image
-       ktorym Nextis renderuje ikony user/cart. */
+       ktorym Nextis renderuje ikony user/cart.
+       UWAGA 2: .flex-main-menu .flex-menu-button BYL w selektorze — to KATALOGY
+       pasek (osobny, nie hamburger header), wycinam. Zostaje tylko
+       .flex-dock-left .flex-menu .flex-menu-button (hamburger w headerze). */
     .flex-dock-right .flex-login-mobile-button,
     .flex-dock-right .flex-basket-mobile-button,
     #mro-lang-inline .mro-lang-trigger,
-    .flex-main-menu .flex-menu-button,
     .flex-dock-left .flex-menu .flex-menu-button {
-        width: 42px !important;
-        height: 42px !important;
-        min-width: 42px !important;
+        width: 38px !important;
+        height: 38px !important;
+        min-width: 38px !important;
         display: inline-flex !important;
         align-items: center !important;
         justify-content: center !important;
@@ -2612,7 +2614,6 @@ box-shadow: 6px 8px 4px 0px rgb(0 0 0 / 10%);
     .flex-dock-right .flex-login-mobile-button:hover,
     .flex-dock-right .flex-basket-mobile-button:hover,
     #mro-lang-inline .mro-lang-trigger:hover,
-    .flex-main-menu .flex-menu-button:hover,
     .flex-dock-left .flex-menu .flex-menu-button:hover {
         border-color: #00569d !important;
         background-color: #f0f7fc !important;
@@ -2654,7 +2655,7 @@ box-shadow: 6px 8px 4px 0px rgb(0 0 0 / 10%);
     .flex-dock-right {
         display: flex !important;
         align-items: center !important;
-        gap: 6px !important;
+        gap: 4px !important;
     }
 
     /* Refund percent status (zwykle empty) — hide if empty */
