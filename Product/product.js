@@ -19,23 +19,17 @@
     });
   };
 
-  // Main initialization function
-  async function init() {
-    // Wait for product detail page to load
-    const productDetail = await waitForElement(".flex-product-detail");
-    if (!productDetail) {
-      console.log('MROAUTO: Product detail not found, skipping modern delivery box');
-      return;
-    }
-    console.log('MROAUTO: Product.js - Modern delivery box initialized');
-    
+  // Mountowanie modern-delivery-box. Wywolywane na init() + watchdog re-mount
+  // jesli Nextis re-renderowal DOM po naszym pierwszym mount.
+  function mountModernBox() {
     // CELOWE (potwierdzone z userem 2026-05-16): modern-delivery-box pokazuje sie
     // TYLKO dla goscia/niezalogowanego (B2C). Zalogowani B2B widza natywny Nextis
     // layout z negocjowanymi/hurtowymi cenami — nie nadpisujemy go.
-    // .flex-login-form istnieje w DOM tylko gdy user nie zalogowany (Nextis chowa
-    // go po loginie i pokazuje .flex-user-menu).
     const isGuest = !!document.querySelector(".flex-login-form");
     if (!isGuest) return;
+
+    // Guard idempotencji: jesli juz zamontowany, skip.
+    if (document.querySelector('.flex-product-detail .modern-delivery-box')) return;
 
     // Style modern-delivery-box przeniesione do Product/product.css (2026-05-15).
     // Wczesniej byly tu inline jako document.head.appendChild(style) — niewersjonowalne,
@@ -233,8 +227,40 @@ document.querySelectorAll(".flex-delivery-time-item").forEach((firstItem, index)
 });
   }
 
-  // Call init function
+  // Init + watchdog. Probujemy mount od razu, plus obserwujemy DOM zeby
+  // re-mount jesli Nextis nadpisze nasz box (race z ASP.NET re-render).
+  async function init() {
+    const productDetail = await waitForElement(".flex-product-detail");
+    if (!productDetail) return;
+
+    mountModernBox();
+
+    // WATCHDOG: jesli Nextis usunie .modern-delivery-box (re-render po AJAX/postback),
+    // wstrzykujemy ponownie. Naprawiono 2026-05-16 — user raportowal ze po F5
+    // modern-box znikal dla niezalogowanych.
+    const observer = new MutationObserver(() => {
+      if (!document.querySelector('.flex-product-detail .modern-delivery-box')) {
+        mountModernBox();
+      }
+    });
+    observer.observe(productDetail, { childList: true, subtree: true });
+
+    // ASP.NET UpdatePanel hook — re-mount po endRequest (jak w global.js dla VIN search).
+    try {
+      if (window.Sys && Sys.WebForms && Sys.WebForms.PageRequestManager) {
+        Sys.WebForms.PageRequestManager.getInstance().add_endRequest(() => {
+          setTimeout(mountModernBox, 50);
+        });
+      }
+    } catch (e) {}
+  }
+
   init();
+  // BFCache (back/forward cache): pageshow z e.persisted=true znaczy ze strona
+  // zaladowana z cache. Re-mount zeby box byl widoczny.
+  window.addEventListener('pageshow', (e) => {
+    if (e.persisted) setTimeout(init, 0);
+  });
 })();
 
 
