@@ -29,8 +29,13 @@
     }
     console.log('MROAUTO: Product.js - Modern delivery box initialized');
     
-    const isNotLoggedIn = document.querySelector(".flex-login-form");
-    if (!isNotLoggedIn) return;
+    // CELOWE (potwierdzone z userem 2026-05-16): modern-delivery-box pokazuje sie
+    // TYLKO dla goscia/niezalogowanego (B2C). Zalogowani B2B widza natywny Nextis
+    // layout z negocjowanymi/hurtowymi cenami — nie nadpisujemy go.
+    // .flex-login-form istnieje w DOM tylko gdy user nie zalogowany (Nextis chowa
+    // go po loginie i pokazuje .flex-user-menu).
+    const isGuest = !!document.querySelector(".flex-login-form");
+    if (!isGuest) return;
 
     // Style modern-delivery-box przeniesione do Product/product.css (2026-05-15).
     // Wczesniej byly tu inline jako document.head.appendChild(style) — niewersjonowalne,
