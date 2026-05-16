@@ -1,3 +1,18 @@
+/* === Wczesny page-type marker (na html element) ===
+   Dodajemy klase 'mro-page-home' do <html> NATYCHMIAST przy execution global.js
+   (przed DOMContentLoaded, przed nawet body rendering). CSS uzywa do hide
+   KATALOGY na mobile na home — bez czekania na .mro-quick-tiles injection
+   (eliminuje flash KATALOGY przy pierwszym ladowaniu strony z cookie banner). */
+(() => {
+    try {
+        const p = (location.pathname || '').toLowerCase();
+        const isHome = p === '/cs' || p === '/cs/' || p === '/' || p === '';
+        if (isHome) {
+            (document.documentElement || document.body).classList.add('mro-page-home');
+        }
+    } catch (e) {}
+})();
+
 /* MROAUTO – VIN Search (robust boot: ASP.NET UpdatePanel, BFCache, SSR/CSR) */
 (() => {
   'use strict';

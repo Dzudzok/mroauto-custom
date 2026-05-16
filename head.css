@@ -2703,9 +2703,11 @@ box-shadow: 6px 8px 4px 0px rgb(0 0 0 / 10%);
         display: none !important;
     }
 
-    /* KATALOGY native menu — UKRYTE na mobile TYLKO gdy mamy quick tiles
-       (body.mro-has-quick-tiles dodawana w global.js tylko na home).
+    /* KATALOGY native menu — UKRYTE na mobile TYLKO na home (html.mro-page-home).
+       Klasa dodawana NATYCHMIAST w global.js (pierwsze IIFE, przed DOMContentLoaded)
+       — eliminuje flash KATALOGY przy pierwszym ladowaniu z cookie banner.
        Na innych podstronach KATALOGY pokazuje sie normalnie. */
+    html.mro-page-home .flex-container.flex-main-menu,
     body.mro-has-quick-tiles .flex-container.flex-main-menu {
         display: none !important;
     }
