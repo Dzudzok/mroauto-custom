@@ -2662,6 +2662,48 @@ box-shadow: 6px 8px 4px 0px rgb(0 0 0 / 10%);
     .flex-dock-right .refund-percent-status:empty {
         display: none !important;
     }
+
+    /* === KATALOGY menu (mobile collapse): 5 pasków → grid 2-col === */
+    /* AUTODILY / MOTOROVE OLEJE / VIN / KAROSARSKE / UNIVERZALNI */
+    .flex-main-menu .flex-menu > ul {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 4px !important;
+        padding: 4px !important;
+        margin: 0 !important;
+        list-style: none !important;
+    }
+
+    .flex-main-menu .flex-menu > ul > li {
+        margin: 0 !important;
+        border-radius: 8px !important;
+        overflow: hidden !important;
+    }
+
+    /* Ostatni item (UNIVERZALNI) gdy nieparzysta liczba = 5 — full width */
+    .flex-main-menu .flex-menu > ul > li:nth-child(5):last-child {
+        grid-column: 1 / -1 !important;
+    }
+
+    /* Linki — kompakt, centered, mniejsze */
+    .flex-main-menu .flex-menu > ul > li > a {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        padding: 12px 8px !important;
+        text-align: center !important;
+        font-size: 12px !important;
+        line-height: 1.2 !important;
+        min-height: 44px !important;
+    }
+
+    /* Tekst <b><em> — usunac italic + uppercase tracking */
+    .flex-main-menu .flex-menu > ul > li > a b,
+    .flex-main-menu .flex-menu > ul > li > a em {
+        font-style: normal !important;
+        font-weight: 700 !important;
+        letter-spacing: 0.5px !important;
+    }
 }
 
 
