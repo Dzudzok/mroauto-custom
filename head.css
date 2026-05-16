@@ -1031,7 +1031,7 @@ border: 2px solid #005da3;
 
 @media only screen and (max-width: 768px) {
 .flex-select-vehicle-wizard .flex-drop-down {
-    width: 95%;
+    width: 95% !important;
     background-color: #005da33d;
     border-radius: 8px;
     box-shadow: 3px 3px 2px #bfbfbf;
