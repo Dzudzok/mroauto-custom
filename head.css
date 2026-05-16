@@ -2912,14 +2912,26 @@ box-shadow: 6px 8px 4px 0px rgb(0 0 0 / 10%);
     }
 
     /* ROZWINIETY DROPDOWN (lista marek / model / engine) — modern look */
+    .flex-select-vehicle-wizard .flex-drop-down dd {
+        width: 100% !important;
+        left: 0 !important;
+        right: 0 !important;
+        margin: 4px 0 0 !important;
+        padding: 0 !important;
+        box-sizing: border-box !important;
+    }
+
     .flex-select-vehicle-wizard .flex-drop-down dd .flex-collapsible {
         background: #fff !important;
         border-radius: 12px !important;
         box-shadow: 0 8px 24px rgba(0, 86, 157, 0.15), 0 1px 3px rgba(0, 0, 0, 0.08) !important;
         border: 1px solid #e0ecf5 !important;
         overflow: hidden !important;
-        margin-top: 4px !important;
+        margin: 0 !important;
         padding: 0 !important;
+        max-width: 100% !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
     }
 
     /* Search input w dropdown */
@@ -2929,10 +2941,14 @@ box-shadow: 6px 8px 4px 0px rgb(0 0 0 / 10%);
         border-bottom: 1px solid #e5e7eb !important;
         display: flex !important;
         gap: 6px !important;
+        box-sizing: border-box !important;
+        width: 100% !important;
+        max-width: 100% !important;
     }
 
     .flex-select-vehicle-wizard .flex-drop-down .flex-drop-down-search input[type="text"] {
-        flex: 1 !important;
+        flex: 1 1 0 !important;
+        min-width: 0 !important;
         height: 38px !important;
         padding: 0 12px !important;
         border: 1px solid #d1dce6 !important;
@@ -2942,6 +2958,7 @@ box-shadow: 6px 8px 4px 0px rgb(0 0 0 / 10%);
         font-weight: 500 !important;
         color: #111827 !important;
         outline: none !important;
+        box-sizing: border-box !important;
         transition: border-color 0.15s, box-shadow 0.15s !important;
     }
 
@@ -2958,6 +2975,7 @@ box-shadow: 6px 8px 4px 0px rgb(0 0 0 / 10%);
         border-radius: 8px !important;
         cursor: pointer !important;
         flex-shrink: 0 !important;
+        box-sizing: border-box !important;
     }
 
     /* Lista items */
