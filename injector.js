@@ -193,7 +193,7 @@
     },
     {
       name: 'product',
-      pathIncludes: ['hledani', '/katalog/tecdoc/'],
+      pathIncludes: ['hledani', '/katalog/tecdoc/', '/katalog/detail-zbozi'],
       matchSelector: '.flex-product-detail',
       css: 'Product/product.css',
       html: 'Product/product.html',
@@ -203,7 +203,7 @@
     },
     {
       name: 'product-top',
-      pathIncludes: ['hledani', '/katalog/tecdoc/'],
+      pathIncludes: ['hledani', '/katalog/tecdoc/', '/katalog/detail-zbozi'],
       matchSelector: '.flex-product-detail',
       html: 'Product/top.html',
       targetSelector: '.flex-product-detail',
@@ -211,7 +211,7 @@
     },
     {
       name: 'product-bottom',
-      pathIncludes: ['hledani', '/katalog/tecdoc/'],
+      pathIncludes: ['hledani', '/katalog/tecdoc/', '/katalog/detail-zbozi'],
       matchSelector: '.flex-product-detail',
       html: 'Product/bottom.html',
       targetSelector: '.flex-product-detail',
@@ -225,13 +225,13 @@
     // Rollback: git checkout pre-faza-A -- injector.js
     {
       name: 'productlist', // tylko na strankach s obrazem autem po stromie tecdoc
-      pathIncludes: ['hledani', '/katalog/tecdoc/'],
+      pathIncludes: ['hledani', '/katalog/tecdoc/', '/katalog/detail-zbozi'],
       matchSelector: ['[id^="ProductItem_"]', '.flex-tecdoc-vehicle-info-box'],
       css: 'ProductList/productlist.css'
     },
     {
       name: 'productlistsearch', // tylko na strankach z lista produktw bez auta
-      pathIncludes: ['hledani', '/katalog/tecdoc/'],
+      pathIncludes: ['hledani', '/katalog/tecdoc/', '/katalog/detail-zbozi'],
       matchSelector: '[id^="ProductItem_"]',
       css: 'ProductListSearch/productlistsearch.css'
     },
