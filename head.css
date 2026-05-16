@@ -1038,6 +1038,14 @@ border: 2px solid #005da3;
 }
 }
 
+
+@media only screen and (max-width: 989px) {
+    .flex-drop-down.flex-disabled {
+        width: 94%;
+    }
+}
+
+
 .flex-select-vehicle-wizard .flex-drop-down dt span.flex-drop-down-link {
     color: #000000;
     padding-top: 10px;
