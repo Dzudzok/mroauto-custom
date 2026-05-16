@@ -2665,9 +2665,11 @@ box-shadow: 6px 8px 4px 0px rgb(0 0 0 / 10%);
         display: none !important;
     }
 
-    /* === KATALOGY menu (mobile collapse): 5 pasków → grid 2-col === */
-    /* AUTODILY / MOTOROVE OLEJE / VIN / KAROSARSKE / UNIVERZALNI */
-    .flex-main-menu .flex-menu > ul {
+    /* === KATALOGY menu (mobile): 5 pasków → grid 2-col GDY EXPANDED ===
+       Aktywujemy grid TYLKO gdy .flex-close-menu-button ma .selected
+       (Nextis indicator stanu expanded). Bez .selected = collapse natywny
+       (Nextis display:none) zostaje. */
+    .flex-main-menu .flex-menu .flex-close-menu-button.selected ~ ul {
         display: grid !important;
         grid-template-columns: 1fr 1fr !important;
         gap: 4px !important;
@@ -2676,19 +2678,19 @@ box-shadow: 6px 8px 4px 0px rgb(0 0 0 / 10%);
         list-style: none !important;
     }
 
-    .flex-main-menu .flex-menu > ul > li {
+    .flex-main-menu .flex-menu .flex-close-menu-button.selected ~ ul > li {
         margin: 0 !important;
         border-radius: 8px !important;
         overflow: hidden !important;
     }
 
     /* Ostatni item (UNIVERZALNI) gdy nieparzysta liczba = 5 — full width */
-    .flex-main-menu .flex-menu > ul > li:nth-child(5):last-child {
+    .flex-main-menu .flex-menu .flex-close-menu-button.selected ~ ul > li:nth-child(5):last-child {
         grid-column: 1 / -1 !important;
     }
 
     /* Linki — kompakt, centered, mniejsze */
-    .flex-main-menu .flex-menu > ul > li > a {
+    .flex-main-menu .flex-menu .flex-close-menu-button.selected ~ ul > li > a {
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
@@ -2700,8 +2702,8 @@ box-shadow: 6px 8px 4px 0px rgb(0 0 0 / 10%);
     }
 
     /* Tekst <b><em> — usunac italic + uppercase tracking */
-    .flex-main-menu .flex-menu > ul > li > a b,
-    .flex-main-menu .flex-menu > ul > li > a em {
+    .flex-main-menu .flex-menu .flex-close-menu-button.selected ~ ul > li > a b,
+    .flex-main-menu .flex-menu .flex-close-menu-button.selected ~ ul > li > a em {
         font-style: normal !important;
         font-weight: 700 !important;
         letter-spacing: 0.5px !important;
