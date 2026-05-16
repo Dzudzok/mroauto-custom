@@ -1082,9 +1082,7 @@ text-align: center;
 .products .flex-item .flex-delivery-times .toogle-collapse-button, .flex-product-detail .flex-delivery-times .toogle-collapse-button {
 display: none !important;
 }
-.flex-product-detail .flex-general .flex-informations .flex-basic-params .flex-code .flex-value {
-    background: #ebf2f8 !important;
-}
+
 
 
 
