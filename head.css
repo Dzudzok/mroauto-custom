@@ -2736,6 +2736,182 @@ box-shadow: 6px 8px 4px 0px rgb(0 0 0 / 10%);
     }
 }
 
+/* === VIN MODAL — popup po klik kafelka 'VIN' przez zalogowanego usera ===
+   Dziala desktop + mobile. Niezalogowany jest przekierowany na /cs/prihlaseni
+   bez modal'u (handleVinClick w global.js). */
+.mro-vin-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.5);
+    backdrop-filter: blur(2px);
+    z-index: 999999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    animation: mroVinModalFadeIn 0.18s ease-out;
+}
+
+@keyframes mroVinModalFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.mro-vin-modal {
+    background: #fff;
+    border-radius: 16px;
+    width: 100%;
+    max-width: 460px;
+    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+    animation: mroVinModalSlideUp 0.2s ease-out;
+    font-family: inherit;
+}
+
+@keyframes mroVinModalSlideUp {
+    from { transform: translateY(20px); opacity: 0.5; }
+    to   { transform: translateY(0); opacity: 1; }
+}
+
+.mro-vin-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 18px;
+    background: linear-gradient(180deg, #00569d 0%, #003e72 100%);
+    color: #fff;
+}
+
+.mro-vin-modal-header h3 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 800;
+    letter-spacing: 0.2px;
+}
+
+.mro-vin-modal-close {
+    background: rgba(255, 255, 255, 0.18);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    width: 32px;
+    height: 32px;
+    font-size: 22px;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s;
+}
+
+.mro-vin-modal-close:hover {
+    background: rgba(255, 255, 255, 0.32);
+}
+
+.mro-vin-modal-body {
+    padding: 18px 20px 14px;
+}
+
+.mro-vin-modal-hint {
+    margin: 0 0 10px;
+    font-size: 12px;
+    color: #6b7280;
+    font-style: italic;
+}
+
+.mro-vin-modal-input {
+    width: 100%;
+    height: 50px;
+    border: 1px solid #d1d5db;
+    border-radius: 10px;
+    padding: 0 14px;
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    font-family: 'SF Mono', 'Cascadia Code', Monaco, Consolas, monospace;
+    color: #111827;
+    background: #f9fafb;
+    outline: none;
+    transition: border-color 0.15s, background 0.15s, box-shadow 0.15s;
+    box-sizing: border-box;
+}
+
+.mro-vin-modal-input::placeholder {
+    color: #d1d5db;
+    letter-spacing: 1.5px;
+    font-weight: 500;
+}
+
+.mro-vin-modal-input:focus {
+    border-color: #00569d;
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(0, 86, 157, 0.15);
+}
+
+.mro-vin-modal-counter {
+    margin-top: 6px;
+    font-size: 11px;
+    color: #6b7280;
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+}
+
+.mro-vin-modal-counter span {
+    font-weight: 700;
+    color: #00569d;
+}
+
+.mro-vin-modal-footer {
+    display: flex;
+    gap: 8px;
+    padding: 12px 20px 18px;
+    justify-content: flex-end;
+}
+
+.mro-vin-modal-cancel,
+.mro-vin-modal-submit {
+    padding: 10px 22px;
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.15s;
+    border: 1px solid transparent;
+    line-height: 1;
+}
+
+.mro-vin-modal-cancel {
+    background: transparent;
+    color: #6b7280;
+    border-color: #d1d5db;
+}
+
+.mro-vin-modal-cancel:hover {
+    background: #f3f4f6;
+    color: #111827;
+}
+
+.mro-vin-modal-submit {
+    background: #e30613;
+    color: #fff;
+    box-shadow: 0 2px 6px rgba(227, 6, 19, 0.18);
+}
+
+.mro-vin-modal-submit:hover:not(:disabled) {
+    background: #b00510;
+    box-shadow: 0 4px 12px rgba(227, 6, 19, 0.25);
+}
+
+.mro-vin-modal-submit:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
 /* === VIN search compact na mobile + hide gdy locked (niezalogowany) ===
    Locked overlay nie ma sensu na mobile — user ma kafelek 'VIN' w quick tiles
    ktory go przekieruje do logowania lub VIN search input. */

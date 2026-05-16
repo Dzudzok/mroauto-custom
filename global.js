@@ -1218,6 +1218,83 @@ console.log('MROAUTO: Global helpers loaded');
         }
     ];
 
+    function sanitizeVin(v) {
+        return (v || '').toUpperCase().replace(/[^A-Z0-9]/g, '').replace(/[IOQ]/g, '').slice(0, 17);
+    }
+
+    function openVinModal() {
+        if (document.querySelector('.mro-vin-modal-overlay')) return;
+
+        const overlay = document.createElement('div');
+        overlay.className = 'mro-vin-modal-overlay';
+        overlay.innerHTML = `
+            <div class="mro-vin-modal" role="dialog" aria-modal="true">
+                <div class="mro-vin-modal-header">
+                    <h3>Vyhledávání podle VIN</h3>
+                    <button type="button" class="mro-vin-modal-close" aria-label="Zavřít">&times;</button>
+                </div>
+                <div class="mro-vin-modal-body">
+                    <p class="mro-vin-modal-hint">VIN má 17 znaků (bez I, O, Q)</p>
+                    <input type="text" class="mro-vin-modal-input" placeholder="WAUZZZ4N3LA000000" maxlength="17" autocomplete="off" inputmode="latin" />
+                    <div class="mro-vin-modal-counter"><span>0</span> / 17</div>
+                </div>
+                <div class="mro-vin-modal-footer">
+                    <button type="button" class="mro-vin-modal-cancel">Zrušit</button>
+                    <button type="button" class="mro-vin-modal-submit" disabled>Hledat</button>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(overlay);
+
+        const input = overlay.querySelector('.mro-vin-modal-input');
+        const counterNum = overlay.querySelector('.mro-vin-modal-counter span');
+        const submit = overlay.querySelector('.mro-vin-modal-submit');
+        const closeBtn = overlay.querySelector('.mro-vin-modal-close');
+        const cancelBtn = overlay.querySelector('.mro-vin-modal-cancel');
+
+        function update() {
+            const v = sanitizeVin(input.value);
+            if (input.value !== v) input.value = v;
+            counterNum.textContent = String(v.length);
+            submit.disabled = v.length !== 17;
+        }
+
+        function close() {
+            overlay.remove();
+            document.removeEventListener('keydown', escHandler);
+        }
+
+        function submitVin() {
+            const v = sanitizeVin(input.value);
+            if (v.length !== 17) return;
+            location.href = '/cs/katalog/yq-katalog/vin/' + encodeURIComponent(v);
+        }
+
+        function escHandler(e) {
+            if (e.key === 'Escape') close();
+        }
+
+        input.addEventListener('input', update);
+        input.addEventListener('paste', (e) => {
+            e.preventDefault();
+            const t = (e.clipboardData || window.clipboardData)?.getData('text') || '';
+            input.value = sanitizeVin(t);
+            update();
+        });
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && !submit.disabled) submitVin();
+        });
+        submit.addEventListener('click', submitVin);
+        closeBtn.addEventListener('click', close);
+        cancelBtn.addEventListener('click', close);
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) close();
+        });
+        document.addEventListener('keydown', escHandler);
+
+        setTimeout(() => input.focus(), 60);
+    }
+
     function handleVinClick(e) {
         e.preventDefault();
         // Niezalogowany — redirect do login (Nextis i tak by to zrobil potem)
@@ -1226,17 +1303,8 @@ console.log('MROAUTO: Global helpers loaded');
             location.href = '/cs/prihlaseni';
             return;
         }
-        // Zalogowany — scroll do VIN search jesli na home, else redirect
-        const vinSearch = document.querySelector('#mlpVehicleSearch');
-        if (vinSearch) {
-            vinSearch.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            setTimeout(() => {
-                const input = vinSearch.querySelector('.vehicleSearch__input');
-                if (input) input.focus();
-            }, 400);
-        } else {
-            location.href = '/cs#vin';
-        }
+        // Zalogowany — otworz modal z polem VIN
+        openVinModal();
     }
 
     function isHome() {
