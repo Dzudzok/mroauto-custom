@@ -1086,9 +1086,7 @@ display: none !important;
     background: #ebf2f8 !important;
 }
 
-.flex-product-detail .flex-general .flex-informations .flex-basic-params .flex-code .flex-value:hover {
-    background: #f1f1f1 !important;
-}
+
 
 .flex-product-detail .flex-general .flex-informations .flex-basic-params a span {
     justify-content: flex-end;

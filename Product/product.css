@@ -53,17 +53,11 @@
     transition: background 0.12s ease;
 }
 
-.flex-product-detail .flex-basic-params > div:nth-child(even) {
-    background: #fafbfd;
-}
 
 .flex-product-detail .flex-basic-params > div:last-child {
     border-bottom: none;
 }
 
-.flex-product-detail .flex-basic-params > div:hover {
-    background: #f0f7fc;
-}
 
 .flex-product-detail .flex-basic-params .flex-label {
     flex: 0 0 130px;
