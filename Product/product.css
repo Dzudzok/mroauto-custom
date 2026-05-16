@@ -42,6 +42,7 @@
     overflow: hidden;
     border: 0px solid #e5e7eb;
     background: #fff;
+    line-height: 6pt !important;
 }
 
 .flex-product-detail .flex-basic-params > div {
