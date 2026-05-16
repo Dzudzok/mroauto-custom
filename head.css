@@ -2665,8 +2665,10 @@ box-shadow: 6px 8px 4px 0px rgb(0 0 0 / 10%);
         display: none !important;
     }
 
-    /* KATALOGY native menu — UKRYTE na mobile (zastapiamy 4 kafelki) */
-    .flex-container.flex-main-menu {
+    /* KATALOGY native menu — UKRYTE na mobile TYLKO gdy mamy quick tiles
+       (body.mro-has-quick-tiles dodawana w global.js tylko na home).
+       Na innych podstronach KATALOGY pokazuje sie normalnie. */
+    body.mro-has-quick-tiles .flex-container.flex-main-menu {
         display: none !important;
     }
 

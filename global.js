@@ -1239,7 +1239,13 @@ console.log('MROAUTO: Global helpers loaded');
         }
     }
 
+    function isHome() {
+        const p = (location.pathname || '').toLowerCase();
+        return p === '/cs' || p === '/cs/' || p === '/' || p === '';
+    }
+
     function build() {
+        if (!isHome()) return; // tylko home page (user request 2026-05-16)
         if (document.querySelector('.mro-quick-tiles')) return; // juz zamontowane
 
         const mainMenu = document.querySelector('.flex-main-menu');
@@ -1267,6 +1273,9 @@ console.log('MROAUTO: Global helpers loaded');
         });
 
         mainMenu.parentNode.insertBefore(wrap, mainMenu);
+
+        // Body class — CSS uzywa do hide KATALOGY tylko gdy quick tiles sa
+        document.body.classList.add('mro-has-quick-tiles');
     }
 
     // Bootstrap: try immediate + retry + observer (Nextis renderuje async)
