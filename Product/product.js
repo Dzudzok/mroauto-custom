@@ -227,25 +227,35 @@ document.querySelectorAll(".flex-delivery-time-item").forEach((firstItem, index)
 });
   }
 
-  // Init + watchdog. Probujemy mount od razu, plus obserwujemy DOM zeby
-  // re-mount jesli Nextis nadpisze nasz box (race z ASP.NET re-render).
+  // Init + watchdog (3 poziomy obrony przeciw 'znikajaco po F5'):
+  //   1. MutationObserver na body (szerszy zakres — jesli Nextis innerHTML='...'
+  //      na .flex-product-detail, obserwator na body nadal lapie)
+  //   2. Interval retry przez 8s (co 300ms) — brutalne ale niezawodne
+  //   3. ASP.NET endRequest hook + BFCache pageshow
   async function init() {
     const productDetail = await waitForElement(".flex-product-detail");
     if (!productDetail) return;
 
+    // Try initial mount
     mountModernBox();
 
-    // WATCHDOG: jesli Nextis usunie .modern-delivery-box (re-render po AJAX/postback),
-    // wstrzykujemy ponownie. Naprawiono 2026-05-16 — user raportowal ze po F5
-    // modern-box znikal dla niezalogowanych.
-    const observer = new MutationObserver(() => {
-      if (!document.querySelector('.flex-product-detail .modern-delivery-box')) {
-        mountModernBox();
-      }
-    });
-    observer.observe(productDetail, { childList: true, subtree: true });
+    // Retry przez 8s, co 300ms. Pokrywa wszystkie race conditions z Nextis.
+    let retries = 0;
+    const retryInterval = setInterval(() => {
+      retries++;
+      mountModernBox(); // idempotent — guard sprawdza czy juz jest
+      if (retries >= 26) clearInterval(retryInterval); // 8s
+    }, 300);
 
-    // ASP.NET UpdatePanel hook — re-mount po endRequest (jak w global.js dla VIN search).
+    // Watchdog: obserwujemy CALE body (nie tylko .flex-product-detail) bo
+    // Nextis moze wymienic caly subtree, wtedy observer na productDetail
+    // przestaje istniec.
+    const observer = new MutationObserver(() => {
+      mountModernBox(); // idempotent
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
+
+    // ASP.NET UpdatePanel hook — re-mount po endRequest
     try {
       if (window.Sys && Sys.WebForms && Sys.WebForms.PageRequestManager) {
         Sys.WebForms.PageRequestManager.getInstance().add_endRequest(() => {
@@ -257,9 +267,14 @@ document.querySelectorAll(".flex-delivery-time-item").forEach((firstItem, index)
 
   init();
   // BFCache (back/forward cache): pageshow z e.persisted=true znaczy ze strona
-  // zaladowana z cache. Re-mount zeby box byl widoczny.
-  window.addEventListener('pageshow', (e) => {
-    if (e.persisted) setTimeout(init, 0);
+  // z cache. F5 czasem tez triggeruje pageshow (zaleznie od browser).
+  window.addEventListener('pageshow', () => {
+    setTimeout(mountModernBox, 0);
+    setTimeout(mountModernBox, 500); // double-tap zeby zlapac late Nextis renders
+  });
+  // visibilitychange — gdy user wraca do taby po np. minimize, sprawdz mount
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) setTimeout(mountModernBox, 0);
   });
 })();
 
