@@ -25,11 +25,17 @@
   };
 
 
+  // Cache buster — round-down do 5 min. W obrebie 5 min browser uzywa cache
+  // (perf), ale po commit + 5 min nowy URL = fresh fetch. Naprawione 2026-05-16
+  // bo user raportowal ze product.js NIE pojawia sie w Network panel po 3-4 F5
+  // (browser memory cache, skrypt nie executed = mount nie odpala sie).
+  const cacheBust = () => '?v=' + Math.floor(Date.now() / 300000);
+
   const injectCss = (href) => {
     try {
       const link = document.createElement('link');
       link.rel = 'stylesheet';
-      link.href = (href.startsWith('http') ? href : primaryBase + href);
+      link.href = (href.startsWith('http') ? href : primaryBase + href) + cacheBust();
       document.head.appendChild(link);
     } catch (e) {
       console.warn('MROAUTO: injectCss failed', href, e);
@@ -55,7 +61,7 @@
   const injectHtml = async (htmlPath, targetSelector, position = 'afterend', timeout = 5000) => {
     const basesToTry = Array.isArray(bases) ? bases : [bases];
     for (const b of basesToTry) {
-      const url = (htmlPath.startsWith('http') ? htmlPath : (b + htmlPath));
+      const url = (htmlPath.startsWith('http') ? htmlPath : (b + htmlPath)) + cacheBust();
       try {
         const res = await fetch(url, { cache: 'no-store' });
         if (!res.ok) {
@@ -87,7 +93,7 @@
   const injectJs = (src) => {
     try {
       const script = document.createElement('script');
-      script.src = (src.startsWith('http') ? src : primaryBase + src);
+      script.src = (src.startsWith('http') ? src : primaryBase + src) + cacheBust();
       script.defer = false;
       script.async = false;
       document.body.appendChild(script);
