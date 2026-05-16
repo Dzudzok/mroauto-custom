@@ -31,6 +31,108 @@
     border-bottom: 1px solid #f0f4f8;
 }
 
+/* === TABELA PARAMETROW (.flex-basic-params) — modern look ===
+   Scoped do .flex-product-detail zeby nie wplywac na inne strony.
+   Struktura Nextis: kazde dziecko = 1 wiersz z .flex-label + .flex-value */
+.flex-product-detail .flex-basic-params {
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0 14px;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid #e5e7eb;
+    background: #fff;
+}
+
+.flex-product-detail .flex-basic-params > div {
+    display: flex;
+    align-items: center;
+    padding: 9px 14px;
+    border-bottom: 1px solid #f0f4f8;
+    background: #fff;
+    transition: background 0.12s ease;
+}
+
+.flex-product-detail .flex-basic-params > div:nth-child(even) {
+    background: #fafbfd;
+}
+
+.flex-product-detail .flex-basic-params > div:last-child {
+    border-bottom: none;
+}
+
+.flex-product-detail .flex-basic-params > div:hover {
+    background: #f0f7fc;
+}
+
+.flex-product-detail .flex-basic-params .flex-label {
+    flex: 0 0 130px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #6b7280;
+    letter-spacing: 0.6px;
+}
+
+.flex-product-detail .flex-basic-params .flex-value {
+    flex: 1;
+    text-align: right;
+    font-size: 13px;
+    font-weight: 600;
+    color: #111827;
+}
+
+/* Vyrobce — czerwony brand emphasis (TRW/JPN/KAMOKA itp.) */
+.flex-product-detail .flex-basic-params .flex-manufacturer .flex-value {
+    color: #e30613;
+    font-weight: 800;
+    letter-spacing: 0.3px;
+}
+
+/* Kod (Nextis renderuje jako <input type=text readonly>) — monospace brand */
+.flex-product-detail .flex-basic-params .flex-code input.flex-value,
+.flex-product-detail .flex-basic-params input.flex-value {
+    background: transparent !important;
+    border: none !important;
+    text-align: right;
+    width: auto;
+    font-family: 'SF Mono', 'Cascadia Code', Monaco, Consolas, monospace;
+    font-size: 12px;
+    color: #00569d;
+    padding: 0;
+    cursor: text;
+}
+
+/* Nahrazuje — linki do innych produktow */
+.flex-product-detail .flex-basic-params .replaced-numbers .flex-link,
+.flex-product-detail .flex-basic-params .replaced-numbers a {
+    color: #00569d;
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 1px dashed currentColor;
+    transition: border-color 0.15s;
+    cursor: pointer;
+}
+
+.flex-product-detail .flex-basic-params .replaced-numbers .flex-link:hover,
+.flex-product-detail .flex-basic-params .replaced-numbers a:hover {
+    border-bottom-style: solid;
+}
+
+/* Mobile: zmniejszone padding + label */
+@media (max-width: 480px) {
+    .flex-product-detail .flex-basic-params > div {
+        padding: 8px 12px;
+    }
+    .flex-product-detail .flex-basic-params .flex-label {
+        flex: 0 0 100px;
+        font-size: 10px;
+    }
+    .flex-product-detail .flex-basic-params .flex-value {
+        font-size: 12px;
+    }
+}
+
 .flex-product-detail .flex-informations > h1 .info-manufacturer-logo {
     order: 2;
     flex-shrink: 0;
