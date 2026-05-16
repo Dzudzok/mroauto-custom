@@ -1031,8 +1031,7 @@ border: 2px solid #005da3;
 
 @media only screen and (max-width: 768px) {
 .flex-select-vehicle-wizard .flex-drop-down {
-    width: 100%;
-    width: 100%;
+    width: 95%;
     background-color: #005da33d;
     border-radius: 8px;
     box-shadow: 3px 3px 2px #bfbfbf;
@@ -2786,7 +2785,7 @@ box-shadow: 6px 8px 4px 0px rgb(0 0 0 / 10%);
         max-height: none !important;
         background: #fff !important;
         border-radius: 14px !important;
-        padding: 20px 16px 18px !important;
+        padding: 20px 0px 18px !important;
         box-shadow: 0 4px 16px rgba(0, 86, 157, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04) !important;
         border: 1px solid #e0ecf5 !important;
     }
@@ -2825,7 +2824,7 @@ box-shadow: 6px 8px 4px 0px rgb(0 0 0 / 10%);
         background: #fff !important;
         border: 1px solid #d1dce6 !important;
         border-radius: 10px !important;
-        margin: 0 0 8px !important;
+        margin: 0 8px 0px !important;
         min-height: 48px !important;
         overflow: visible !important;
         transition: border-color 0.15s, box-shadow 0.15s !important;
