@@ -56,107 +56,30 @@
         0 16px 40px rgba(0, 86, 157, 0.10);
 }
 
-/* === STATUS BAR — slim, semantic === */
-.modern-status-bar {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 10px 16px;
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 0.1px;
+/* === PRICE CARD: gradient bg, cena big + status z dot + Pobocky button === */
+.mro-price-card {
+    padding: 18px 18px 14px;
+    background: linear-gradient(180deg, #f8fbff 0%, #f0f7fc 100%);
     border-bottom: 1px solid var(--gray-100);
 }
 
-.modern-status-bar.in-stock {
-    background: var(--success-soft);
-    color: #14532d;
+.mro-price-card.is-unavailable {
+    background: linear-gradient(180deg, #fef9f9 0%, #fdf2f2 100%);
 }
 
-.modern-status-bar.not-available {
-    background: var(--danger-soft);
-    color: #7f1d1d;
+.mro-price-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: flex-end;
+    margin-bottom: 10px;
 }
 
-.modern-status-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    flex-shrink: 0;
-    position: relative;
+.mro-price-wrap {
+    text-align: right;
 }
 
-.modern-status-bar.in-stock .modern-status-dot {
-    background: var(--success);
-    box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.2);
-}
-
-.modern-status-bar.in-stock .modern-status-dot::after {
-    content: '';
-    position: absolute;
-    inset: -4px;
-    border-radius: 50%;
-    background: var(--success);
-    opacity: 0.4;
-    animation: modernPulse 2s ease-out infinite;
-}
-
-@keyframes modernPulse {
-    0%   { transform: scale(0.8); opacity: 0.5; }
-    100% { transform: scale(2.2); opacity: 0; }
-}
-
-.modern-status-bar.not-available .modern-status-dot {
-    background: var(--danger);
-    box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.2);
-}
-
-.modern-status-text {
-    flex: 1;
-    min-width: 0;
-}
-
-.modern-status-text strong {
-    font-weight: 800;
-}
-
-.modern-branches-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    padding: 5px 10px;
-    border: 1px solid currentColor;
-    background: transparent;
-    color: inherit;
-    border-radius: 999px;
-    font-size: 11px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.15s ease;
-    white-space: nowrap;
-    flex-shrink: 0;
-    opacity: 0.8;
-}
-
-.modern-branches-link:hover,
-.modern-branches-link.active {
-    opacity: 1;
-    background: rgba(255, 255, 255, 0.6);
-    transform: translateY(-1px);
-}
-
-.modern-branches-link svg {
-    flex-shrink: 0;
-}
-
-/* === CENA — bigger, bolder === */
-.modern-price-section {
-    padding: 20px 18px 16px;
-    text-align: center;
-}
-
-.modern-price-main {
-    font-size: 38px;
+.mro-price-main {
+    font-size: 36px;
     font-weight: 900;
     color: var(--gray-900);
     letter-spacing: -1px;
@@ -164,116 +87,119 @@
     font-variant-numeric: tabular-nums;
 }
 
-.modern-price-vat {
-    margin-top: 6px;
+.mro-price-vat {
+    margin-top: 4px;
     font-size: 12px;
     color: var(--gray-500);
     font-weight: 500;
-}
-
-.modern-vat-label {
-    color: var(--gray-400);
-    font-weight: 400;
-    margin-left: 2px;
-}
-
-/* === DOSTAWA — clean layout, accent stripe === */
-.modern-delivery-section {
-    position: relative;
-    padding: 14px 18px 14px 22px;
-    background: linear-gradient(180deg, #fafbfd 0%, #f5f7fa 100%);
-    border-top: 1px solid var(--gray-100);
-    border-bottom: 1px solid var(--gray-100);
-}
-
-.modern-delivery-section::before {
-    content: '';
-    position: absolute;
-    top: 14px;
-    bottom: 14px;
-    left: 0;
-    width: 3px;
-    border-radius: 0 3px 3px 0;
-    background: linear-gradient(180deg, var(--brand) 0%, var(--brand-dark) 100%);
-}
-
-.modern-delivery-label {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    font-size: 10px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.8px;
-    color: var(--brand);
-    margin-bottom: 6px;
-}
-
-.modern-delivery-label svg {
-    flex-shrink: 0;
-}
-
-.modern-delivery-content {
-    color: var(--gray-700);
-}
-
-.modern-delivery-date-line {
-    display: flex;
-    align-items: baseline;
-    flex-wrap: wrap;
-    gap: 8px;
-}
-
-.modern-delivery-dayname {
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--gray-600);
-    text-transform: capitalize;
-}
-
-.modern-delivery-date {
-    font-size: 20px;
-    font-weight: 800;
-    color: var(--gray-900);
-    letter-spacing: -0.4px;
     font-variant-numeric: tabular-nums;
 }
 
-.modern-delivery-treshold {
-    font-size: 11px;
-    color: var(--gray-500);
-    margin-top: 2px;
-    font-style: italic;
+.mro-vat-label {
+    color: var(--gray-400);
+    font-weight: 400;
+    margin-left: 4px;
 }
 
-.modern-delivery-deadline {
+.mro-stock-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(0, 86, 157, 0.08);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.mro-stock-status {
     display: inline-flex;
     align-items: center;
-    gap: 4px;
-    margin-top: 8px;
-    padding: 4px 9px;
-    background: #fff;
-    border: 1px solid var(--gray-200);
-    border-radius: 6px;
-    font-size: 11px;
-    font-weight: 600;
-    color: var(--gray-700);
+    gap: 8px;
 }
 
-.modern-delivery-deadline svg {
-    color: var(--accent);
+.mro-price-card.is-in-stock .mro-stock-status { color: var(--mro-success-text, #14532d); }
+.mro-price-card.is-unavailable .mro-stock-status { color: var(--mro-danger-text, #7f1d1d); }
+
+.mro-stock-status strong { font-weight: 800; }
+
+.mro-stock-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    position: relative;
+}
+
+.mro-price-card.is-in-stock .mro-stock-dot {
+    background: #16a34a;
+    box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.2);
+}
+
+.mro-price-card.is-in-stock .mro-stock-dot.is-pulse::after {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    background: #16a34a;
+    opacity: 0.4;
+    animation: mroPulse 2s ease-out infinite;
+}
+
+.mro-price-card.is-unavailable .mro-stock-dot {
+    background: #dc2626;
+    box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.2);
+}
+
+@keyframes mroPulse {
+    0%   { transform: scale(0.8); opacity: 0.5; }
+    100% { transform: scale(2.2); opacity: 0; }
+}
+
+.mro-branches-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 11px;
+    border: 1px solid var(--gray-200);
+    background: #fff;
+    color: var(--gray-700);
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    white-space: nowrap;
     flex-shrink: 0;
 }
 
-/* === AKCJA — modern CTA === */
-.modern-action-section {
-    padding: 14px 18px 16px;
+.mro-branches-link:hover,
+.mro-branches-link.active {
+    border-color: var(--brand);
+    color: var(--brand);
+}
+
+.mro-branches-link svg { flex-shrink: 0; }
+
+/* === CTA ROW: spinner + big red pill button === */
+.mro-cta-row {
+    padding: 14px 18px;
     display: flex;
     align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid var(--gray-100);
+}
+
+.mro-basket-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
     justify-content: flex-end;
 }
 
-.modern-basket-container {
+/* Stylowanie wstrzykniętego basketEl (Nextis spinner + button) w nowym CTA row */
+.mro-cta-row .modern-basket {
     display: flex;
     align-items: center;
     gap: 10px;
@@ -281,10 +207,51 @@
     justify-content: flex-end;
 }
 
-.modern-basket {
+/* === DELIVERY BANNER: zielony banner z truck + tekst === */
+.mro-delivery-banner {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
+    padding: 12px 16px;
+    background: #f0fdf4;
+    border-top: 1px solid #bbf7d0;
+}
+
+.mro-delivery-banner-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: rgba(34, 197, 94, 0.15);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #16a34a;
+    flex-shrink: 0;
+}
+
+.mro-delivery-banner-body {
+    flex: 1;
+    min-width: 0;
+}
+
+.mro-delivery-banner-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: #14532d;
+    line-height: 1.4;
+}
+
+.mro-delivery-banner-title b {
+    color: var(--accent);
+    font-weight: 800;
+    font-variant-numeric: tabular-nums;
+}
+
+.mro-delivery-banner-meta {
+    font-size: 11px;
+    color: var(--gray-600);
+    margin-top: 2px;
+    font-style: italic;
 }
 
 /* Responsive */
@@ -292,27 +259,17 @@
     .modern-delivery-box {
         margin: 10px 0 14px;
     }
-    .modern-status-bar {
-        padding: 9px 14px;
-        font-size: 12px;
+    .mro-price-card {
+        padding: 14px 14px 12px;
     }
-    .modern-price-section {
-        padding: 16px 14px 12px;
-    }
-    .modern-price-main {
-        font-size: 30px;
-    }
-    .modern-delivery-section {
-        padding: 12px 14px 12px 18px;
-    }
-    .modern-delivery-date {
-        font-size: 17px;
-    }
-    .modern-action-section {
-        padding: 12px 14px 14px;
-    }
-    .modern-branches-link .modern-branches-text {
-        display: none;
+    .mro-price-main { font-size: 28px; }
+    .mro-stock-row { font-size: 12px; }
+    .mro-cta-row { padding: 12px 14px; }
+    .mro-delivery-banner { padding: 10px 14px; }
+    .mro-delivery-banner-icon { width: 32px; height: 32px; }
+    .mro-delivery-banner-title { font-size: 12px; }
+    .mro-branches-link .mro-branches-text {
+        display: none; /* tylko ikona */
     }
 }
 
