@@ -7,7 +7,7 @@
 .mro-delivery-trigger {
     position: fixed;
     top: 50%;
-    right: 0;
+    right: -1px; /* -1px zeby na pewno przylegal do prawej krawedzi viewport (kompensacja scrollbar/body padding) */
     transform: translateY(-50%);
     z-index: 2002;
     background: #006fd2;
@@ -25,7 +25,7 @@
     writing-mode: vertical-rl;
     transform-origin: center;
     transform: translateY(-50%);
-    transition: background 0.15s, padding 0.15s;
+    transition: background 0.15s, right 0.15s;
     display: inline-flex;
     align-items: center;
     gap: 6px;
@@ -33,6 +33,7 @@
 
 .mro-delivery-trigger:hover {
     background: #005bb0;
+    right: -3px; /* lekkie wcisnięcie w hover */
     padding-right: 12px;
 }
 
@@ -50,7 +51,7 @@
 /* === DRAWER — slide-out z prawej (countdown + tooltip razem) === */
 .transport-deadline-countdown {
     position: fixed !important;
-    right: -380px !important;
+    right: -405px !important;
     top: 50% !important;
     transform: translateY(-50%) !important;
     width: 360px !important;
