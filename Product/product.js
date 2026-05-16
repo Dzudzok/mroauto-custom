@@ -85,22 +85,9 @@ document.querySelectorAll(".flex-delivery-time-item").forEach((firstItem, index)
   // Parse deadline ('Doba dodání při objednávce Dnes do 17:00') → '17:00'
   const deadlineTime = (deadline.match(/(\d{1,2}:\d{2})/) || [])[1] || "";
 
-  // Manufacturer label (z .flex-manufacturer w .flex-product-detail)
-  const manufacturerEl = document.querySelector(".flex-product-detail .flex-manufacturer .flex-value");
-  const manufacturerName = manufacturerEl ? manufacturerEl.textContent.trim() : "";
-
   const box = document.createElement("div");
   box.className = "modern-delivery-box";
   box.innerHTML = `
-    ${manufacturerName ? `
-    <!-- BRAND HEADER: pill z nazwa producenta -->
-    <div class="mro-brand-header">
-      <div class="mro-brand-pill">
-        <span class="mro-brand-pill-mark">${manufacturerName.slice(0, 3).toUpperCase()}</span>
-        <span class="mro-brand-pill-name">${manufacturerName}</span>
-      </div>
-    </div>` : ""}
-
     <!-- PRICE CARD: gradient bg + cena + status z dot + Pobocky button -->
     <div class="mro-price-card ${isAvailable ? "is-in-stock" : "is-unavailable"}">
       <div class="mro-price-row">
@@ -135,22 +122,6 @@ document.querySelectorAll(".flex-delivery-time-item").forEach((firstItem, index)
           ${deadlineTime ? `Objednejte do <b>${deadlineTime}</b> a zboží dorazí ` : "Doručení "}<b>${dayName ? dayName + ' ' : ''}${dateOnly}</b>
         </div>
         ${tresholdText ? `<div class="mro-delivery-banner-meta">${tresholdText}</div>` : ""}
-      </div>
-    </div>
-
-    <!-- FEATURES: 3 ikony (Expedice / Zaruka / Vraceni) -->
-    <div class="mro-features-row">
-      <div class="mro-feature">
-        <svg class="mro-feature-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
-        <div class="mro-feature-text"><b>Expedice</b><br>do 24 hodin</div>
-      </div>
-      <div class="mro-feature">
-        <svg class="mro-feature-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        <div class="mro-feature-text"><b>Záruka</b><br>24 měsíců</div>
-      </div>
-      <div class="mro-feature">
-        <svg class="mro-feature-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
-        <div class="mro-feature-text"><b>Vrácení</b><br>do 14 dní</div>
       </div>
     </div>
   `;
@@ -230,17 +201,19 @@ document.querySelectorAll(".flex-delivery-time-item").forEach((firstItem, index)
   }
 
   if (isAvailable) {
-    // PRZENIESIENIE basketEl zamiast klonowania — patrz [[feedback-move-not-clone]]
+    // PRZENIESIENIE basketEl zamiast klonowania (fix 2026-05-15).
+    // cloneNode(true) kopiuje atrybuty ale NIE event listenery JS Nextisa.
+    // Nextis spinner +/- (.flex-spinner-increment/decrement-button) ma
+    // listenery podpiete do KONKRETNYCH elementow DOM. Klon ich nie ma —
+    // spinner wyglada ale klik nie dziala (raz tak raz nie, bo czasem
+    // Nextis ma event delegation a czasem nie).
+    //
+    // appendChild na elemencie ktory juz jest w DOM = MOVE (nie copy).
+    // basketEl jest przenoszony z .flex-amount-info (ktore i tak hide'ujemy
+    // ponizej) do naszego .modern-basket-container. ID inputu i spinner
+    // data-flex-spinner-input bez zmian — JS Nextisa wciaz dziala.
     basketEl.classList.add("modern-basket");
     box.querySelector(".modern-basket-container").appendChild(basketEl);
-
-    // BIG CTA: Nextis input button ma value='' (sama ikona przez CSS bg-image).
-    // Dodajemy text "Do kosiku" + scope-class .modern-add-btn dla stylowania.
-    const addBtn = basketEl.querySelector('input.flex-add-to-basket-button');
-    if (addBtn) {
-      addBtn.value = 'Do košíku';
-      addBtn.classList.add('modern-add-btn');
-    }
   }
 
   firstItem.insertBefore(box, firstItem.firstChild);
