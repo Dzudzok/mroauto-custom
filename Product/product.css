@@ -329,14 +329,14 @@
 
 .modern-basket .flex-spinner-decrement-button::before {
     content: '−'; /* minus sign U+2212, ladniejszy niz hyphen */
-    font-size: 20px;
+    font-size: 15px;
     font-weight: 600;
     line-height: 1;
 }
 
 .modern-basket .flex-spinner-increment-button::before {
     content: '+';
-    font-size: 22px;
+    font-size: 16px;
     font-weight: 600;
     line-height: 1;
 }
