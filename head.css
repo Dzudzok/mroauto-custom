@@ -2767,6 +2767,122 @@ box-shadow: 6px 8px 4px 0px rgb(0 0 0 / 10%);
     }
 }
 
+/* ============================================================================
+   RYCHLE HLEDANI — modern mobile UX (max-width 768)
+   White card z subtle bg + bold header z subtitle + duzy CTA button
+   ============================================================================ */
+@media (max-width: 768px) {
+    /* Container — subtle gradient zamiast pelnego niebieskiego dashboardu */
+    .flex-bottom-delimiter {
+        padding: 14px 12px !important;
+        background: linear-gradient(180deg, #f8fbff 0%, #eef4fb 100%) !important;
+        background-image: none !important;
+    }
+
+    /* Wizard card — white z shadow brand */
+    .flex-bottom-delimiter > .flex-select-vehicle-wizard {
+        width: 100% !important;
+        height: auto !important;
+        max-height: none !important;
+        background: #fff !important;
+        border-radius: 14px !important;
+        padding: 20px 16px 18px !important;
+        box-shadow: 0 4px 16px rgba(0, 86, 157, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04) !important;
+        border: 1px solid #e0ecf5 !important;
+    }
+
+    /* Title — clean bold brand (zamiast bialy italic) */
+    .flex-bottom-delimiter > .flex-select-vehicle-wizard > .flex-title {
+        text-align: center !important;
+        font-size: 18px !important;
+        font-weight: 800 !important;
+        font-style: normal !important;
+        color: #00569d !important;
+        margin: 0 0 4px !important;
+        letter-spacing: 0.3px !important;
+        background: transparent !important;
+        text-transform: none !important;
+    }
+
+    /* Subtitle automatyczny pod tytulem */
+    .flex-bottom-delimiter > .flex-select-vehicle-wizard > .flex-title::after {
+        content: 'Najděte díly podle vozidla';
+        display: block;
+        font-size: 12px;
+        font-weight: 500;
+        color: #6b7280;
+        margin-top: 4px;
+        letter-spacing: 0;
+    }
+
+    /* Spacing miedzy title a content */
+    .flex-bottom-delimiter > .flex-select-vehicle-wizard > .flex-content {
+        margin-top: 14px !important;
+    }
+
+    /* Dropdown wizard — wieksze, cleaner */
+    .flex-select-vehicle-wizard .flex-drop-down {
+        background: #fff !important;
+        border: 1px solid #d1dce6 !important;
+        border-radius: 10px !important;
+        margin: 0 0 8px !important;
+        min-height: 48px !important;
+        overflow: visible !important;
+        transition: border-color 0.15s, box-shadow 0.15s !important;
+    }
+
+    .flex-select-vehicle-wizard .flex-drop-down:hover:not(.flex-disabled) {
+        border-color: #00569d !important;
+    }
+
+    /* Dropdown disabled (steps 2/3 zanim wybrano 1) */
+    .flex-select-vehicle-wizard .flex-drop-down.flex-disabled {
+        background: #f9fafb !important;
+        opacity: 0.7;
+    }
+
+    .flex-select-vehicle-wizard .flex-drop-down dt {
+        margin: 0 !important;
+    }
+
+    .flex-select-vehicle-wizard .flex-drop-down dt span.flex-drop-down-link {
+        min-height: 48px !important;
+        height: auto !important;
+        font-size: 14px !important;
+        padding: 0 14px !important;
+        font-weight: 500 !important;
+        color: #374151 !important;
+        display: flex !important;
+        align-items: center !important;
+    }
+
+    /* HLEDAT DILY — premium CTA */
+    .flex-select-vehicle-wizard .flex-content .flex-controls {
+        margin-top: 4px !important;
+    }
+
+    .flex-select-vehicle-wizard .flex-content .flex-controls .flex-search-button {
+        height: 52px !important;
+        width: 100% !important;
+        font-size: 15px !important;
+        font-weight: 800 !important;
+        letter-spacing: 0.6px !important;
+        background: linear-gradient(180deg, #e30613 0%, #b00510 100%) !important;
+        box-shadow: 0 4px 12px rgba(227, 6, 19, 0.22), 0 1px 2px rgba(227, 6, 19, 0.18) !important;
+        border-radius: 10px !important;
+        border: none !important;
+        color: #fff !important;
+        cursor: pointer !important;
+        transition: transform 0.15s ease, box-shadow 0.15s ease !important;
+    }
+
+    .flex-select-vehicle-wizard .flex-content .flex-controls .flex-search-button:hover,
+    .flex-select-vehicle-wizard .flex-content .flex-controls .flex-search-button:active {
+        transform: translateY(-1px);
+        box-shadow: 0 6px 18px rgba(227, 6, 19, 0.3), 0 1px 2px rgba(227, 6, 19, 0.2) !important;
+    }
+}
+
 /* === VIN MODAL — popup po klik kafelka 'VIN' przez zalogowanego usera ===
    Dziala desktop + mobile. Niezalogowany jest przekierowany na /cs/prihlaseni
    bez modal'u (handleVinClick w global.js). */
