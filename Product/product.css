@@ -40,7 +40,7 @@
     margin: 10px 0 14px;
     border-radius: 10px;
     overflow: hidden;
-    border: 1px solid #e5e7eb;
+    border: 0px solid #e5e7eb;
     background: #fff;
 }
 
@@ -105,7 +105,6 @@
 
 /* Konkretne pole .flex-code .flex-value z subtelnym tlem code-field */
 .flex-product-detail .flex-general .flex-informations .flex-basic-params .flex-code .flex-value {
-    background: #ebf2f8 !important;
     padding: 4px 10px !important;
     border-radius: 6px !important;
 }
