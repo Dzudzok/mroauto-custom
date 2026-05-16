@@ -1,0 +1,1494 @@
+<html id="Html" xmlns="http://www.w3.org/1999/xhtml" lang="cs" style="height: 100%;"><head><div class="mro-global-components"></div>
+<title>
+	Náhradní díly AUDI A4 Allroad B8 (8KH) 2.0 TDI quattro  | MRO Auto
+</title><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="Content-Type" content="text/html;charset=utf-8"><meta http-equiv="Cache-control" content="public"><meta data-license-id="557">
+
+    <script type="text/javascript" async="" src="https://tracking.srovname.cz/srovnamepixel-gtm.js"></script><script type="text/javascript" async="" src="https://bat.bing.com/bat.js"></script><script type="text/javascript" async="" src="https://www.googletagmanager.com/gtag/js?id=AW-972373174&amp;cx=c&amp;gtm=4e65d0"></script><script type="text/javascript" async="" src="https://www.googletagmanager.com/gtag/js?id=G-KPWZYLWHVY&amp;cx=c&amp;gtm=4e65d0"></script><script async="" src="//www.heureka.cz/ocm/sdk.js?version=2&amp;page=product_detail"></script><script async="" src="https://www.googletagmanager.com/gtm.js?id=GTM-PX3CL8P"></script><script type="text/javascript" charset="utf-8" async="" src="https://www.smartsuppchat.com/loader.js?"></script><script>
+        const globalRouteLanguageIso = 'cs';
+    </script>
+
+    <base href="https://www.mroauto.cz/" target="_self">
+     <script src="/Plugins/FlexView/Header.js" type="text/javascript"></script>
+    
+
+        <script src="//cdn.tecdoc-shops.com/jquery-3.7.0.min.js" type="text/javascript"></script>
+        <script src="//cdn.tecdoc-shops.com/jquery.easing-1.3.min.js" type="text/javascript"></script>
+        <script src="//cdn.tecdoc-shops.com/jquery.cookie.min.js" type="text/javascript"></script>
+        <script src="//cdn.tecdoc-shops.com/jquery.detectSwipe.min.js" type="text/javascript"></script>
+        
+
+        <link href="//cdn.tecdoc-shops.com/all.min.css" rel="stylesheet">
+
+    <link href="/bundles/css?v=fr3NnWYOJDKBP4y-iJcu54IOUETXZkLDtmGlKNfjbpU1" rel="stylesheet">
+<link href="/bundles/css-minify-unsupported?v=jNGpoCqACdWlDLrrToJG0QLRLniKo6Y1ECJ6Khd1qec1" rel="stylesheet">
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){ dataLayer.push(arguments); }
+
+gtag('consent', 'default', {
+  ad_storage: 'granted',
+  analytics_storage: 'granted',
+  ad_user_data: 'granted',
+  ad_personalization: 'granted',
+  functionality_storage: 'granted',
+  security_storage: 'granted'
+});
+
+gtag('set', 'ads_data_redaction', false);
+gtag('set', 'url_passthrough', true);
+
+(function attachCmpSync(){
+  function applyConsentFromCMP() {
+    var cmpLoaded = (typeof areAnalyticalCookiesEnabled !== 'undefined')
+                 || (typeof areMarketingCookiesEnabled  !== 'undefined');
+    if (!cmpLoaded) return; // CMP nie zaladowany — nie zmieniaj consent
+
+    var analyticsOk = !!areAnalyticalCookiesEnabled;
+    var marketingOk = !!areMarketingCookiesEnabled;
+
+    gtag('consent', 'update', {
+      analytics_storage: analyticsOk ? 'granted' : 'denied',
+      ad_storage:          marketingOk ? 'granted' : 'denied',
+      ad_user_data:        marketingOk ? 'granted' : 'denied',
+      ad_personalization:  marketingOk ? 'granted' : 'denied'
+    });
+  }
+
+  if (typeof window.confirmCookieConsent === 'function') {
+    var __oldConfirm = window.confirmCookieConsent;
+    window.confirmCookieConsent = function(btn, necessaryOnly) {
+      try { __oldConfirm.call(this, btn, necessaryOnly); } finally {
+        applyConsentFromCMP();
+      }
+    };
+  }
+
+  window.addEventListener('cmpapplied', applyConsentFromCMP);
+
+  window.addEventListener('DOMContentLoaded', applyConsentFromCMP);
+  if (document.readyState !== 'loading') {
+    setTimeout(applyConsentFromCMP, 100);
+  }
+})();
+</script>
+
+
+<!-- Smartsupp Live Chat script -->
+<script type="text/javascript">var _smartsupp = _smartsupp || {};_smartsupp.key = 'f0608436a85d087e42943c95367cbfa9e50cd303';window.smartsupp||(function(d) {  var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];  s=d.getElementsByTagName('script')[0];c=d.createElement('script');  c.type='text/javascript';c.charset='utf-8';c.async=true;  c.src='https://www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);})(document);_smartsupp.orientation = "left";</script>
+
+
+
+<!-- Fonty -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+<link rel="stylesheet" href="https://dzudzok.github.io/mroauto-custom/head.css">
+
+
+<script>
+(function () {
+  'use strict';
+
+  // 1. Zabezpieczenie przed wielokrotnym uruchomieniem
+  if (window.MRO_INJECTOR_LOADED) {
+    console.info('MROAUTO: injector już załadowany, pomijam.');
+    return;
+  }
+  window.MRO_INJECTOR_LOADED = true;
+
+  // 2. Ustawienie MRO_BASE (z fallbackiem do GitHub Pages)
+  if (!window.MRO_BASE && !Array.isArray(window.MRO_BASES)) {
+    window.MRO_BASE = 'https://dzudzok.github.io/mroauto-custom/';
+  }
+
+  // 3. Wstrzyknięcie konfiguracji przed załadowaniem injector.js
+  try {
+    const config = document.createElement('script');
+    config.textContent = `
+      window.MRO_CONFIG = {
+        base: ${JSON.stringify(window.MRO_BASE || null)},
+        bases: ${JSON.stringify(window.MRO_BASES || null)},
+        debug: true  // włącz logi debugowania
+      };
+    `;
+    (document.head || document.documentElement).appendChild(config);
+    if (config.parentNode) config.parentNode.removeChild(config);
+  } catch (e) {
+    console.warn('MROAUTO: nie udało się osadzić konfiguracji', e);
+  }
+
+  // 4. Obliczenie URL injector.js (z lepszą obsługą błędów)
+  const INJECTOR_URL = window.INJECTOR_URL_OVERRIDE
+    || (Array.isArray(window.MRO_BASES) && window.MRO_BASES.length ? window.MRO_BASES[0] + 'injector.js' : (window.MRO_BASE ? window.MRO_BASE + 'injector.js' : null));
+
+  if (!INJECTOR_URL) {
+    console.error('MROAUTO: Brak INJECTOR_URL (ustaw window.MRO_BASE / window.MRO_BASES lub INJECTOR_URL_OVERRIDE).');
+    return;
+  }
+
+  // 5. Wstrzyknięcie głównego skryptu
+  const script = document.createElement('script');
+  script.src = INJECTOR_URL;
+  script.defer = true;
+  script.crossOrigin = 'anonymous';
+  
+  // 6. Dodanie onload (żeby wiedzieć czy się udało)
+  script.onload = () => {
+    console.info('✅ MROAUTO: injector.js załadowany pomyślnie z', INJECTOR_URL);
+  };
+
+  // 7. Fallback na wypadek błędu ładowania
+  script.onerror = async () => {
+    console.error('❌ MROAUTO: BŁĄD ładowania injector.js z', INJECTOR_URL);
+    
+    const tryInlineFetch = async (url) => {
+      try {
+        const r = await fetch(url);
+        if (r.ok) {
+          const code = await r.text();
+          const inline = document.createElement('script');
+          inline.textContent = code;
+          (document.head || document.documentElement).appendChild(inline);
+          console.info('✅ MROAUTO: Fallback — injector.js wstrzyknięty inline z', url);
+          return true;
+        }
+        console.warn('MROAUTO: Fallback fetch zwrócił', r.status, r.statusText, 'dla', url);
+        return false;
+      } catch (err) {
+        console.warn('MROAUTO: Błąd fetch dla', url, err);
+        return false;
+      }
+    };
+
+    // Próba 1: bezpośredni INJECTOR_URL
+    if (await tryInlineFetch(INJECTOR_URL)) return;
+
+    // Próba 2: wszystkie dostępne bazy
+    if (Array.isArray(window.MRO_BASES)) {
+      for (const b of window.MRO_BASES) {
+        const url = b + 'injector.js';
+        if (await tryInlineFetch(url)) return;
+      }
+    }
+
+    console.error('❌ MROAUTO: Nie udało się załadować injector.js z żadnego źródła.');
+  };
+
+  // 8. Wstrzyknięcie do <head> (bezpieczniejsze niż body)
+  (document.head || document.documentElement).appendChild(script);
+
+})();
+</script><script src="https://dzudzok.github.io/mroauto-custom/injector.js" defer="" crossorigin="anonymous"></script><script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f = d.getElementsByTagName(s)[0],j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async=true;j.src= 'https://www.googletagmanager.com/gtm.js?id=' +i+dl;f.parentNode.insertBefore(j, f);})(window, document,'script','dataLayer','GTM-PX3CL8P');</script><script type="text/javascript" src="https://c.seznam.cz/js/rc.js"></script><script>
+var retargetingConf = {
+rtgId: 77952,
+category: "",
+consent: (areAnalyticalCookiesEnabled?1:0)
+};
+if (window.rc && window.rc.retargetingHit) {
+window.rc.retargetingHit(retargetingConf);
+}
+</script>
+
+
+    
+    <link href="/bundles/css-tecdoc?v=W5dnI7mdjtPMG50RfVXYHYD9NMaz3a48ht0lSxALp_Y1" rel="stylesheet">
+
+
+    
+
+    
+        <script src="//cdn.tecdoc-shops.com/nouislider.min.js" type="text/javascript"></script>
+        <link href="//cdn.tecdoc-shops.com/nouislider.min.css" rel="stylesheet">
+    
+
+    <meta name="robots" content="index, follow">
+    
+    <link rel="canonical" href="https://www.mroauto.cz/cs/katalog/tecdoc/osobni/audi/a4-allroad-b8-8kh/2-0-tdi-quattro/5/8031/5">
+    <script type="application/ld+json">{"@context": "http://schema.org","@type": "BreadcrumbList","itemListElement":[{"@type": "ListItem","position": 1,"item": {"@id": "https://www.mroauto.cz/cs/katalog/tecdoc/osobni","name": "Hledat dle vozidla (TecDoc)"}},{"@type": "ListItem","position": 2,"item": {"@id": "https://www.mroauto.cz/cs/katalog/tecdoc/osobni/audi/5","name": "AUDI"}},{"@type": "ListItem","position": 3,"item": {"@id": "https://www.mroauto.cz/cs/katalog/tecdoc/osobni/audi/a4-allroad-b8-8kh/5/8031","name": "A4 Allroad B8 (8KH)"}},{"@type": "ListItem","position": 4,"item": {"@id": "https://www.mroauto.cz/cs/katalog/tecdoc/osobni/audi/a4-allroad-b8-8kh/2-0-tdi-quattro/5/8031/33418","name": "2.0 TDI quattro"}}]}</script>
+    
+
+
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"LocalBusiness","name":"MROAUTO AUTODÍLY s.r.o. ","description":"Nejlepší ceny náhradních autodílů ✓ Expresní doručení do 24 hod po celé ČR ✓ MRO Auto - Ostrava, Bohumín","email":"info@mroauto.cz","telephone":"+420 773 568 023","priceRange":"$$$$$","image":"https://www.mroauto.cz/wwwroot/557_MRO_CZ/Default/Images/logo.png","address":{"@type":"PostalAddress","streetAddress":"Čs. armády 360","addressLocality":"Bohumín","addressRegion":"Moravskoslezský kraj","postalCode":"735 51"},"paymentAccepted":"Cash, GoPay","currenciesAccepted":"CZK"}</script>
+
+    
+
+
+
+    <link href="/wwwroot/557_MRO_CZ/Default/Default.css" rel="stylesheet">
+    
+    <link href="https://www.mroauto.cz/favicon.ico" rel="shortcut icon" type="image/x-ico"><script type="text/javascript" src="/Plugins/Customization/Custom.js?0917140442"></script><link rel="stylesheet" type="text/css" href="/Plugins/HotFix/HotFix.css?0429131407"><script type="text/javascript" src="/Plugins/HotFix/HotFix.js?0429131407"></script><meta name="description" content="Nejlepší ceny náhradních autodílů ✓ Expresní doručení do 24 hod po celé ČR ✓ MRO Auto - Ostrava, Bohumín"><link rel="stylesheet" href="https://dzudzok.github.io/mroauto-custom/global.css?v=5929750"><link rel="stylesheet" href="https://dzudzok.github.io/mroauto-custom/WhatsApp/whatsapp.css?v=5929750"><link rel="stylesheet" href="https://dzudzok.github.io/mroauto-custom/CategoryTiles/category-tiles.css?v=5929750"><link rel="stylesheet" href="https://dzudzok.github.io/mroauto-custom/CarSelect/carselect.css?v=5929750"><style>
+      .goog-te-banner-frame,#goog-gt-tt,.goog-te-balloon-frame,
+      iframe.goog-te-menu-frame,iframe.skiptranslate,iframe[id$="container"].skiptranslate,
+      .VIpgJd-ZVi9od-ORHb-OEVmcd{display:none!important;visibility:hidden!important;opacity:0!important;width:0!important;height:0!important;pointer-events:none!important}
+      html,body{top:0!important}
+      #google_translate_element{position:fixed;left:8px;top:8px;z-index:2147483646;opacity:0.01;transform:scale(.8);transform-origin:top left;}
+      #google_translate_element .goog-te-combo{min-width:102px}
+      /* UI języków */
+      #mro-lang-inline{position:relative;display:inline-block;margin-top:6px;margin-left:10px;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}
+      #mro-lang-inline .mro-lang-trigger{display:inline-flex;align-items:center;gap:6px;padding:8px 10px;font-size:14px;background:#fff;border:1px solid #e5e7eb;border-radius:10px;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,.08)}
+      #mro-lang-inline .mro-lang-menu{position:absolute;top:calc(100% + 8px);right:0;min-width:210px;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:8px;box-shadow:0 16px 40px rgba(0,0,0,.14);z-index:10020}
+      #mro-lang-inline .mro-lang-menu[hidden]{display:none!important}
+      #mro-lang-inline .mro-lang-item{display:flex;align-items:center;gap:8px;padding:10px 12px;border-radius:10px;color:#111827;text-decoration:none!important;font-size:14px;line-height:1.2}
+      #mro-lang-inline .mro-lang-item:hover{background:#f3f4f6}
+      .flag{width:16px;height:16px;border-radius:3px;background-size:cover;background-position:center;display:inline-block}
+    </style><script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async=""></script><script src="https://bat.bing.com/p/action/211047835.js" type="text/javascript" async="" data-ueto="ueto_0719de5605"></script><script type="text/javascript" async="" src="https://googleads.g.doubleclick.net/pagead/viewthroughconversion/972373174/?random=1778925168040&amp;cv=11&amp;fst=1778925168040&amp;bg=ffffff&amp;guid=ON&amp;async=1&amp;en=gtag.config&amp;gtm=45be65d0v9188713139z89128718686za20gzb9128718686zd9128718686xec&amp;gcd=13v3v3v2v5l1&amp;dma_cps=a&amp;dma=1&amp;tag_exp=0~115938465~115938469~116767281&amp;u_w=414&amp;u_h=896&amp;url=https%3A%2F%2Fwww.mroauto.cz%2Fcs%2Fkatalog%2Ftecdoc%2Fosobni%2Faudi%2Fa4-allroad-b8-8kh%2F2-0-tdi-quattro%2F5%2F8031%2F33418&amp;ref=https%3A%2F%2Fwww.mroauto.cz%2Fcs%2Fkatalog%2Ftecdoc%2Fosobni%2Faudi%2Fa4-allroad-b8-8kh%2F2-0-tdi-quattro%2Frohozky%2F5%2F8031%2F33418%2F102692%2F%3Fpath%3D100341~102692&amp;rcb=0&amp;frm=0&amp;tiba=N%C3%A1hradn%C3%AD%20d%C3%ADly%20AUDI%20A4%20Allroad%20B8%20(8KH)%202.0%20TDI%20quattro%20%7C%20MRO%20Auto&amp;hn=www.googleadservices.com&amp;npa=0&amp;pscdl=noapi&amp;auid=89743961.1778923980&amp;uaa=&amp;uab=64&amp;uafvl=Chromium%3B148.0.7778.168%7CGoogle%2520Chrome%3B148.0.7778.168%7CNot%252FA)Brand%3B99.0.0.0&amp;uamb=1&amp;uam=iPhone&amp;uap=iOS&amp;uapv=18.5&amp;uaw=0&amp;_tu=CA&amp;data=event%3Dgtag.config&amp;rfmt=3&amp;fmt=4"></script><style id="mro-curr-inline-css">
+      #mro-lang-inline .mro-curr-list{display:flex;gap:8px;padding:4px 4px 2px;flex-wrap:wrap}
+      #mro-lang-inline .mro-curr-btn{padding:6px 10px;font-size:13px;border:1px solid #e5e7eb;border-radius:8px;background:#fff;color:#5f5f5f; cursor:pointer;line-height:1}
+      #mro-lang-inline .mro-curr-btn.selected{border-color:#00569d;background:#eef5ff}
+      .menu-item.dropdown .dropdown-button {visibility: hidden;width: 1px;}
+	#mro-lang-inline .mro-section-title {text-align: left;}
+	#mro-lang-inline .mro-lang-menu {display: flex;flex-direction: column-reverse;}
+	.flag {width: 24px;}
+    </style><link type="text/css" rel="stylesheet" charset="UTF-8" href="https://www.gstatic.com/_/translate_http/_/ss/k=translate_http.tr.zZZZhVqDDCw.L.W.O/am=BBDg/d=0/rs=AN8SPfobRl8UQM01cRTktRUhaChx5xxdlg/m=el_main_css"><script type="text/javascript" charset="UTF-8" src="https://translate.googleapis.com/_/translate_http/_/js/k=translate_http.tr.pl.JDP9MnwEFXo.O/am=AAAACA/d=1/exm=el_conf/ed=1/rs=AN8SPfpc6I4-O7_HXZeHHuEIIXO9sK7zUQ/m=el_main"></script></head>
+<body id="Body" class="legacy flex-content-page" data-flex-toast-timeout="4000" style="position: relative; min-height: 100%; top: 0px;">
+    <div class="flex-back-to-top" style="display: none;">
+        <div class="fas fa-chevron-up flex-back-to-top-icon"></div>
+    </div>
+    <noscript><iframe src = "https://www.googletagmanager.com/ns.html?id=GTM-PX3CL8P" height = "0" width = "0" style = "display:none;visibility:hidden" ></iframe> </noscript>
+    <form method="post" action="./33418" id="form1" class="flex-main-content">
+<div class="aspNetHidden">
+<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="">
+<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="CBjXqBqfkrWgzlteKuvz2E+MCZzPtdF0GX423fV+f8hYBUDtkdPlleSvHZ8LdZGfOU9gWLqZVJBAfyAMnym7cBKTLHThmFIZL6tfGGZIiVk=">
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['form1'];
+if (!theForm) {
+    theForm = document.form1;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+<div class="aspNetHidden">
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="BE3A35B5">
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="mzGfcC6jAmmrRKBHOWtgjU6QpRABf2IhSbkN0PDgmlezvnyct5P4FNcaThvdGcY+RrBPWTNzV47+gf7SKSDgFzZmMK3YRFCWEtYTSCdSJvSCvRGrd7mQwxASoTb012hqXTIrI9q7/r+fCI0g1R1iT6ouA7B5wYpEDBnz5RZt56xhCSn7rUNlQGnYMU/uz+ENlDDFfKV16mK7UGYvWT1NBH+EnQxPI5S5sNLSmoqrlQudcaa4XHuzKpK8C3rIj6ASCFE05ezJ8X/NEy/PKzLgFYnxeCSjeiMyn7r/yodEKczq65KCIuH2qZwFc92qXVpm6HvGsFLpNAwfzlIwgKdT7k5J1sNSFfZDZinQ5/DOL1g=">
+</div>
+
+        <div class="flex-screen-detection"></div>
+
+        
+
+    <input type="hidden" name="ctl00$ctl00$BodyContentPlaceHolder$IsStickyHeaderEnabled" id="IsStickyHeaderEnabled" value="true">
+    <input type="hidden" name="ctl00$ctl00$BodyContentPlaceHolder$IsNearestRouteTimeEnabled" id="IsNearestRouteTimeEnabled" value="false">
+
+    <div id="ctl00$ctl00$BodyContentPlaceHolder$CookieConsent" class="cookie-consent setted">
+	<div class="basic-cookie-bar">
+<input type="text" hidden="" id="seoSettings" data-flex-auto-accept="false" data-flex-reload="false" data-flex-fake-engine="false" data-flex-agree-all-text="Souhlasím" data-flex-agree-selected-text="Souhlasím s vybranými">
+<div class="basic-dialog">
+<div class="title">
+Nastavení soukromí
+</div>
+<div class="content">
+Tato webová stránka používá soubory cookies. Cookies mohou být použity pro účely marketingové, statistické a přizpůsobení služeb individuálním potřebám uživatele. Svou volbu můžete kdykoliv změnit kliknutím na nastavení soukromí v patičce webu.
+<div class="details">
+<input id="TechnicalCookies" type="checkbox" class="flex-checkbox" checked="checked" disabled="disabled" data-flex-toogle-text="Technické cookies" data-flex="true"><div id="TechnicalCookies_FlexCheckbox" class="flex-checkbox flex-disabled display-none flex-selected" data-flex-key-text="undefined" data-flex="true"></div><span id="TechnicalCookies_FlexCheckboxToogleText" class="flex-checkbox-toogle-text  undefined ">Technické cookies</span>
+<div class="description">
+Bez těchto souborů by naše webové stránky nemohli fungovat. Ukládá se v nich například vaše nastavení zobrazení nebo informace bez kterých by nebylo možno se na web přihlásit. Z těchto důvodů technické soubory cookies nelze vypnout.
+</div>
+<input id="AnalyticalCookies" type="checkbox" class="flex-checkbox" data-flex-toogle-text="Analytické cookies" data-flex="true"><div id="AnalyticalCookies_FlexCheckbox" class="flex-checkbox flex-disabled display-none" data-flex-key-text="undefined" data-flex="true"></div><span id="AnalyticalCookies_FlexCheckboxToogleText" class="flex-checkbox-toogle-text  undefined ">Analytické cookies</span>
+<div class="description">
+Tyto soubory nám umožňují měřit a analyzovat návštěvnost našich webových stránek (počet návštěvníků, zobrazené stránky, průměrná doba na stránce atd.). Také nám umožňují zjišťovat případné problémy s rychlostí načítání stránek a dostupností. Díky tomu dokážeme optimalizovat náš web, aby fungoval co nejlépe a dobře se vám s ním pracovalo.
+</div>
+<input id="MarketingCookies" type="checkbox" class="flex-checkbox" data-flex-toogle-text="Marketingové cookies" data-flex="true"><div id="MarketingCookies_FlexCheckbox" class="flex-checkbox flex-disabled display-none" data-flex-key-text="undefined" data-flex="true"></div><span id="MarketingCookies_FlexCheckboxToogleText" class="flex-checkbox-toogle-text  undefined ">Marketingové cookies</span>
+<div class="description">
+Tyto soubory používáme k účelu lepšího zobrazování reklam na webových stránkách třetích stran. Reklamy se přizpůsobují vašim preferencím na základě vámi prohlíženého zboží a zpětně analyzujeme jejich účinnost. Pokud tuto volbu deaktivujete, reklamy se vám budou zobrazovat stále, ale budou méně relevantní.
+</div>
+</div>
+
+</div>
+<div class="controls">
+<a href="javascript: toggleCookieDetails()" data-expand-text="Upravit nastavení" data-collapse-text="Skrýt nastavení">Upravit nastavení</a>
+<button class="necessary" type="button" onclick="confirmCookieConsent(this, true)">Pouze nezbytné</button>
+<button id="agreeButton" type="button" onclick="confirmCookieConsent(this, false)">Souhlasím</button>
+</div>
+</div>
+</div>
+
+
+</div>
+
+    
+
+    <div id="ctl00$ctl00$BodyContentPlaceHolder$CompareBar" class="flex-compare-bar bottom-right">
+	
+
+</div>
+
+    <div id="sticky-header" class="flex-panel-width100">
+        <div class="flex-panel-wide flex-bottom-margin-delimiter">
+            <div class="flex-container flex-top-panel-container">
+                <div class="flex-dock-left">
+                    <a id="BodyContentPlaceHolder_LogoMobileHyperLink" href="/cs"><img src="/wwwroot/557_MRO_CZ/Default/Images/logo.png" id="BodyContentPlaceHolder_MobileLogo" class="flex-logo-mobile" alt="Logo MRO Auto"></a>
+                    <div id="ctl00$ctl00$BodyContentPlaceHolder$UserOwnerContact" class="user-owner-contact">
+	
+
+</div>
+                    
+                </div>
+                <div class="flex-dock-right">
+                    <div id="ctl00$ctl00$BodyContentPlaceHolder$LoginForm" class="flex-login-form">
+	<span><i class="fa fa-solid fa-user"></i>
+Přihlášení
+</span>
+<div class="flex-login-form-box">
+<div class="flex-wrapper">
+<div class="flex-login-box text-left">
+<input id="UsernamePopUp" name="ctl00$ctl00$BodyContentPlaceHolder$LoginForm$Username" type="text" placeholder="Uživatelské jméno / email">
+<input id="PasswordPopUp" name="ctl00$ctl00$BodyContentPlaceHolder$LoginForm$Password" type="password" placeholder="Heslo">
+<div class="controls">
+<div class="buttons">
+<input id="LoginButton" name="LoginButtonPopUp" type="button" value="Přihlásit se" class="flex-login-button" onclick="rememberUserLogin('IsRememberedLogin_Popup','UsernamePopUp');$('#form1').removeAttr('action'); login('UsernamePopUp', 'PasswordPopUp');">
+</div>
+<div class="agreements">
+<label class="flex-checkbox-common">
+<input id="IsRememberedLogin_Popup" type="checkbox" data-flex-toogle-text="Zapamatovat si uživatele" class="flex-checkbox" data-flex-put-before="true" data-flex="true">
+<span class="checkmark"></span>
+</label><div id="IsRememberedLogin_Popup_FlexCheckbox" class="flex-checkbox flex-disabled display-none" data-flex-key-text="undefined" data-flex="true"></div><span id="IsRememberedLogin_Popup_FlexCheckboxToogleText" class="flex-checkbox-toogle-text  undefined ">Zapamatovat si uživatele</span>
+</div>
+
+</div>
+<span data-login-error=""></span>
+<span class="flex-login-form-lost-password-button">Zapomenuté heslo</span>
+<a href="/cs/registrace" class="flex-login-form-new-registration-button">Nová registrace uživatele</a>
+</div>
+<div class="flex-forgotten-password-box">
+<input id="ForgottenPasswordEmail" type="text" data-flex-watermark="Váš email" class="flex-watermark">
+<input type="button" value="Resetovat heslo" class="flex-send-forgotten-password-button" onclick="resetPassword($('#ForgottenPasswordEmail').val())">
+<span class="flex-back-to-login-button">Zpět na přihlášení</span>
+</div>
+</div>
+</div>
+
+</div>
+                    
+                    <div id="ctl00$ctl00$BodyContentPlaceHolder$RefundPercentStatus" class="refund-percent-status">
+	
+</div>
+
+                    
+                    <a id="BodyContentPlaceHolder_LoginMobileHyperLink" class="flex-login-mobile-button" href="/cs/prihlaseni"></a>
+                    <a id="BodyContentPlaceHolder_BasketMobileHyperLink" class="flex-basket-mobile-button" href="/cs/kosik"></a>
+
+                        <div class="menu-item dropdown currency-language-selection">
+        <div class="dropdown-button" onclick="ClickOnMenuDropdownSelection(this)">
+        <span class="media-mobile-only">
+            <span>CZ</span>
+        </span>
+        <span class="media-desktop-only">
+            <span>Čeština</span>
+                <span> / </span>
+                <span>CZK</span>
+            <i class="dropdown-icon fa fa-regular fa-caret-down fa-lg"></i>
+        </span>
+        </div>
+        <div class="dropdown-options hidden">
+                <div class="category languages">
+                    <div class="header">
+                        <span>Jazyk</span>
+                    </div>
+                    <div class="items">
+                            <a href="Layout/Layout/SelectLanguage?languageId=0" class="item selected">
+                                Čeština
+                            </a>
+                            <a href="Layout/Layout/SelectLanguage?languageId=4" class="item ">
+                                Slovenčina
+                            </a>
+                    </div>
+                </div>
+                            <div class="category currencies">
+                    <div class="header">
+                        <span>Měna</span>
+                    </div>
+                    <div class="items">
+                            <button attr-currency-type="144" onclick="SetUserFakeCurrency(this)" class="item selected" type="button">
+                                CZK
+                            </button>
+                            <button attr-currency-type="15907" onclick="SetUserFakeCurrency(this)" class="item " type="button">
+                                EUR
+                            </button>
+                            <button attr-currency-type="16034" onclick="SetUserFakeCurrency(this)" class="item " type="button">
+                                PLN
+                            </button>
+                    </div>
+                </div>
+        </div>
+    </div><div id="mro-lang-inline">
+      <div class="mro-lang-trigger" aria-haspopup="true" aria-expanded="false"><span class="flag flag-cs" aria-hidden="true"></span>
+        
+        <span class="mro-lang-current">Česky</span>
+        <svg class="mro-caret" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"></path></svg>
+      </div>
+      <div class="mro-lang-menu" hidden="">
+        
+          <a href="javascript:void(0)" data-lang="cs" class="mro-lang-item">
+            <span class="flag flag-cs" aria-hidden="true"></span> <span class="mro-label">Česky</span>
+          </a>
+          <a href="javascript:void(0)" data-lang="sk" class="mro-lang-item">
+            <span class="flag flag-sk" aria-hidden="true"></span> <span class="mro-label">Slovensky</span>
+          </a>
+          <a href="javascript:void(0)" data-lang="pl" class="mro-lang-item">
+            <span class="flag flag-pl" aria-hidden="true"></span> <span class="mro-label">Polski</span>
+          </a>
+          <a href="javascript:void(0)" data-lang="en" class="mro-lang-item">
+            <span class="flag flag-en" aria-hidden="true"></span> <span class="mro-label">English</span>
+          </a>
+          <a href="javascript:void(0)" data-lang="de" class="mro-lang-item">
+            <span class="flag flag-de" aria-hidden="true"></span> <span class="mro-label">Deutsch</span>
+          </a>
+          <a href="javascript:void(0)" data-lang="hu" class="mro-lang-item">
+            <span class="flag flag-hu" aria-hidden="true"></span> <span class="mro-label">Magyar</span>
+          </a>
+          <a href="javascript:void(0)" data-lang="ro" class="mro-lang-item">
+            <span class="flag flag-ro" aria-hidden="true"></span> <span class="mro-label">Română</span>
+          </a>
+          <a href="javascript:void(0)" data-lang="uk" class="mro-lang-item">
+            <span class="flag flag-uk" aria-hidden="true"></span> <span class="mro-label">Українská</span>
+          </a>
+          <a href="javascript:void(0)" data-lang="es" class="mro-lang-item">
+            <span class="flag flag-es" aria-hidden="true"></span> <span class="mro-label">Español</span>
+          </a>
+          <a href="javascript:void(0)" data-lang="fr" class="mro-lang-item">
+            <span class="flag flag-fr" aria-hidden="true"></span> <span class="mro-label">Français</span>
+          </a>
+          <a href="javascript:void(0)" data-lang="it" class="mro-lang-item">
+            <span class="flag flag-it" aria-hidden="true"></span> <span class="mro-label">Italiano</span>
+          </a>
+      <div class="mro-divider"></div><div class="mro-section"><div class="mro-section-title">Měna</div><div class="mro-curr-list" id="mro-curr-list"><button type="button" class="mro-curr-btn selected">CZK</button><button type="button" class="mro-curr-btn">EUR</button><button type="button" class="mro-curr-btn">PLN</button></div></div></div></div>
+
+
+
+                    
+                <div id="ctl00$ctl00$BodyContentPlaceHolder$CustomMenu" class="flex-menu">
+	<div class="flex-menu-button" style="display: block;"></div>
+<div class="flex-close-menu-button"></div>
+<ul class="flex-menu-compact">
+<li>
+<span>+420 776 401 167 | 773 568 023 (po-pá: 7-16)</span>
+</li>
+
+<li>
+<a href="https://katalog.mroauto.cz/cs/blog">Blog
+</a>
+</li>
+
+<li>
+<a href="/cs/clanek/platba-cena-doprava-cz">Platba a Doprava
+</a>
+</li>
+
+<li>
+<a href="/cs/clanek/obchodni-podminky-cz2">Obchodní podmínky
+</a>
+</li>
+
+<li>
+<a href="/cs/clanek/soubory-ke-stazeni-cz">Soubory
+</a>
+</li>
+
+<li>
+<a href="/cs/clanek/kontakt-mroauto-cz">Kontakty
+</a>
+</li>
+
+<li>
+<a href="https://returo.mroautoapp.cz/vraceni">Vrácení zboží
+</a>
+</li>
+
+</ul>
+
+
+</div></div>
+            </div>
+        </div>
+
+        <div class="flex-container flex-bottom-margin-delimiter flex-header-container processed">
+            <div class="flex-table flex-header-table">
+                <div class="column-1">
+                    <a id="BodyContentPlaceHolder_LogoHyperLink" href="/cs"><img src="/wwwroot/557_MRO_CZ/Default/Images/logo.png" id="BodyContentPlaceHolder_Logo" class="flex-logo" alt="Logo MRO Auto"></a>
+                </div>
+                <div class="column-2">
+                    
+                    <div id="ctl00$ctl00$BodyContentPlaceHolder$SmartSearchBar" class="flex-smart-search" onsearch="SmartSearchBar_Search">
+	<div class="flex-smart-search-input">
+<input id="SmartSearchInput" name="ctl00$ctl00$BodyContentPlaceHolder$SmartSearchBar$SmartSearchInput" type="text" value="" autocomplete="off" placeholder="Zadejte hledaný text">
+<div class="flex-count"></div>
+<input id="BodyContentPlaceHolder_SmartSearchBar_SmartSearchButton" name="ctl00$ctl00$BodyContentPlaceHolder$SmartSearchBar$SmartSearchButton" type="button" value="Hledat" class="flex-smart-search-button" data-flex-no-value-error-message="Vyhledávací pole je prázdné" data-flex-no-search-target-selected-message="Není vybrán cíl hledaní (kód, text, vozidlo atd.)" data-search-route="hledani" data-current-language-code="cs" data-unique-id="ctl00$ctl00$BodyContentPlaceHolder$SmartSearchBar">
+<div class="flex-search-targets">
+<input type="button" value="Kód" class="flex-target flex-code">
+<input type="button" value="Text" class="flex-target flex-text">
+<input type="button" value="Vozidlo" class="flex-target flex-vehicle">
+<input type="button" value="Historie hledání" class="flex-history" onclick="getSmartSearchHistory('.flex-smart-search-whisperer', -1, event); setCaretAtEnd($('#SmartSearchInput'));">
+</div>
+<div class="flex-hint">
+Hledací pole <b>automaticky vybere kde hledat</b>, na základě Vámi zadaného textu. Pokud chcete <b>ručně zvolit místo hledání</b>, klikněte na jedno z tlačítek pod hledaným textem (kód, text, vozidlo atd.).
+<div class="flex-arrow-icon"></div>
+</div>
+<div class="flex-smart-search-whisperer">
+<div class="flex-items">
+</div>
+</div>
+</div>
+
+
+</div>
+                </div>
+                <div class="column-4">
+                    <div id="ctl00$ctl00$BodyContentPlaceHolder$TopMenuStickyButtons" class="d-none">
+	<div id="stickyButtonItems" class="sticky-items">
+<div class="user-sticky" onclick="onClick_stickyItemsLogin(this)">
+<i class="fa fa-user"></i>
+<span class="user-sticky-name"></span>
+</div>
+<div class="item sticky-items-basket" onclick="onClick_stickyItemsBasket(this)">
+<i class="fa fa-shopping-cart"></i>
+<span class="basket-sticky-price">0</span>
+</div>
+<div class="item sticky-items-menu" onclick="onClick_stickyItemsMenu(this)">
+<i class="fa fa-bars"></i>
+</div>
+<div class="dropdown">
+<div id="main-menu-dropdown" class="dropdown-content">
+<a href="" target="_self"><b><em>AUTODÍLY</em></b></a>
+<a href="https://www.mroauto.cz/cs/akce/univerzalni-dily/3" target="_self"><em><b>MOTOROVÉ OLEJE</b></em></a>
+<a href="https://www.mroauto.cz/cs/blog/clanek/vin-hledani-dilu-podle-vin-kodu-okamzita-zakaznicka-podpora" target="_self"><em><b>HLEDÁNÍ PODLE VIN</b></em></a>
+<a href="https://www.mroauto.cz/cs/signeda/karosarske-dily-18" target="_self"><em><b>KAROSÁŘSKÉ DÍLY</b></em></a>
+<a href="/cs/katalog/univerzalni-dily" target="_self"><em><b>UNIVERZÁLNÍ DÍLY</b></em></a>
+</div>
+</div>
+</div>
+
+
+</div>
+                    <div id="ctl00$ctl00$BodyContentPlaceHolder$BasketSummary" class="flex-basket-summary">
+	<span>
+<span class="basket-price-summary">
+<span class="flex-basket-items-count">0</span>
+<span class="flex-basket-price"> 0,00  </span>
+<span class="flex-basket-currency" translate="no">Kč</span>
+<span class="flex-basket-vat-text">s DPH</span>
+</span>
+</span>
+<div class="basket-popup">
+<div class="flex-add-new-basket">
+<input id="BasketSummaryAddNewBasket" type="text" value="">
+<input id="BasketSummaryAddNewBasketConfirm" type="button" value="" onclick="confirmAddNewBasket($('#BasketSummaryAddNewBasket').val(), true)">
+<input id="BasketSummaryAddNewBasketCancel" type="button" value="" onclick="cancelAddNewBasket(true)">
+</div>
+<div class="flex-baskets-select">
+<div class="flex-transfer-basket" hidden="">
+<div class="flex-row">
+<select id="BasketSelectorForTransferBasketSummary" class="flex-drop-down transfer-drop-down" onchange="transferBasketToNewBasket($('#BasketSelectorForTransferBasketSummary').val(), true, -1);" data-flex="true" for="BasketSelectorForTransferBasketSummary_FlexDropDown" style="display: none;">
+<option value="-1" selected="">Vyberte košík, kam přenášíte produkty</option>
+<option value="-2">Přidat nový košík..</option>
+</select><dl id="BasketSelectorForTransferBasketSummary_FlexDropDown" class="flex-drop-down transfer-drop-down" data-flex="true"><dt><span class="flex-drop-down-link selected" data-value="-1"><span class="flex-text">Vyberte košík, kam přenášíte produkty</span><span class="flex-drop-down-value">-1</span></span></dt><dd><div class="flex-collapsible" translate="no"><ul><li><span class="flex-drop-down-link " data-value="-1"><span class="flex-text">Vyberte košík, kam přenášíte produkty</span><span class="flex-drop-down-value">-1</span></span></li><li><span class="flex-drop-down-link " data-value="-2"><span class="flex-text">Přidat nový košík..</span><span class="flex-drop-down-value">-2</span></span></li></ul></div></dd></dl>
+
+<input id="TransferBasketCancelSummary" type="button" value="" onclick="cancelTransferBasket(true)">
+</div>
+</div>
+
+<select id="BasketSummaryBasketSelect" class="flex-drop-down" onchange="changeSelectedBasket($('#BasketSummaryBasketSelect').val(), true);" data-flex="true" for="BasketSummaryBasketSelect_FlexDropDown" style="display: none;">
+<option value="-2">Přidat nový košík..</option>
+<option value="-1" selected="selected" data-flex-items-count="0">Nezařazeno</option>
+</select><dl id="BasketSummaryBasketSelect_FlexDropDown" class="flex-drop-down" data-flex="true"><dt><span class="flex-drop-down-link selected" data-value="-1"><span class="flex-text">Nezařazeno</span><span class="flex-drop-down-value">-1</span></span></dt><dd><div class="flex-collapsible" translate="no"><ul><li><span class="flex-drop-down-link " data-value="-2"><span class="flex-text">Přidat nový košík..</span><span class="flex-drop-down-value">-2</span></span></li><li><span class="flex-drop-down-link " data-value="-1"><span class="flex-text">Nezařazeno</span><span class="flex-drop-down-items-count">0</span><span class="flex-drop-down-value">-1</span></span></li></ul></div></dd></dl>
+</div>
+
+<span class="flex-title">Poslední přidané položky</span>
+<div class="basket-item-list">
+</div>
+<div class="flex-table flex-basket-summary-table">
+<div class="column-1">
+<span class="flex-title">Celkem</span>
+</div>
+<div class="column-2">
+<span class="flex-total-price notranslate">0,00  Kč <span class="flex-without-vat notranslate">s DPH</span></span>
+<span class="flex-total-price-with-vat notranslate">0,00  Kč <span class="flex-with-vat notranslate">bez DPH</span></span>
+</div>
+</div>
+<a href="/cs/kosik" class="flex-go-to-basket">Přejít do košíku</a>
+</div>
+
+
+</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex-container flex-main-menu">
+            <div id="ctl00$ctl00$BodyContentPlaceHolder$MainMenu" class="flex-menu flex-menu-items-5">
+	<div class="flex-menu-button">Katalogy</div>
+<div class="flex-close-menu-button"></div>
+<ul class="flex-menu-compact">
+<li>
+<a href="/cs/katalog/tecdoc/osobni" class="flex-selected"><b><em>AUTODÍLY</em></b>
+</a>
+</li>
+
+<li>
+<a href="https://www.mroauto.cz/cs/akce/univerzalni-dily/3"><em><b>MOTOROVÉ OLEJE</b></em>
+</a>
+</li>
+
+<li>
+<a href="https://www.mroauto.cz/cs/blog/clanek/vin-hledani-dilu-podle-vin-kodu-okamzita-zakaznicka-podpora"><em><b>HLEDÁNÍ PODLE VIN</b></em>
+</a>
+</li>
+
+<li>
+<a href="https://www.mroauto.cz/cs/signeda/karosarske-dily-18"><em><b>KAROSÁŘSKÉ DÍLY</b></em>
+</a>
+</li>
+
+<li>
+<a href="/cs/katalog/univerzalni-dily"><em><b>UNIVERZÁLNÍ DÍLY</b></em>
+</a>
+</li>
+
+</ul>
+
+
+</div>
+            
+        </div>
+    </div>
+
+    <div class="side-container left" style="left: -408px; visibility: visible;">
+        <div id="ctl00$ctl00$BodyContentPlaceHolder$LeftSideBanners" class="side-banners">
+	
+</div>
+    </div>
+
+    <div class="flex-container flex-breadcrumb-bar-container">
+        
+        
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="flex-container flex-content-container" data-flex-hide-empty="true">
+        <div class="content">
+            
+
+            <div class="flex-content">
+
+                
+
+    <div class="flex-breadcrumb-bar-content">
+        
+        
+        
+    </div>
+
+    <div class="flex-tecdoc">
+
+        
+        
+        
+        
+        
+
+        
+        <div id="ctl00$ctl00$BodyContentPlaceHolder$ContentCPH$Categories2" class="categories with-shortcuts">
+	<div class="content">
+<div class="tree main" data-auto-collapse-unused-nodes="true" data-use-dynamic-load="true" data-show-subnodes-in-shortcuts="true" data-catalog-type="2" data-manufacturer-name="audi" data-manufacturer-id="5" data-model-name="a4-allroad-b8-8kh" data-model-id="8031" data-engine-name="2-0-tdi-quattro" data-engine-id="33418" data-vehicle-type="osobni" data-root-category-id="-1" data-use-js-history="true">
+<div id="Node_-1" class="node">
+<div class="wrapper">
+<a href="/cs/katalog/tecdoc/osobni/audi/a4-allroad-b8-8kh/2-0-tdi-quattro/5/8031/33418?category-id=100417" rel="noindex" data-node-id="100417" data-is-expandable="true" data-is-end-node="false" data-full-category-ids-path="100417">
+<span class="name">Bezpečnostní systém</span>
+<span class="children-count icons-only"></span>
+</a>
+</div>
+<div class="wrapper">
+<a href="/cs/katalog/tecdoc/osobni/audi/a4-allroad-b8-8kh/2-0-tdi-quattro/5/8031/33418?category-id=100006" rel="noindex" data-node-id="100006" data-is-expandable="true" data-is-end-node="false" data-full-category-ids-path="100006">
+<span class="name">Brzdové zařízení</span>
+<span class="children-count icons-only"></span>
+</a>
+</div>
+<div class="wrapper">
+<a href="/cs/katalog/tecdoc/osobni/audi/a4-allroad-b8-8kh/2-0-tdi-quattro/5/8031/33418?category-id=100018" rel="noindex" data-node-id="100018" data-is-expandable="true" data-is-end-node="false" data-full-category-ids-path="100018">
+<span class="name">Čištění skel</span>
+<span class="children-count icons-only"></span>
+</a>
+</div>
+<div class="wrapper">
+<a href="/cs/katalog/tecdoc/osobni/audi/a4-allroad-b8-8kh/2-0-tdi-quattro/cisteni-svetlometu/5/8031/33418/100342/?path=100342" rel="" data-node-id="100342" data-is-expandable="false" data-is-end-node="true" data-full-category-ids-path="100342">
+<span class="name">Čištění světlometu</span>
+<span class="items-count icons-only"></span>
+</a>
+</div>
+<div class="wrapper">
+<a href="/cs/katalog/tecdoc/osobni/audi/a4-allroad-b8-8kh/2-0-tdi-quattro/5/8031/33418?category-id=100019" rel="noindex" data-node-id="100019" data-is-expandable="true" data-is-end-node="false" data-full-category-ids-path="100019">
+<span class="name">Díly pro servis / kontrolu / údržbu</span>
+<span class="children-count icons-only"></span>
+</a>
+</div>
+<div class="wrapper">
+<a href="/cs/katalog/tecdoc/osobni/audi/a4-allroad-b8-8kh/2-0-tdi-quattro/5/8031/33418?category-id=100010" rel="noindex" data-node-id="100010" data-is-expandable="true" data-is-end-node="false" data-full-category-ids-path="100010">
+<span class="name">Elektroinstalace</span>
+<span class="children-count icons-only"></span>
+</a>
+</div>
+<div class="wrapper">
+<a href="/cs/katalog/tecdoc/osobni/audi/a4-allroad-b8-8kh/2-0-tdi-quattro/5/8031/33418?category-id=100005" rel="noindex" data-node-id="100005" data-is-expandable="true" data-is-end-node="false" data-full-category-ids-path="100005">
+<span class="name">Filtr</span>
+<span class="children-count icons-only"></span>
+</a>
+</div>
+<div class="wrapper">
+<a href="/cs/katalog/tecdoc/osobni/audi/a4-allroad-b8-8kh/2-0-tdi-quattro/5/8031/33418?category-id=706209" rel="noindex" data-node-id="706209" data-is-expandable="true" data-is-end-node="false" data-full-category-ids-path="706209">
+<span class="name">Hybridní / elektrický pohon</span>
+<span class="children-count icons-only"></span>
+</a>
+</div>
+<div class="wrapper">
+<a href="/cs/katalog/tecdoc/osobni/audi/a4-allroad-b8-8kh/2-0-tdi-quattro/5/8031/33418?category-id=100007" rel="noindex" data-node-id="100007" data-is-expandable="true" data-is-end-node="false" data-full-category-ids-path="100007">
+<span class="name">Chlazení</span>
+<span class="children-count icons-only"></span>
+</a>
+</div>
+<div class="wrapper">
+<a href="/cs/katalog/tecdoc/osobni/audi/a4-allroad-b8-8kh/2-0-tdi-quattro/5/8031/33418?category-id=103671" rel="noindex" data-node-id="103671" data-is-expandable="true" data-is-end-node="false" data-full-category-ids-path="103671">
+<span class="name">Jednostopé vozidlo</span>
+<span class="children-count icons-only"></span>
+</a>
+</div>
+<div class="wrapper">
+<a href="/cs/katalog/tecdoc/osobni/audi/a4-allroad-b8-8kh/2-0-tdi-quattro/5/8031/33418?category-id=100001" rel="noindex" data-node-id="100001" data-is-expandable="true" data-is-end-node="false" data-full-category-ids-path="100001">
+<span class="name">Karosérie</span>
+<span class="children-count icons-only"></span>
+</a>
+</div>
+<div class="wrapper">
+<a href="/cs/katalog/tecdoc/osobni/audi/a4-allroad-b8-8kh/2-0-tdi-quattro/5/8031/33418?category-id=100243" rel="noindex" data-node-id="100243" data-is-expandable="true" data-is-end-node="false" data-full-category-ids-path="100243">
+<span class="name">Klimatizace</span>
+<span class="children-count icons-only"></span>
+</a>
+</div>
+<div class="wrapper">
+<a href="/cs/katalog/tecdoc/osobni/audi/a4-allroad-b8-8kh/2-0-tdi-quattro/5/8031/33418?category-id=103099" rel="noindex" data-node-id="103099" data-is-expandable="true" data-is-end-node="false" data-full-category-ids-path="103099">
+<span class="name">Kola / pneu</span>
+<span class="children-count icons-only"></span>
+</a>
+</div>
+<div class="wrapper">
+<a href="/cs/katalog/tecdoc/osobni/audi/a4-allroad-b8-8kh/2-0-tdi-quattro/5/8031/33418?category-id=100335" rel="noindex" data-node-id="100335" data-is-expandable="true" data-is-end-node="false" data-full-category-ids-path="100335">
+<span class="name">Komfortní systémy</span>
+<span class="children-count icons-only"></span>
+</a>
+</div>
+<div class="wrapper">
+<a href="/cs/katalog/tecdoc/osobni/audi/a4-allroad-b8-8kh/2-0-tdi-quattro/5/8031/33418?category-id=100002" rel="noindex" data-node-id="100002" data-is-expandable="true" data-is-end-node="false" data-full-category-ids-path="100002">
+<span class="name">Motor</span>
+<span class="children-count icons-only"></span>
+</a>
+</div>
+<div class="wrapper">
+<a href="/cs/katalog/tecdoc/osobni/audi/a4-allroad-b8-8kh/2-0-tdi-quattro/5/8031/33418?category-id=100011" rel="noindex" data-node-id="100011" data-is-expandable="true" data-is-end-node="false" data-full-category-ids-path="100011">
+<span class="name">Odpružení / tlumení</span>
+<span class="children-count icons-only"></span>
+</a>
+</div>
+<div class="wrapper">
+<a href="/cs/katalog/tecdoc/osobni/audi/a4-allroad-b8-8kh/2-0-tdi-quattro/5/8031/33418?category-id=100214" rel="noindex" data-node-id="100214" data-is-expandable="true" data-is-end-node="false" data-full-category-ids-path="100214">
+<span class="name">Palivové čerpadlo</span>
+<span class="children-count icons-only"></span>
+</a>
+</div>
+<div class="wrapper">
+<a href="/cs/katalog/tecdoc/osobni/audi/a4-allroad-b8-8kh/2-0-tdi-quattro/5/8031/33418?category-id=100014" rel="noindex" data-node-id="100014" data-is-expandable="true" data-is-end-node="false" data-full-category-ids-path="100014">
+<span class="name">Pohon kol</span>
+<span class="children-count icons-only"></span>
+</a>
+</div>
+<div class="wrapper">
+<a href="/cs/katalog/tecdoc/osobni/audi/a4-allroad-b8-8kh/2-0-tdi-quattro/5/8031/33418?category-id=100400" rel="noindex" data-node-id="100400" data-is-expandable="true" data-is-end-node="false" data-full-category-ids-path="100400">
+<span class="name">Pohon nápravy</span>
+<span class="children-count icons-only"></span>
+</a>
+</div>
+<div class="wrapper">
+<a href="/cs/katalog/tecdoc/osobni/audi/a4-allroad-b8-8kh/2-0-tdi-quattro/5/8031/33418?category-id=100238" rel="noindex" data-node-id="100238" data-is-expandable="true" data-is-end-node="false" data-full-category-ids-path="100238">
+<span class="name">Převodovka</span>
+<span class="children-count icons-only"></span>
+</a>
+</div>
+<div class="wrapper">
+<a href="/cs/katalog/tecdoc/osobni/audi/a4-allroad-b8-8kh/2-0-tdi-quattro/5/8031/33418?category-id=100254" rel="noindex" data-node-id="100254" data-is-expandable="true" data-is-end-node="false" data-full-category-ids-path="100254">
+<span class="name">Příprava paliva</span>
+<span class="children-count icons-only"></span>
+</a>
+</div>
+<div class="wrapper">
+<a href="/cs/katalog/tecdoc/osobni/audi/a4-allroad-b8-8kh/2-0-tdi-quattro/5/8031/33418?category-id=100733" rel="noindex" data-node-id="100733" data-is-expandable="true" data-is-end-node="false" data-full-category-ids-path="100733">
+<span class="name">Příslušenství</span>
+<span class="children-count icons-only"></span>
+</a>
+</div>
+<div class="wrapper">
+<a href="/cs/katalog/tecdoc/osobni/audi/a4-allroad-b8-8kh/2-0-tdi-quattro/5/8031/33418?category-id=100016" rel="noindex" data-node-id="100016" data-is-expandable="true" data-is-end-node="false" data-full-category-ids-path="100016">
+<span class="name">Řemenový pohon</span>
+<span class="children-count icons-only"></span>
+</a>
+</div>
+<div class="wrapper">
+<a href="/cs/katalog/tecdoc/osobni/audi/a4-allroad-b8-8kh/2-0-tdi-quattro/5/8031/33418?category-id=100012" rel="noindex" data-node-id="100012" data-is-expandable="true" data-is-end-node="false" data-full-category-ids-path="100012">
+<span class="name">Řízení</span>
+<span class="children-count icons-only"></span>
+</a>
+</div>
+<div class="wrapper">
+<a href="/cs/katalog/tecdoc/osobni/audi/a4-allroad-b8-8kh/2-0-tdi-quattro/5/8031/33418?category-id=706365" rel="noindex" data-node-id="706365" data-is-expandable="true" data-is-end-node="false" data-full-category-ids-path="706365">
+<span class="name">Speciální nářadí</span>
+<span class="children-count icons-only"></span>
+</a>
+</div>
+<div class="wrapper">
+<a href="/cs/katalog/tecdoc/osobni/audi/a4-allroad-b8-8kh/2-0-tdi-quattro/5/8031/33418?category-id=100050" rel="noindex" data-node-id="100050" data-is-expandable="true" data-is-end-node="false" data-full-category-ids-path="100050">
+<span class="name">Spojka / příslušenství</span>
+<span class="children-count icons-only"></span>
+</a>
+</div>
+<div class="wrapper">
+<a href="/cs/katalog/tecdoc/osobni/audi/a4-allroad-b8-8kh/2-0-tdi-quattro/5/8031/33418?category-id=100015" rel="noindex" data-node-id="100015" data-is-expandable="true" data-is-end-node="false" data-full-category-ids-path="100015">
+<span class="name">Tažné zařízení / příslušenství</span>
+<span class="children-count icons-only"></span>
+</a>
+</div>
+<div class="wrapper">
+<a href="/cs/katalog/tecdoc/osobni/audi/a4-allroad-b8-8kh/2-0-tdi-quattro/5/8031/33418?category-id=100241" rel="noindex" data-node-id="100241" data-is-expandable="true" data-is-end-node="false" data-full-category-ids-path="100241">
+<span class="name">Topení / ventilace</span>
+<span class="children-count icons-only"></span>
+</a>
+</div>
+<div class="wrapper">
+<a href="/cs/katalog/tecdoc/osobni/audi/a4-allroad-b8-8kh/2-0-tdi-quattro/5/8031/33418?category-id=100341" rel="noindex" data-node-id="100341" data-is-expandable="true" data-is-end-node="false" data-full-category-ids-path="100341">
+<span class="name">Vnitřní vybavení</span>
+<span class="children-count icons-only"></span>
+</a>
+</div>
+<div class="wrapper">
+<a href="/cs/katalog/tecdoc/osobni/audi/a4-allroad-b8-8kh/2-0-tdi-quattro/5/8031/33418?category-id=100004" rel="noindex" data-node-id="100004" data-is-expandable="true" data-is-end-node="false" data-full-category-ids-path="100004">
+<span class="name">Výfukový systém</span>
+<span class="children-count icons-only"></span>
+</a>
+</div>
+<div class="wrapper">
+<a href="/cs/katalog/tecdoc/osobni/audi/a4-allroad-b8-8kh/2-0-tdi-quattro/5/8031/33418?category-id=100685" rel="noindex" data-node-id="100685" data-is-expandable="true" data-is-end-node="false" data-full-category-ids-path="100685">
+<span class="name">Zamykací zařízení</span>
+<span class="children-count icons-only"></span>
+</a>
+</div>
+<div class="wrapper">
+<a href="/cs/katalog/tecdoc/osobni/audi/a4-allroad-b8-8kh/2-0-tdi-quattro/5/8031/33418?category-id=100008" rel="noindex" data-node-id="100008" data-is-expandable="true" data-is-end-node="false" data-full-category-ids-path="100008">
+<span class="name">Zapalování / žhavicí zařízení</span>
+<span class="children-count icons-only"></span>
+</a>
+</div>
+<div class="wrapper">
+<a href="/cs/katalog/tecdoc/osobni/audi/a4-allroad-b8-8kh/2-0-tdi-quattro/5/8031/33418?category-id=100013" rel="noindex" data-node-id="100013" data-is-expandable="true" data-is-end-node="false" data-full-category-ids-path="100013">
+<span class="name">Zavěšení nápravy / Vedení kol</span>
+<span class="children-count icons-only"></span>
+</a>
+</div>
+</div>
+
+
+</div>
+<div class="content-block">
+<div class="flex-breadcrumb-bar-content">
+<div class="flex-breadcrumb-bar">
+<a href="/">Hlavní stránka</a>
+<a href="/cs/katalog/tecdoc/osobni">Hledat dle vozidla (TecDoc)</a>
+<a href="/cs/katalog/tecdoc/osobni/audi/5">AUDI</a>
+<a href="/cs/katalog/tecdoc/osobni/audi/a4-allroad-b8-8kh/5/8031">A4 Allroad B8 (8KH)</a>
+<span>2.0 TDI quattro</span>
+
+</div>
+<div class="share">
+
+</div>
+</div>
+<div class="content-header">
+<div class="flex-row-add-to-license-plate">
+<h1>Náhradní autodíly AUDI A4 Allroad B8 (8KH) 2.0 TDI quattro</h1>
+</div>
+<div class="search-and-tools">
+<span class="search">
+<input id="Categories2_Search" name="ctl00$ctl00$BodyContentPlaceHolder$ContentCPH$Categories2$Search" type="text" data-flex-watermark="Rychlé hledání" onkeyup="getConstructionGroupsBySearchPhrase('.shortcuts-container &gt; .shortcuts', $('#Categories2_Search').val(), $('#Categories2_Search').attr('data-flex-watermark'), 'audi', '5', 'a4-allroad-b8-8kh', '8031', '2-0-tdi-quattro', '33418', 'osobni', false)" class="flex-watermark">
+<input type="button" value="" onclick="getConstructionGroupsBySearchPhrase('.shortcuts-container &gt; .shortcuts', $('#Categories2_Search').val(), $('#Categories2_Search').attr('data-flex-watermark'), 'audi', '5', 'a4-allroad-b8-8kh', '8031', '2-0-tdi-quattro', '33418', 'osobni', true)">
+</span>
+</div>
+</div>
+<input id="ShouldCollapseBreadcrumbs" type="hidden" value="true" data-width-value="850">
+
+<div class="shortcuts-container">
+<div class="product-shortcut-grid"><a class="product-shortcut-tile" href="https://www.mroauto.cz/cs/katalog/tecdoc/osobni/audi/a4-allroad-b8-8kh/2-0-tdi-quattro/brzdove-oblozeni/5/8031/33418/100030/">
+                <div class="tile-icon" style="background-image: url('/Image.ashx?type=4&amp;id=395014');"></div>
+                <div class="tile-label">Brzdové destičky</div>
+            </a><a class="product-shortcut-tile" href="https://www.mroauto.cz/cs/katalog/tecdoc/osobni/audi/a4-allroad-b8-8kh/2-0-tdi-quattro/brzdovy-kotouc/5/8031/33418/100032/">
+                <div class="tile-icon" style="background-image: url('/Image.ashx?type=4&amp;id=395015');"></div>
+                <div class="tile-label">Brzdový kotouč</div>
+            </a><a class="product-shortcut-tile" href="https://www.mroauto.cz/cs/katalog/tecdoc/osobni/audi/a4-allroad-b8-8kh/2-0-tdi-quattro/olej/5/8031/33418/101994/">
+                <div class="tile-icon" style="background-image: url('/Image.ashx?type=4&amp;id=395017');"></div>
+                <div class="tile-label">Motorový olej</div>
+            </a><a class="product-shortcut-tile" href="https://www.mroauto.cz/cs/katalog/tecdoc/osobni/audi/a4-allroad-b8-8kh/2-0-tdi-quattro/olejovy-filtr/5/8031/33418/100259/">
+                <div class="tile-icon" style="background-image: url('/Image.ashx?type=4&amp;id=395016');"></div>
+                <div class="tile-label">Olejový filtr</div>
+            </a><a class="product-shortcut-tile" href="https://www.mroauto.cz/cs/katalog/tecdoc/osobni/audi/a4-allroad-b8-8kh/2-0-tdi-quattro/palivovy-filtr/5/8031/33418/100261/">
+                <div class="tile-icon" style="background-image: url('/Image.ashx?type=4&amp;id=395025');"></div>
+                <div class="tile-label">Palivový filtr</div>
+            </a><a class="product-shortcut-tile" href="https://www.mroauto.cz/cs/katalog/tecdoc/osobni/audi/a4-allroad-b8-8kh/2-0-tdi-quattro/vzduchovy-filtr/5/8031/33418/100260/">
+                <div class="tile-icon" style="background-image: url('/Image.ashx?type=4&amp;id=395018');"></div>
+                <div class="tile-label">Vzduchový filtr</div>
+            </a><a class="product-shortcut-tile" href="https://www.mroauto.cz/cs/katalog/tecdoc/osobni/audi/a4-allroad-b8-8kh/2-0-tdi-quattro/kabinovy-vzduchovy-filtr/5/8031/33418/100263/">
+                <div class="tile-icon" style="background-image: url('/Image.ashx?type=4&amp;id=395027');"></div>
+                <div class="tile-label">Kabinový filtr</div>
+            </a><a class="product-shortcut-tile" href="https://www.mroauto.cz/cs/katalog/tecdoc/osobni/audi/a4-allroad-b8-8kh/2-0-tdi-quattro/baterie/5/8031/33418/100042/">
+                <div class="tile-icon" style="background-image: url('/Image.ashx?type=4&amp;id=395026');"></div>
+                <div class="tile-label">Baterie</div>
+            </a><a class="product-shortcut-tile" href="https://www.mroauto.cz/cs/katalog/tecdoc/osobni/audi/a4-allroad-b8-8kh/2-0-tdi-quattro/pricne-rameno/5/8031/33418/100571/">
+                <div class="tile-icon" style="background-image: url('/Image.ashx?type=4&amp;id=395028');"></div>
+                <div class="tile-label">Ramena</div>
+            </a><a class="product-shortcut-tile" href="https://www.mroauto.cz/cs/katalog/tecdoc/osobni/audi/a4-allroad-b8-8kh/2-0-tdi-quattro/stiraci-gumicka/5/8031/33418/100133/">
+                <div class="tile-icon" style="background-image: url('/Image.ashx?type=4&amp;id=395021');"></div>
+                <div class="tile-label">Stěrače</div>
+            </a><a class="product-shortcut-tile" href="https://www.mroauto.cz/cs/katalog/tecdoc/osobni/audi/a4-allroad-b8-8kh/2-0-tdi-quattro/klouby/5/8031/33418/100198/">
+                <div class="tile-icon" style="background-image: url('/Image.ashx?type=4&amp;id=395061');"></div>
+                <div class="tile-label">Čepy řízení</div>
+            </a><a class="product-shortcut-tile" href="https://www.mroauto.cz/cs/katalog/tecdoc/osobni/audi/a4-allroad-b8-8kh/2-0-tdi-quattro/sada-rozvodoveho-remene/5/8031/33418/100453/">
+                <div class="tile-icon" style="background-image: url('/Image.ashx?type=4&amp;id=395062');"></div>
+                <div class="tile-label">Rozvody motoru</div>
+            </a><a class="product-shortcut-tile" href="https://www.mroauto.cz/cs/katalog/tecdoc/osobni/audi/a4-allroad-b8-8kh/2-0-tdi-quattro/sada-spojky/5/8031/33418/100051/">
+                <div class="tile-icon" style="background-image: url('/Image.ashx?type=4&amp;id=395063');"></div>
+                <div class="tile-label">Spojková sada</div>
+            </a><a class="product-shortcut-tile" href="https://www.mroauto.cz/cs/katalog/tecdoc/osobni/audi/a4-allroad-b8-8kh/2-0-tdi-quattro/lozisko-kola/5/8031/33418/100579/">
+                <div class="tile-icon" style="background-image: url('/Image.ashx?type=4&amp;id=395064');"></div>
+                <div class="tile-label">Ložisko kola</div>
+            </a><a class="product-shortcut-tile" href="https://www.mroauto.cz/cs/katalog/tecdoc/osobni/audi/a4-allroad-b8-8kh/2-0-tdi-quattro/tlumic-perovani/5/8031/33418/100121/">
+                <div class="tile-icon" style="background-image: url('/Image.ashx?type=4&amp;id=395065');"></div>
+                <div class="tile-label">Tlumiče pérování</div>
+            </a></div><div class="shortcuts" style="visibility: visible;">
+<a href="javascript: getTecDocConstructionGroupShortcutSubcategories(2, 'audi', '5', 'a4-allroad-b8-8kh', '8031', '2-0-tdi-quattro', '33418', 'osobni', '')" data-node-id="2">
+<span class="name has-image" style="background-image: url('/Plugins/FlexView/Images/CategoriesSvg/tdcarbodyicon.svg'); background-repeat: no-repeat;"><span>Karosérie</span></span>
+</a>
+<a href="javascript: getTecDocConstructionGroupShortcutSubcategories(3, 'audi', '5', 'a4-allroad-b8-8kh', '8031', '2-0-tdi-quattro', '33418', 'osobni', '')" data-node-id="3">
+<span class="name has-image" style="background-image: url('/Plugins/FlexView/Images/CategoriesSvg/tdengineicon.svg'); background-repeat: no-repeat;"><span>Motor</span></span>
+</a>
+<a href="javascript: getTecDocConstructionGroupShortcutSubcategories(4, 'audi', '5', 'a4-allroad-b8-8kh', '8031', '2-0-tdi-quattro', '33418', 'osobni', '')" data-node-id="4">
+<span class="name has-image" style="background-image: url('/Plugins/FlexView/Images/CategoriesSvg/tdpowertransfericon.svg'); background-repeat: no-repeat;"><span>Přenos síly</span></span>
+</a>
+<a href="javascript: getTecDocConstructionGroupShortcutSubcategories(5, 'audi', '5', 'a4-allroad-b8-8kh', '8031', '2-0-tdi-quattro', '33418', 'osobni', '')" data-node-id="5">
+<span class="name has-image" style="background-image: url('/Plugins/FlexView/Images/CategoriesSvg/tdfiltersicon.svg'); background-repeat: no-repeat;"><span>Filtr</span></span>
+</a>
+<a href="javascript: getTecDocConstructionGroupShortcutSubcategories(6, 'audi', '5', 'a4-allroad-b8-8kh', '8031', '2-0-tdi-quattro', '33418', 'osobni', '')" data-node-id="6">
+<span class="name has-image" style="background-image: url('/Plugins/FlexView/Images/CategoriesSvg/tdwindowsicon.svg'); background-repeat: no-repeat;"><span>Okna / čištění čelního skla</span></span>
+</a>
+<a href="javascript: getTecDocConstructionGroupShortcutSubcategories(7, 'audi', '5', 'a4-allroad-b8-8kh', '8031', '2-0-tdi-quattro', '33418', 'osobni', '')" data-node-id="7">
+<span class="name has-image" style="background-image: url('/Plugins/FlexView/Images/CategoriesSvg/tdfuelicon.svg'); background-repeat: no-repeat;"><span>Příprava paliva</span></span>
+</a>
+<a href="javascript: getTecDocConstructionGroupShortcutSubcategories(8, 'audi', '5', 'a4-allroad-b8-8kh', '8031', '2-0-tdi-quattro', '33418', 'osobni', '')" data-node-id="8">
+<span class="name has-image" style="background-image: url('/Plugins/FlexView/Images/CategoriesSvg/tdsuspensionicon.svg'); background-repeat: no-repeat;"><span>Zavěšení</span></span>
+</a>
+<a href="javascript: getTecDocConstructionGroupShortcutSubcategories(9, 'audi', '5', 'a4-allroad-b8-8kh', '8031', '2-0-tdi-quattro', '33418', 'osobni', '')" data-node-id="9">
+<span class="name has-image" style="background-image: url('/Plugins/FlexView/Images/CategoriesSvg/tdbreakesicon.svg'); background-repeat: no-repeat;"><span>Brzdy</span></span>
+</a>
+<a href="javascript: getTecDocConstructionGroupShortcutSubcategories(10, 'audi', '5', 'a4-allroad-b8-8kh', '8031', '2-0-tdi-quattro', '33418', 'osobni', '')" data-node-id="10">
+<span class="name has-image" style="background-image: url('/Plugins/FlexView/Images/CategoriesSvg/tdexhaustsicon.svg'); background-repeat: no-repeat;"><span>Výfukový systém</span></span>
+</a>
+<a href="javascript: getTecDocConstructionGroupShortcutSubcategories(11, 'audi', '5', 'a4-allroad-b8-8kh', '8031', '2-0-tdi-quattro', '33418', 'osobni', '')" data-node-id="11">
+<span class="name has-image" style="background-image: url('/Plugins/FlexView/Images/CategoriesSvg/tdcoolingicon.svg'); background-repeat: no-repeat;"><span>Chlazení / Klimatizace</span></span>
+</a>
+<a href="javascript: getTecDocConstructionGroupShortcutSubcategories(12, 'audi', '5', 'a4-allroad-b8-8kh', '8031', '2-0-tdi-quattro', '33418', 'osobni', '')" data-node-id="12">
+<span class="name has-image" style="background-image: url('/Plugins/FlexView/Images/CategoriesSvg/tddrivingicon.svg'); background-repeat: no-repeat;"><span>Řízení</span></span>
+</a>
+<a href="javascript: getTecDocConstructionGroupShortcutSubcategories(13, 'audi', '5', 'a4-allroad-b8-8kh', '8031', '2-0-tdi-quattro', '33418', 'osobni', '')" data-node-id="13">
+<span class="name has-image" style="background-image: url('/Plugins/FlexView/Images/CategoriesSvg/tdinterioricon.svg'); background-repeat: no-repeat;"><span>Vnitřní vybavení</span></span>
+</a>
+<a href="javascript: getTecDocConstructionGroupShortcutSubcategories(14, 'audi', '5', 'a4-allroad-b8-8kh', '8031', '2-0-tdi-quattro', '33418', 'osobni', '')" data-node-id="14">
+<span class="name has-image" style="background-image: url('/Plugins/FlexView/Images/CategoriesSvg/tdlightingicon.svg'); background-repeat: no-repeat;"><span>Osvětlení</span></span>
+</a>
+<a href="javascript: getTecDocConstructionGroupShortcutSubcategories(15, 'audi', '5', 'a4-allroad-b8-8kh', '8031', '2-0-tdi-quattro', '33418', 'osobni', '')" data-node-id="15">
+<span class="name has-image" style="background-image: url('/Plugins/FlexView/Images/CategoriesSvg/tdelectronicsicon.svg'); background-repeat: no-repeat;"><span>Elektroinstalace</span></span>
+</a>
+<a href="javascript: getTecDocConstructionGroupShortcutSubcategories(16, 'audi', '5', 'a4-allroad-b8-8kh', '8031', '2-0-tdi-quattro', '33418', 'osobni', '')" data-node-id="16">
+<span class="name has-image" style="background-image: url('/Plugins/FlexView/Images/CategoriesSvg/tdignitionicon.svg'); background-repeat: no-repeat;"><span>Zapalování / žhavicí zařízení</span></span>
+</a>
+<a href="javascript: getTecDocConstructionGroupShortcutSubcategories(17, 'audi', '5', 'a4-allroad-b8-8kh', '8031', '2-0-tdi-quattro', '33418', 'osobni', '')" data-node-id="17">
+<span class="name has-image" style="background-image: url('/Plugins/FlexView/Images/CategoriesSvg/tdaccessoriesicon.svg'); background-repeat: no-repeat;"><span>Příslušenství</span></span>
+</a>
+<a href="javascript: getTecDocConstructionGroupShortcutSubcategories(18, 'audi', '5', 'a4-allroad-b8-8kh', '8031', '2-0-tdi-quattro', '33418', 'osobni', '')" data-node-id="18">
+<span class="name has-image" style="background-image: url('/Plugins/FlexView/Images/CategoriesSvg/tdserviceicon.svg'); background-repeat: no-repeat;"><span>Servis</span></span>
+</a>
+</div>
+
+
+</div>
+
+<div class="title">
+    <h1>Signeda - karosářské díly</h1>
+</div>
+<div class="shortcuts">
+        <a href="/cs/signeda/autobaterie-259/v/P/audi-5/a4-allroad-b8-8kh-8031/2-0-tdi-quattro-33418">
+            <span class="name has-image" style="background-image: url(https://www.signeda.lt/image/catalog/Categories/Untitled-3.png); background-repeat: no-repeat; background-size: 120px auto; background-position: -2.5rem center !important;">
+                Autobaterie
+            </span>
+        </a>
+        <a href="/cs/signeda/automobilova-svetla-jejich-casti-20/v/P/audi-5/a4-allroad-b8-8kh-8031/2-0-tdi-quattro-33418">
+            <span class="name has-image" style="background-image: url(https://www.signeda.lt/image/theme/popcat/cat-banner_Zibintai-ju-dalys.png); background-repeat: no-repeat; background-size: 120px auto; background-position: -2.5rem center !important;">
+                Automobilová světla, jejich části
+            </span>
+        </a>
+        <a href="/cs/signeda/automobilove-chladice-a-jejich-casti-15/v/P/audi-5/a4-allroad-b8-8kh-8031/2-0-tdi-quattro-33418">
+            <span class="name has-image" style="background-image: url(https://www.signeda.lt/image/theme/popcat/cat-banner_Radiatoriai-ju-dalys.png); background-repeat: no-repeat; background-size: 120px auto; background-position: -2.5rem center !important;">
+                Automobilové chladiče a jejich části
+            </span>
+        </a>
+        <a href="/cs/signeda/autozarovky-96/v/P/audi-5/a4-allroad-b8-8kh-8031/2-0-tdi-quattro-33418">
+            <span class="name has-image" style="background-image: url(https://www.signeda.lt/image/catalog/Categories/automobiliu-lemputes.png); background-repeat: no-repeat; background-size: 120px auto; background-position: -2.5rem center !important;">
+                Autožárovky
+            </span>
+        </a>
+        <a href="/cs/signeda/dily-elektroinstalace-elektroniky-201/v/P/audi-5/a4-allroad-b8-8kh-8031/2-0-tdi-quattro-33418">
+            <span class="name has-image" style="background-image: url(https://www.signeda.lt/image/catalog/Categories/elektros-elektronikos-sistema.png); background-repeat: no-repeat; background-size: 120px auto; background-position: -2.5rem center !important;">
+                Díly elektroinstalace / elektroniky
+            </span>
+        </a>
+        <a href="/cs/signeda/doplnky-14/v/P/audi-5/a4-allroad-b8-8kh-8031/2-0-tdi-quattro-33418">
+            <span class="name has-image" style="background-image: url(https://www.signeda.lt/image/catalog/Categories/aksesuarai-nauji-logo.png); background-repeat: no-repeat; background-size: 120px auto; background-position: -2.5rem center !important;">
+                Doplňky
+            </span>
+        </a>
+        <a href="/cs/signeda/filtry-223/v/P/audi-5/a4-allroad-b8-8kh-8031/2-0-tdi-quattro-33418">
+            <span class="name has-image" style="background-image: url(https://www.signeda.lt/image/catalog/Categories/filtrai-nauji-logo.png); background-repeat: no-repeat; background-size: 120px auto; background-position: -2.5rem center !important;">
+                Filtry
+            </span>
+        </a>
+        <a href="/cs/signeda/karosarske-dily-18/v/P/audi-5/a4-allroad-b8-8kh-8031/2-0-tdi-quattro-33418">
+            <span class="name has-image" style="background-image: url(https://www.signeda.lt/image/theme/popcat/cat-banner_Kebulo-dalys.png); background-repeat: no-repeat; background-size: 120px auto; background-position: -2.5rem center !important;">
+                Karosářské díly
+            </span>
+        </a>
+        <a href="/cs/signeda/kola-disky-189/v/P/audi-5/a4-allroad-b8-8kh-8031/2-0-tdi-quattro-33418">
+            <span class="name has-image" style="background-image: url(https://www.signeda.lt/image/catalog/Categories/ratlankiai-naujas.png); background-repeat: no-repeat; background-size: 120px auto; background-position: -2.5rem center !important;">
+                Kola disky
+            </span>
+        </a>
+        <a href="/cs/signeda/led-svetlomety-104/v/P/audi-5/a4-allroad-b8-8kh-8031/2-0-tdi-quattro-33418">
+            <span class="name has-image" style="background-image: url(https://www.signeda.lt/image/theme/popcat/cat-banner_LED-zibintai.png); background-repeat: no-repeat; background-size: 120px auto; background-position: -2.5rem center !important;">
+                Led světlomety
+            </span>
+        </a>
+        <a href="/cs/signeda/motorovy-olej-254/v/P/audi-5/a4-allroad-b8-8kh-8031/2-0-tdi-quattro-33418">
+            <span class="name has-image" style="background-image: url(https://www.signeda.lt/image/catalog/Categories/Variklio-alyva.png); background-repeat: no-repeat; background-size: 120px auto; background-position: -2.5rem center !important;">
+                Motorový olej
+            </span>
+        </a>
+        <a href="/cs/signeda/naradi-na-opravu-automobilu-297/v/P/audi-5/a4-allroad-b8-8kh-8031/2-0-tdi-quattro-33418">
+            <span class="name has-image" style="background-image: url(https://www.signeda.lt/image/catalog/Categories/%C4%AERANKIAI%20AUTOMOBILI%C5%B2%20REMONTUI.png); background-repeat: no-repeat; background-size: 120px auto; background-position: -2.5rem center !important;">
+                Nářadí na opravu automobilů
+            </span>
+        </a>
+        <a href="/cs/signeda/plastove-uchyty-97/v/P/audi-5/a4-allroad-b8-8kh-8031/2-0-tdi-quattro-33418">
+            <span class="name has-image" style="background-image: url(https://www.signeda.lt/image/theme/popcat/cat-banner_Tvirtinimai-ivairus.png); background-repeat: no-repeat; background-size: 120px auto; background-position: -2.5rem center !important;">
+                Plastové úchyty
+            </span>
+        </a>
+        <a href="/cs/signeda/podvozkove-dily-21/v/P/audi-5/a4-allroad-b8-8kh-8031/2-0-tdi-quattro-33418">
+            <span class="name has-image" style="background-image: url(https://www.signeda.lt/image/catalog/Categories/vaziuokles-dalys-naujos-2.png); background-repeat: no-repeat; background-size: 120px auto; background-position: -2.5rem center !important;">
+                Podvozkové díly
+            </span>
+        </a>
+        <a href="/cs/signeda/sterace-jejich-casti-75/v/P/audi-5/a4-allroad-b8-8kh-8031/2-0-tdi-quattro-33418">
+            <span class="name has-image" style="background-image: url(https://www.signeda.lt/image/catalog/Categories/valytuvai-ju-dalys-naujas-4.png); background-repeat: no-repeat; background-size: 120px auto; background-position: -2.5rem center !important;">
+                Stěrače, jejich části
+            </span>
+        </a>
+        <a href="/cs/signeda/zrcatka-do-auta-jejich-casti-56/v/P/audi-5/a4-allroad-b8-8kh-8031/2-0-tdi-quattro-33418">
+            <span class="name has-image" style="background-image: url(https://www.signeda.lt/image/theme/popcat/cat-banner_Veidrodeliai-ju-dalys.png); background-repeat: no-repeat; background-size: 120px auto; background-position: -2.5rem center !important;">
+                Zrcátka do auta, jejich části
+            </span>
+        </a>
+</div>
+</div>
+
+</div>
+<script>
+$(document).ready(function() {
+addToSearchHistory('AUDI A4 Allroad B8 (8KH) 2.0 TDI quattro', 'AUDI A4 Allroad B8 (8KH) 2.0 TDI quattro', 'AUDI A4 Allroad B8 (8KH) 2.0 TDI quattro', -1, '5', '8031', '33418', 'AUDI', 'A4 Allroad B8 (8KH)', '2.0 TDI quattro', '4', '2');
+});
+</script>
+
+
+
+</div>
+
+        
+
+    </div>
+
+
+
+                
+                
+
+            </div>
+        </div>
+    </div>
+
+    <div class="flex-container  flex-text-actions-container">
+
+        
+        
+
+    </div>
+
+    <div class="flex-container flex-actions-container">
+
+        
+        
+
+    </div>
+
+    <div class="side-container" style="right: -408px; visibility: visible;">
+        <div id="ctl00$ctl00$BodyContentPlaceHolder$RightSideBanners" class="side-banners">
+	
+</div>
+    </div>
+
+    <div class="flex-footer-container">
+        <div class="flex-footer-wide">
+
+            <div class="flex-container">
+
+                
+                
+
+                <div class="flex-footer-main-menu">
+                    <div class="flex-footer-main-menu-box">
+                        <span id="BodyContentPlaceHolder_FooterMainMenuLabel" class="flex-title">Hlavní menu</span>
+                        <div id="ctl00$ctl00$BodyContentPlaceHolder$FooterMainMenu" class="flex-footer-menu">
+	<div class="flex-menu-button"></div>
+<div class="flex-close-menu-button"></div>
+<ul>
+<a href="/cs/katalog/tecdoc/osobni"><b><em>AUTODÍLY</em></b>
+</a>
+
+
+<li>
+<a href="https://www.mroauto.cz/cs/akce/univerzalni-dily/3"><em><b>MOTOROVÉ OLEJE</b></em>
+</a>
+</li>
+
+<li>
+<a href="https://www.mroauto.cz/cs/blog/clanek/vin-hledani-dilu-podle-vin-kodu-okamzita-zakaznicka-podpora"><em><b>HLEDÁNÍ PODLE VIN</b></em>
+</a>
+</li>
+
+<li>
+<a href="https://www.mroauto.cz/cs/signeda/karosarske-dily-18"><em><b>KAROSÁŘSKÉ DÍLY</b></em>
+</a>
+</li>
+
+<li>
+<a href="/cs/katalog/univerzalni-dily"><em><b>UNIVERZÁLNÍ DÍLY</b></em>
+</a>
+</li>
+
+</ul>
+
+
+</div>
+                    </div>
+                    <div class="flex-footer-legal-info">
+                        <span id="BodyContentPlaceHolder_FooterLegalInfoLabel" class="flex-title flex-legal-info">Právní informace</span>
+                        <div id="ctl00$ctl00$BodyContentPlaceHolder$FooterLegalInfoMenu" class="flex-footer-menu">
+	<div class="flex-menu-button"></div>
+<div class="flex-close-menu-button"></div>
+<ul>
+<li>
+<a href="/cs/pravni-informace/obchodni-podminky" class="terms-and-conditions" rel="nofollow">Obchodní podmínky
+</a>
+</li>
+
+<li>
+<a href="/cs/pravni-informace/marketingovy-souhlas" class="gdpr-marketing-purposes" rel="nofollow">Marketingový souhlas
+</a>
+</li>
+
+<li>
+<a href="/cs/pravni-informace/ochrana-osobnich-udaju" class="gdpr-information-memorandum" rel="nofollow">Ochrana osobních údajů
+</a>
+</li>
+
+<li>
+<a href="/cs/pravni-informace/pouzivani-cookies" class="gdpr-cookies-using" rel="nofollow">Používání cookies
+</a>
+</li>
+
+<li>
+<a href="javascript: openCookieConsent()" class="privacy-settings" rel="nofollow">Nastavení soukromí
+</a>
+</li>
+
+</ul>
+
+
+</div>
+                    </div>
+                </div>
+
+                <div class="flex-footer-custom-menu">
+                    <span id="BodyContentPlaceHolder_FooterCustomMenuLabel" class="flex-title">Informace</span>
+                    <div id="ctl00$ctl00$BodyContentPlaceHolder$FooterCustomMenu" class="flex-footer-menu">
+	<div class="flex-menu-button"></div>
+<div class="flex-close-menu-button"></div>
+<ul>
+
+<li>
+<a href="https://katalog.mroauto.cz/cs/blog">Blog
+</a>
+</li>
+
+<li>
+<a href="/cs/clanek/platba-cena-doprava-cz">Platba a Doprava
+</a>
+</li>
+
+<li>
+<a href="/cs/clanek/obchodni-podminky-cz2">Obchodní podmínky
+</a>
+</li>
+
+<li>
+<a href="/cs/clanek/soubory-ke-stazeni-cz">Soubory
+</a>
+</li>
+
+<li>
+<a href="/cs/clanek/kontakt-mroauto-cz">Kontakty
+</a>
+</li>
+
+<li>
+<a href="https://returo.mroautoapp.cz/vraceni">Vrácení zboží
+</a>
+</li>
+
+</ul>
+
+
+</div>
+                </div>
+                <div class="flex-footer-other-links-menu">
+                    <div class="flex-footer-recommended-links">
+                        <span id="BodyContentPlaceHolder_FooterRecommendedLinksLabel" class="flex-title">Doporučené odkazy</span>
+                        <div id="ctl00$ctl00$BodyContentPlaceHolder$RecommendedLinks" class="flex-footer-menu">
+	<ul>
+<li>
+<a href="https://www.mroauto.cz/cs/clanek/o-nas-cz">O nás</a>
+</li>
+<li>
+<a href="https://www.mroauto.cz/cs/blog/clanek/havirov-nova-pobocka-mroauto-autodily-s-r-o">Pobočka v Havířově</a>
+</li>
+<li>
+<a href="https://www.mroauto.cz/cs/blog/clanek/pobocka-v-ostrave">Pobočka v Ostravě</a>
+</li>
+<li>
+<a href="https://mroautoservis.cz" target="_blank">Mroauto Servis Bohumín</a>
+</li>
+<li>
+<a href="https://www.instagram.com/mroautocz/?hl=en" target="_blank">Instagram Mroauto.cz</a>
+</li>
+<li>
+<a href="https://www.facebook.com/Mroautocz/" target="_blank">Facebook Mroauto.cz</a>
+</li>
+</ul>
+
+
+</div>
+                    </div>
+                    <div id="BodyContentPlaceHolder_FooterOtherLinksPanel" class="flex-footer-other-links">
+	
+                        <span id="BodyContentPlaceHolder_FooterOtherLinksLabel" class="flex-title">Další odkazy</span>
+                        <div id="ctl00$ctl00$BodyContentPlaceHolder$OtherLinks" class="flex-footer-menu">
+		<ul>
+<li>
+<a href="https://www.mroauto.cz/sitemap.xml" target="_blank" rel="nofollow">Mapa stránek</a>
+</li>
+</ul>
+
+
+	</div>
+                    
+</div>
+                </div>
+
+                
+
+                <div id="ctl00$ctl00$BodyContentPlaceHolder$QuickContacts" class="flex-quick-contacts">
+	<span class="flex-company-name">MROAUTO AUTODÍLY s.r.o.</span>
+<div class="flex-branch">
+<span class="flex-name">Bohumín</span>
+<span class="flex-street">Čs. armády 360, Pudlov</span>
+<span class="flex-city">Bohumín</span>
+<span class="flex-zip-code">73551</span>
+<span class="flex-identification-number"><span class="flex-title">IČ</span>06630405</span>
+<span class="flex-vat-number"><span class="flex-title">DIČ</span>CZ06630405</span>
+<span class="flex-phone-number"><span class="flex-title">Telefon</span><a href="tel:+420 773 568 023 ">+420 773 568 023</a><br><a href="tel:+420 777 224 210 ">+420 777 224 210</a></span>
+<span class="flex-email-address"><span class="flex-title">Email</span><a href="mailto:info@mroauto.cz ">info@mroauto.cz</a></span>
+<span class="flex-email-address"><span class="flex-title">Webové stránky</span><a href="https://www.mroauto.cz " rel="nofollow">www.mroauto.cz</a></span>
+</div>
+
+</div>
+
+            </div>
+
+        </div>
+
+        <div class="flex-footer-wide flex-highlight flex-social-container">
+
+            <div class="flex-container">
+
+                <div id="ctl00$ctl00$BodyContentPlaceHolder$Newsletter" class="flex-newsletter">
+	<span>Nenechte si ujít akční nabídky</span>
+<input id="NewsletterEmail" type="text" placeholder="Váš email">
+<input type="button" class="subscribe" value="Odebírat" onclick="addNewsletterEmail('.flex-newsletter .flex-progress', $('#NewsletterEmail').val()); ">
+<input type="button" class="unsubscribe" value="Odhlásit odběr" onclick="sendEmailToUnsubscribeFromNewsletter('.flex-newsletter .flex-progress', $('#NewsletterEmail').val());">
+<span class="flex-progress"></span>
+
+
+</div>
+
+                
+                
+
+                
+                
+
+                <div id="ctl00$ctl00$BodyContentPlaceHolder$SocialLinks" class="flex-social-links">
+	<a href="https://www.facebook.com/Mroautocz/ " data-flex-type="1" target="_blank" rel="nofollow"></a>
+<a href="https://www.instagram.com/mroautocz/?hl=en" data-flex-type="4" target="_blank" rel="nofollow"></a>
+<a href="https://www.youtube.com/user/Mroautocz" data-flex-type="3" target="_blank" rel="nofollow"></a>
+
+
+</div>
+
+            </div>
+
+        </div>
+
+        <div class="flex-footer-wide flex-license">
+
+            <div class="footer-license flex-container">
+
+                <a href="http://www.nextis.cz" target="_blank" class="flex-nextis-logo"></a>
+
+                <div class="flex-nextis-credentials">
+                    <span id="NextisVersionLabel">Verze 10.35.0.0</span>
+                    <span id="NextisCopyrightLabel">Copyright © 2009 - 2026, <a href="http://www.nextis.cz" target="_blank">Nextis.cz</a></span>
+                </div>
+
+                <a href="http://www.tecalliance.net" target="_blank" class="flex-tecalliance-logo" rel="nofollow"></a>
+                
+                <span id="TecDocDisclaimerLabel">Zde zobrazená data, zejména celá databanka, nesmí být kopírovány. Data ani celá databanka, nesmí být bez předchozího souhlasu kopírovány, rozšiřovány a/nebo nesmí být toto umožněno třetím stranám. Uvedené jednání bude představovat poškození autorského práva a jako takové bude postihnuto.</span>
+
+                
+
+            </div>
+
+        </div>
+    </div>
+
+    
+
+    
+    
+    
+
+    <input type="hidden" name="ctl00$ctl00$BodyContentPlaceHolder$CustomerIDHiddenField" id="CustomerIDHiddenField" value="-212783076">
+    <input type="hidden" name="ctl00$ctl00$BodyContentPlaceHolder$CustomerNameHiddenField" id="CustomerNameHiddenField">
+    <input type="hidden" name="ctl00$ctl00$BodyContentPlaceHolder$CustomerEmailHiddenField" id="CustomerEmailHiddenField">
+    <input type="hidden" name="ctl00$ctl00$BodyContentPlaceHolder$CustomerPhoneHiddenField" id="CustomerPhoneHiddenField">
+    <input type="hidden" name="ctl00$ctl00$BodyContentPlaceHolder$CustomerAddressHiddenField" id="CustomerAddressHiddenField">
+    <input type="hidden" name="ctl00$ctl00$BodyContentPlaceHolder$BasketQuantityHiddenField" id="BasketQuantityHiddenField" value="0">
+    <input type="hidden" name="ctl00$ctl00$BodyContentPlaceHolder$BasketTotalPriceHiddenField" id="BasketTotalPriceHiddenField" value="0 CZK">
+    <input type="hidden" name="ctl00$ctl00$BodyContentPlaceHolder$BasketTotalPriceWithVATHiddenField" id="BasketTotalPriceWithVATHiddenField" value="0 CZK">
+    <input type="hidden" name="ctl00$ctl00$BodyContentPlaceHolder$CurrencyCodeHiddenField" id="CurrencyCodeHiddenField" value="CZK">
+    <input type="hidden" name="ctl00$ctl00$BodyContentPlaceHolder$BasketItemsHiddenField" id="BasketItemsHiddenField">
+
+
+    </form>
+
+    
+
+    <script src="/bundle/js-global?v=5kJeP2UfaZOEZ9a8dMxRWds8M5R318iyt1tL76UbgYI1"></script>
+
+
+    <script src="/bundles/js?v=hcb1lxoAa8hFsa96Icirr-_DBI4efb-ZI81i4V3saO01"></script>
+
+
+    <script src="/JScripts/Plugins/Default.js" type="text/javascript"></script>
+
+    <!-- Heureka souhlas -->
+<style>
+    .flex-registration-step-2 > .flex-terms-conditions > .flex-form > .flex-row:last-child {
+        display: none;
+    }
+</style>
+
+
+
+<!-- Heureka.cz PRODUCT DETAIL script -->
+<script>
+    (function(t, r, a, c, k, i, n, g) {t['ROIDataObject'] = k;
+    t[k]=t[k]||function(){(t[k].q=t[k].q||[]).push(arguments)},t[k].c=i;n=r.createElement(a),
+    g=r.getElementsByTagName(a)[0];n.async=1;n.src=c;g.parentNode.insertBefore(n,g)
+    })(window, document, 'script', '//www.heureka.cz/ocm/sdk.js?version=2&page=product_detail', 'heureka', 'cz');
+</script>
+<!-- End Heureka.cz PRODUCT DETAIL script -->
+
+<script id="" text="" charset="" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script><script type="text/javascript" id="" charset="">(function(){var b=function(a){return(a&&(a.textContent||a.value||"")).trim()},f=function(a){return a?parseFloat(String(a).replace(/[^0-9.,-]/g,"").replace(",",".")):NaN},y=function(a){return a==null||isNaN(a)?null:Number(Math.round(a*100)/100)};try{if(!window.__mro_view_item_pushed){window.__mro_view_item_pushed=!0;var c=document.querySelectorAll(".flex-item[data-flex-tecdoc-code-pair]");if(c.length>1)window.console&&console.log&&console.log("[MRO] view_item skipped \u2014 listing page (use view_item_list)");
+else{window.dataLayer=window.dataLayer||[];var l=document.querySelector(".flex-code input.flex-value[readonly]"),d=l?b(l).replace(/\s+/g,""):null;if(!d){var h=document.querySelector("[data-product-code],[data-flex-product-code]");h&&(d=h.getAttribute("data-product-code")||h.getAttribute("data-flex-product-code"))&&(d=d.replace(/\s+/g,""))}if(!d){var m=document.querySelector(".product-code, .flex-product-code, .flex-code .flex-value");m&&(d=b(m).replace(/\s+/g,""))}var g=null;d||(g=document.querySelector("[data-flex-tecdoc-code-pair]"))&&
+(d=g.getAttribute("data-flex-tecdoc-code-pair"));c="";var n=document.querySelector(".flex-breadcrumb-bar span:last-child, .flex-breadcrumb span:last-child");if(n){var z=b(n),p=z.match(/\(([^)]+)\)/);p&&(c=p[1])}if(!c){var q=document.querySelector("h1");q&&(c=b(q),c=c.replace(/\s*\|?\s*MRO\s*Auto.*/i,""),d&&(c=c.replace(new RegExp("^\\s*"+d.replace(/[.*+?^${}()|[\]\\]/g,"\\$\x26")+"\\s*","i"),"")),c=c.replace(/\s+x\s*$/,"").trim())}if(!c){var r=document.querySelector(".product-name, .flex-product-detail .flex-name");
+r&&(c=b(r))}b=NaN;var e;if(e=document.querySelector(".modern-price strong")){var A=(e.textContent||"").replace(/\s+/g," ");b=f(A)}isNaN(b)&&(e=document.querySelector(".flex-price-with-vat .flex-value, .price-final, .product-price .final"),b=f(e&&e.textContent));if(isNaN(b)){e=document.querySelector(".flex-with-vat.preferred, .price-total, .sum-with-vat");var t=f(e&&e.textContent);isNaN(t)||(b=t)}if(isNaN(b)){e=document.querySelector('input[id*\x3d"PriceHidden"], input[name*\x3d"PriceHidden"]');var u=
+f(e&&e.value);isNaN(u)||(b=u)}if(g&&isNaN(b)){var v=g.querySelector(".flex-price-with-vat");if(v){var w=v.getAttribute("data-flex-retail-price");w&&(b=f(w))}}f="CZK";var k=isNaN(b)?null:y(b),x={event:"view_item_mro",currency:f,value:k,ecommerce:{currency:f,value:k,items:[{item_id:d||"(unknown)",item_name:c||"",item_brand:function(){var a=document.querySelector(".flex-product-detail .flex-manufacturer a, .flex-manufacturer .flex-value");if(a)return a.textContent.trim();if(a=g)if(a=a.querySelector(".manufacturer, .flex-manufacturer"))return a.textContent.trim();
+return""}(),item_category:function(){var a=document.querySelectorAll(".flex-breadcrumb a, .breadcrumb a");return a.length>=2?a[a.length-2].textContent.trim():""}(),price:k,quantity:1}]}};d?(window.dataLayer.push({ecommerce:null}),window.dataLayer.push(x),window.console&&console.log&&console.log("[MRO] view_item_mro",x)):window.console&&console.log&&console.log("[MRO] view_item skipped -- no product code")}}}catch(a){window.console&&console.warn&&console.warn("[MRO] view_item error",a)}})();</script>
+<script type="text/javascript" id="" charset="">(function(){try{if(!document.querySelector(".flex-product-detail")){var k=document.querySelectorAll(".flex-item[data-flex-tecdoc-code-pair]");if(k.length&&!window.__mro_view_item_list_pushed){window.__mro_view_item_list_pushed=!0;var f=function(b){return(b&&(b.textContent||"")).trim()},t=function(b){return b?parseFloat(String(b).replace(/[^0-9.,-]/g,"").replace(",","."))||0:0},l="",a=document.querySelectorAll(".flex-breadcrumb a, .breadcrumb a");a.length>=2&&(l=a[a.length-1].textContent.trim());var c=
+"",g=document.querySelector("h1, .flex-category-name, .flex-search-title");g&&(c=f(g));!c&&a.length&&(c=a[a.length-1].textContent.trim());a=[];g=20;for(var d=0;d<k.length&&d<g;d++){var e=k[d],m=e.getAttribute("data-flex-tecdoc-code-pair")||"",n=e.querySelector("span.name"),h="";if(n){var u=f(n),v=u.split(/\s*,\s*/);h=v[0]}if(!h){var p=e.querySelector("h2 strong");p&&(h=f(p))}var q=e.querySelector("span.manufacturer"),w=q?f(q):"",r=e.querySelector(".flex-price[data-flex-retail-price]"),x=r?t(r.getAttribute("data-flex-retail-price")):
+0;m&&a.push({item_id:m,item_name:h,item_brand:w,item_category:l,item_list_name:c,index:d,price:Math.round(x*100)/100,quantity:1})}a.length&&(window.dataLayer=window.dataLayer||[],window.dataLayer.push({ecommerce:null}),window.dataLayer.push({event:"view_item_list_mro",ecommerce:{item_list_name:c,items:a}}),console.log("[MRO] view_item_list_mro",a.length,"products, list:",c))}}}catch(b){console.warn("[MRO] view_item_list error:",b)}})();</script><script type="text/javascript" id="" charset="">(function(){document.addEventListener("click",function(d){if(d=d.target.closest&&d.target.closest('.flex-item[data-flex-tecdoc-code-pair] a[href*\x3d"/cs/"]')){var a=d.closest(".flex-item[data-flex-tecdoc-code-pair]");if(a&&(d=a.getAttribute("data-flex-tecdoc-code-pair")||"")){var b=a.querySelector("span.name");b=b?(b&&(b.textContent||"")).trim():"";b=b.split(/\s*,\s*/);b=b.length>1&&b[0]===b[1]?b[0]:b[0]||"";var e=a.querySelector("span.manufacturer");a=a.querySelector(".flex-price[data-flex-retail-price]");
+var g="",c=document.querySelectorAll(".flex-breadcrumb a, .breadcrumb a");c.length>=2&&(g=c[c.length-1].textContent.trim());var f="";(c=document.querySelector("h1, .flex-category-name, .flex-search-title"))&&(f=(c&&(c.textContent||"")).trim());window.dataLayer=window.dataLayer||[];window.dataLayer.push({ecommerce:null});c=window.dataLayer;var h=c.push,k=f;e=e?(e&&(e.textContent||"")).trim():"";a=a?(a=a.getAttribute("data-flex-retail-price"))?parseFloat(String(a).replace(/[^0-9.,-]/g,"").replace(",",
+"."))||0:0:0;h.call(c,{event:"select_item_mro",ecommerce:{item_list_name:k,items:[{item_id:d,item_name:b,item_brand:e,item_category:g,item_list_name:f,price:a,quantity:1}]}});console.log("[MRO] select_item_mro",d)}}},!0)})();</script><script type="text/javascript" id="" charset="">(function(){function p(a){a=a||document;var b=a.querySelector(".flex-code input.flex-value[readonly]");if(b&&(b=f(b).replace(/\s+/g,"")))return b;if(b=a.closest("[data-flex-tecdoc-code-pair]")||a.querySelector("[data-flex-tecdoc-code-pair]"))if(b=b.getAttribute("data-flex-tecdoc-code-pair"))return b.replace(/\s+/g,"");if(b=a.querySelector(".code"))if(b=f(b).replace(/\s+/g,""))return b;if(b=a.querySelector("[data-product-code],[data-flex-product-code]"))if(b=b.getAttribute("data-product-code")||b.getAttribute("data-flex-product-code"))return b.replace(/\s+/g,
+"");if(a=a.querySelector(".product-name, .flex-name a, .name a, h3 a, h1"))if(a=(f(a)||"").match(/\b[A-Z0-9]{3,}\b/))return a[0];return null}function q(a){if(a=a.target){var b=a.matches&&(a.matches(".flex-add-to-basket-button")||a.matches('input[id*\x3d"AddToBasketButton"]'));if(!b&&a.closest){var d=a.closest('.flex-add-to-basket-button, input[id*\x3d"AddToBasketButton"]');d&&(a=d,b=!0)}if(b){a?(b='.flex-product-detail,.catalog-item,.product,.flex-item,.flex-row,[id^\x3d"ProductItem_"]',d=a.closest?
+a.closest(b)||document:document):d=document;a=1;if(b=d.querySelector('.quantity input, input.qty, .flex-quantity input, input[name*\x3d"Quantity"], .flex-basket-spinner input[type\x3d"text"], input[id^\x3d"modern_amount_"]'))b=parseInt(b.value,10),!isNaN(b)&&b>0&&(a=b);b=p(d);a:{var g=d;var c=document.querySelector(".flex-breadcrumb-bar span:last-child, .flex-breadcrumb span:last-child");if(c&&(c=f(c),c=c.match(/\(([^)]+)\)/))){g=c[1];break a}(c=g.querySelector("span.name"))?(g=f(c),c=g.split(/\s*,\s*/),
+g=c.length>1&&c[0]===c[1]?c[0]:g):g=(g=g.querySelector(".product-name, .flex-name a, h2 strong"))?f(g):""}var e=d,h=a;var k=e.querySelector(".modern-price strong");c=l(f(k));isNaN(c)&&(k=e.querySelector(".flex-price .flex-value, .price-final, .product-price .final"),c=l(f(k)));if(isNaN(c)){k=e.querySelector(".flex-price-total, .price-total, .sum-with-vat, .flex-with-vat.preferred");var m=l(f(k));isNaN(m)||(c=h&&h>0&&/total|sum/i.test(k&&k.className||"")?Number((m/h).toFixed(2)):m)}isNaN(c)&&(e=e.querySelector('input[id*\x3d"PriceHidden"],input[name*\x3d"PriceHidden"],input[id*\x3d"ItemPriceHidden"],input[name*\x3d"ItemPrice"]'),
+e=l(e&&e.value),isNaN(e)||(c=e));c=isNaN(c)?null:n(c);e=c!=null?n(c*a):null;window.dataLayer=window.dataLayer||[];d=(d=d.querySelector(".flex-manufacturer a, .flex-manufacturer .flex-value, .manufacturer-name, span.manufacturer"))?f(d):(d=document.querySelector(".flex-product-detail .flex-manufacturer a"))?f(d):"";h=document.querySelectorAll(".flex-breadcrumb a, .breadcrumb a");h=h.length>=2?h[h.length-2].textContent.trim():"";a={event:"add_to_cart_mro",currency:"CZK",value:e,ecommerce:{currency:"CZK",
+value:e,items:[{item_id:b||"(unknown)",item_name:g||"",item_brand:d,item_category:h,price:c,quantity:a}]}};window.dataLayer.push({ecommerce:null});window.dataLayer.push(a);window.console&&console.log&&console.log("[MRO] add_to_cart_mro",a)}}}var f=function(a){return a?(a.textContent||a.value||"").trim():""},l=function(a){return a?parseFloat(String(a).replace(/[^0-9.,-]/g,"").replace(",",".")):NaN},n=function(a){return a==null||isNaN(a)?null:Number(Math.round(a*100)/100)};document.addEventListener("click",
+q,!0)})();</script>
+<script src="https://dzudzok.github.io/mroauto-custom/global.js?v=5929750"></script><script src="https://dzudzok.github.io/mroauto-custom/WhatsApp/whatsapp.js?v=5929750"></script><script src="https://dzudzok.github.io/mroauto-custom/DeliveryFormat/delivery-format.js?v=5929750"></script><script src="https://dzudzok.github.io/mroauto-custom/CategoryTiles/category-tiles.js?v=5929750"></script><iframe id="chat-application-iframe" title="Smartsupp" aria-hidden="true" style="display: block; position: fixed; top: 0px; left: 0px; width: 1px; height: 1px; opacity: 0; border-width: medium; border-style: none; border-color: currentcolor; border-image: initial; z-index: -1; pointer-events: none;"></iframe>
+<div id="google_translate_element"><div class="skiptranslate goog-te-gadget" dir="ltr" style=""><div id=":0.targetLanguage" class="goog-te-gadget-simple" style="white-space: nowrap;"><img src="https://www.google.com/images/cleardot.gif" class="goog-te-gadget-icon" alt="" style="background-image: url(&quot;https://translate.googleapis.com/translate_static/img/te_ctrl3.gif&quot;); background-position: -65px 0px;"><span style="vertical-align: middle;"><a aria-haspopup="true" class="VIpgJd-ZVi9od-xl07Ob-lTBxed" href="#"><span>Wybierz język</span><img src="https://www.google.com/images/cleardot.gif" alt="" width="1" height="1"><span style="border-left: 1px solid rgb(187, 187, 187);">​</span><img src="https://www.google.com/images/cleardot.gif" alt="" width="1" height="1"><span aria-hidden="true" style="color: rgb(118, 118, 118);">▼</span></a></span></div></div></div><a href="https://wa.me/420776401167?text=Napište nám na WhatsApp" class="whatsapp-btn" target="_blank" rel="noopener" aria-label="Napište nám na WhatsApp">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32" aria-hidden="true">
+                <path fill="white" d="M12 0C5.373 0 0 5.373 0 12c0 2.135.557 4.21 1.61 6.03L0 24l6.06-1.595A11.95 11.95 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.65 0-3.246-.415-4.65-1.195l-.33-.174-3.59.945.948-3.54-.175-.337A9.956 9.956 0 0 1 2 12c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10zm5.13-6.97c-.28-.14-1.66-.82-1.92-.91-.26-.09-.45-.14-.64.14-.19.28-.74.91-.91 1.1-.17.19-.34.21-.63.07-.28-.14-1.19-.44-2.27-1.4-.84-.74-1.41-1.66-1.58-1.94-.17-.28-.02-.42.12-.56.13-.13.28-.34.42-.52.14-.19.19-.33.28-.56.09-.23.05-.43-.02-.6-.07-.17-.64-1.54-.88-2.11-.23-.56-.46-.47-.64-.47-.17 0-.36-.02-.55-.02-.19 0-.50.07-.77.35-.28.28-1.06 1.03-1.06 2.51 0 1.48 1.08 2.91 1.23 3.11.15.19 2.13 3.25 5.17 4.56.71.31 1.27.5 1.71.64.72.23 1.37.2 1.88.12.57-.09 1.66-.68 1.9-1.33.23-.66.23-1.23.16-1.34-.07-.11-.26-.17-.54-.31z"></path>
+            </svg>
+        </a><div id="batBeacon178744851510" style="width: 0px; height: 0px; display: none; visibility: hidden;"><img id="batBeacon669302513013" width="0" height="0" alt="" src="https://bat.bing.com/action/0?ti=211047835&amp;tm=gtm002&amp;Ver=2&amp;mid=3133b253-e18b-4af1-845a-503dde3791c5&amp;bo=2&amp;sid=3c0dc740510a11f1941287a7d0cae766&amp;vid=3c0df2d0510a11f1ab55859a9ecd0a0a&amp;vids=0&amp;msclkid=N&amp;gtm_tag_source=1&amp;pi=918639831&amp;lg=pl&amp;sw=414&amp;sh=896&amp;sc=32&amp;tl=N%C3%A1hradn%C3%AD%20d%C3%ADly%20AUDI%20A4%20Allroad%20B8%20(8KH)%202.0%20TDI%20quattro%20%7C%20MRO%20Auto&amp;p=https%3A%2F%2Fwww.mroauto.cz%2Fcs%2Fkatalog%2Ftecdoc%2Fosobni%2Faudi%2Fa4-allroad-b8-8kh%2F2-0-tdi-quattro%2F5%2F8031%2F33418&amp;r=https%3A%2F%2Fwww.mroauto.cz%2Fcs%2Fkatalog%2Ftecdoc%2Fosobni%2Faudi%2Fa4-allroad-b8-8kh%2F2-0-tdi-quattro%2Frohozky%2F5%2F8031%2F33418%2F102692%2F%3Fpath%3D100341~102692&amp;lt=1408&amp;mtp=1&amp;evt=pageLoad&amp;sv=2&amp;asc=G&amp;cdb=AQAS&amp;rn=378148" style="width: 0px; height: 0px; display: none; visibility: hidden;"></div><div id="goog-gt-tt" class="VIpgJd-yAWNEb-L7lbkb skiptranslate" style="border-radius: 12px; margin: 0 0 0 -23px; padding: 0; font-family: 'Google Sans', Arial, sans-serif;" data-id=""><div id="goog-gt-vt" class="VIpgJd-yAWNEb-hvhgNd"><div class="VIpgJd-yAWNEb-hvhgNd-Ud7fr"><img src="https://fonts.gstatic.com/s/i/productlogos/translate/v14/24px.svg" width="24" height="24" alt=""><div class=" VIpgJd-yAWNEb-hvhgNd-IuizWc-i3jM8c " dir="ltr">Tekst oryginalny</div></div><div class="VIpgJd-yAWNEb-hvhgNd-k77Iif"><div id="goog-gt-original-text" class="VIpgJd-yAWNEb-nVMfcd-fmcmS VIpgJd-yAWNEb-hvhgNd-axAV1"></div></div><div class="VIpgJd-yAWNEb-hvhgNd-N7Eqid ltr"><div class="VIpgJd-yAWNEb-hvhgNd-N7Eqid-B7I4Od ltr" dir="ltr"><div class="VIpgJd-yAWNEb-hvhgNd-UTujCb">Oceń to tłumaczenie</div><div class="VIpgJd-yAWNEb-hvhgNd-eO9mKe">Twoja opinia pomoże ulepszyć Tłumacza Google</div></div><div class="VIpgJd-yAWNEb-hvhgNd-xgov5 ltr"><button id="goog-gt-thumbUpButton" type="button" class="VIpgJd-yAWNEb-hvhgNd-bgm6sf" title="Dobre tłumaczenie" aria-label="Dobre tłumaczenie" aria-pressed="false"><span id="goog-gt-thumbUpIcon"><svg width="24" height="24" viewBox="0 0 24 24" focusable="false" class="VIpgJd-yAWNEb-hvhgNd-THI6Vb NMm5M"><path d="M21 7h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 0S7.08 6.85 7 7H2v13h16c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73V9c0-1.1-.9-2-2-2zM7 18H4V9h3v9zm14-7l-3 7H9V8l4.34-4.34L12 9h9v2z"></path></svg></span><span id="goog-gt-thumbUpIconFilled"><svg width="24" height="24" viewBox="0 0 24 24" focusable="false" class="VIpgJd-yAWNEb-hvhgNd-THI6Vb NMm5M"><path d="M21 7h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 0S7.08 6.85 7 7v13h11c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73V9c0-1.1-.9-2-2-2zM5 7H1v13h4V7z"></path></svg></span></button><button id="goog-gt-thumbDownButton" type="button" class="VIpgJd-yAWNEb-hvhgNd-bgm6sf" title="Słabe tłumaczenie" aria-label="Słabe tłumaczenie" aria-pressed="false"><span id="goog-gt-thumbDownIcon"><svg width="24" height="24" viewBox="0 0 24 24" focusable="false" class="VIpgJd-yAWNEb-hvhgNd-THI6Vb NMm5M"><path d="M3 17h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L9.83 24s7.09-6.85 7.17-7h5V4H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v2c0 1.1.9 2 2 2zM17 6h3v9h-3V6zM3 13l3-7h9v10l-4.34 4.34L12 15H3v-2z"></path></svg></span><span id="goog-gt-thumbDownIconFilled"><svg width="24" height="24" viewBox="0 0 24 24" focusable="false" class="VIpgJd-yAWNEb-hvhgNd-THI6Vb NMm5M"><path d="M3 17h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L9.83 24s7.09-6.85 7.17-7V4H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v2c0 1.1.9 2 2 2zm16 0h4V4h-4v13z"></path></svg></span></button></div></div><div id="goog-gt-votingHiddenPane" class="VIpgJd-yAWNEb-hvhgNd-aXYTce"><form id="goog-gt-votingForm" action="//translate.googleapis.com/translate_voting?client=te" method="post" target="votingFrame" class="VIpgJd-yAWNEb-hvhgNd-aXYTce"><input type="text" name="sl" id="goog-gt-votingInputSrcLang"><input type="text" name="tl" id="goog-gt-votingInputTrgLang"><input type="text" name="query" id="goog-gt-votingInputSrcText"><input type="text" name="gtrans" id="goog-gt-votingInputTrgText"><input type="text" name="vote" id="goog-gt-votingInputVote"></form><iframe name="votingFrame" frameborder="0"></iframe></div></div></div><div id="smartsupp-widget-container"><!----><!----><!----> <!----><!----> <!----><div data-testid="widgetButtonFrame" style="border-radius: 9999px; box-shadow: rgba(0, 0, 0, 0.06) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 2px 32px; color-scheme: normal; height: 56px; position: fixed; bottom: 24px; left: 12px; right: initial; z-index: 10000000; width: 56px;"><iframe allowfullscreen="" scrolling="no" id="widgetButtonFrame" title="Smartsupp widget button" style="position: absolute; width: 100%; height: 100%; border-width: medium; border-style: none; border-color: currentcolor; border-image: initial; display: block; text-align: left; margin: 0px; padding: 0px; top: 0px; left: 0px; opacity: 1;"></iframe><!----></div><!----> <!----><!----> <!----><!----><!----></div><div class="VIpgJd-ZVi9od-aZ2wEe-wOHMyf"><div class="VIpgJd-ZVi9od-aZ2wEe-OiiCO"><svg xmlns="http://www.w3.org/2000/svg" class="VIpgJd-ZVi9od-aZ2wEe" width="96px" height="96px" viewBox="0 0 66 66"><circle class="VIpgJd-ZVi9od-aZ2wEe-Jt5cK" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle></svg></div></div><iframe frameborder="0" class="VIpgJd-ZVi9od-xl07Ob-OEVmcd skiptranslate" title="Widżet języka Tłumacza" style="visibility: visible; box-sizing: content-box; width: 0px; height: 0px; display: none;"></iframe></body></html>

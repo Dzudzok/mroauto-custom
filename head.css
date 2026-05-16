@@ -2976,8 +2976,8 @@ box-shadow: 6px 8px 4px 0px rgb(0 0 0 / 10%);
         cursor: pointer !important;
         flex-shrink: 0 !important;
         box-sizing: border-box !important;        
-        top: 10px;
-        right: 11px;
+        top: 10px !important;
+        right: 11px !important;
     }
 
     /* Lista items */
