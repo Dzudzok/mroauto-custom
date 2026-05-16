@@ -5,227 +5,6 @@
    z .flex-product-detail (URL TecDoc / hledani). */
 
 /* ============================================================================
-   UNIFIED PRODUCT CARD — prawa kolumna karty produktu w jednym whitespace 2026-05-15
-   Wszystko (nazwa + tabela params + delivery box + akcja) w jednym bialym kontenerze
-   z border-radius i shadow. Sekcje wewnatrz "plaskie" rozdzielone subtle borders.
-   ============================================================================ */
-
-/* Glowny kontener — prawa kolumna karty produktu */
-.flex-product-detail .flex-informations:not(.flex-tab) {
-    background: #fff;
-    border: 1px solid #e5e7eb;
-    border-radius: 16px;
-    padding: 22px 24px 16px;
-    box-shadow:
-        0 1px 2px rgba(0, 0, 0, 0.04),
-        0 8px 28px rgba(0, 86, 157, 0.06);
-    margin: 0 0 18px;
-    transition: box-shadow 0.2s ease;
-}
-
-.flex-product-detail .flex-informations:not(.flex-tab):hover {
-    box-shadow:
-        0 1px 2px rgba(0, 0, 0, 0.04),
-        0 16px 40px rgba(0, 86, 157, 0.10);
-}
-
-/* Naglowek produktu (h1) */
-.flex-product-detail .flex-informations:not(.flex-tab) > h1 {
-    font-size: 22px;
-    font-weight: 800;
-    color: #111827;
-    letter-spacing: -0.4px;
-    margin: 0 0 14px;
-    padding-bottom: 14px;
-    border-bottom: 1px solid #f0f4f8;
-    line-height: 1.3;
-}
-
-/* Tabela parametrow (Vyrobce / Kod / TecDoc / Nahrazuje / EAN) */
-.flex-product-detail .flex-basic-params {
-    display: flex;
-    flex-direction: column;
-    margin: 0 0 14px;
-    border-radius: 10px;
-    overflow: hidden;
-    border: 1px solid #e5e7eb;
-    background: #fff;
-}
-
-.flex-product-detail .flex-basic-params > div {
-    display: flex;
-    align-items: center;
-    padding: 10px 14px;
-    border-bottom: 1px solid #f0f4f8;
-    background: #fff;
-    transition: background 0.12s ease;
-}
-
-.flex-product-detail .flex-basic-params > div:nth-child(even) {
-    background: #fafbfd;
-}
-
-.flex-product-detail .flex-basic-params > div:last-child {
-    border-bottom: none;
-}
-
-.flex-product-detail .flex-basic-params > div:hover {
-    background: #f0f7fc;
-}
-
-.flex-product-detail .flex-basic-params .flex-label {
-    flex: 0 0 130px;
-    font-size: 11px;
-    font-weight: 700;
-    text-transform: uppercase;
-    color: #6b7280;
-    letter-spacing: 0.6px;
-}
-
-.flex-product-detail .flex-basic-params .flex-value {
-    flex: 1;
-    text-align: right;
-    font-size: 14px;
-    font-weight: 600;
-    color: #111827;
-}
-
-/* Producent (TRW / ASHIKA / ...) jako accent czerwony — brand emphasis */
-.flex-product-detail .flex-basic-params .flex-manufacturer .flex-value {
-    color: #e30613;
-    font-weight: 800;
-    letter-spacing: 0.3px;
-}
-
-/* Kod (input readonly) — monospace, brand color */
-.flex-product-detail .flex-basic-params .flex-code .flex-value,
-.flex-product-detail .flex-basic-params input.flex-value {
-    background: transparent !important;
-    border: none !important;
-    text-align: right;
-    width: auto;
-    font-family: 'SF Mono', 'Cascadia Code', Monaco, Consolas, monospace;
-    font-size: 13px;
-    color: #00569d;
-    padding: 0;
-    cursor: text;
-}
-
-/* "Nahrazuje" — linki z brand colorem */
-.flex-product-detail .flex-basic-params .replaced-numbers .flex-value .flex-link,
-.flex-product-detail .flex-basic-params .replaced-numbers a {
-    color: #00569d;
-    font-weight: 600;
-    text-decoration: none;
-    border-bottom: 1px dashed currentColor;
-    transition: border-color 0.15s;
-    cursor: pointer;
-}
-
-.flex-product-detail .flex-basic-params .replaced-numbers .flex-value .flex-link:hover,
-.flex-product-detail .flex-basic-params .replaced-numbers a:hover {
-    border-bottom-style: solid;
-}
-
-/* Hide empty .flex-switch-price-remove-basket-block ktory tworzy spacing */
-.flex-product-detail .flex-switch-price-remove-basket-block:empty {
-    display: none;
-}
-
-/* TABY (INFORMACE / PARAMETRY / NAHRADY / APLIKACE / OE CISLA / KE STAZENI) */
-.flex-product-detail .flex-tabs {
-    background: #fff;
-    border: 1px solid #e5e7eb;
-    border-radius: 16px;
-    padding: 0;
-    margin: 18px 0 0;
-    box-shadow:
-        0 1px 2px rgba(0, 0, 0, 0.04),
-        0 8px 28px rgba(0, 86, 157, 0.06);
-    overflow: hidden;
-}
-
-.flex-product-detail .flex-tabs .flex-header {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0;
-    border-bottom: 1px solid #e5e7eb;
-    background: #fafbfd;
-    padding: 0 6px;
-}
-
-.flex-product-detail .flex-tabs .flex-tab {
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
-    padding: 14px 18px;
-    cursor: pointer;
-    font-size: 13px;
-    font-weight: 600;
-    color: #6b7280;
-    border-bottom: 3px solid transparent;
-    margin-bottom: -1px;
-    transition: color 0.15s, background 0.15s, border-color 0.15s;
-    border-radius: 0;
-    background: transparent;
-    user-select: none;
-}
-
-.flex-product-detail .flex-tabs .flex-tab:hover:not(.flex-selected) {
-    color: #00569d;
-    background: rgba(0, 86, 157, 0.04);
-}
-
-.flex-product-detail .flex-tabs .flex-tab.flex-selected {
-    color: #00569d;
-    background: #fff;
-    border-bottom-color: #00569d;
-    font-weight: 700;
-}
-
-.flex-product-detail .flex-tabs .flex-content {
-    padding: 20px 24px;
-}
-
-/* "Porovnat" jako subtelny link z ikona */
-.flex-product-detail .flex-product-compare {
-    text-align: center;
-    margin: 6px 0 4px;
-}
-
-/* TecDoc warnings (jesli sa) — nie ucina marginesu */
-.flex-product-detail .flex-informations:not(.flex-tab) > .tecdoc-warnings:empty {
-    display: none;
-}
-
-@media (max-width: 768px) {
-    .flex-product-detail .flex-informations:not(.flex-tab) {
-        padding: 16px 18px 12px;
-        margin: 0 0 12px;
-    }
-    .flex-product-detail .flex-informations:not(.flex-tab) > h1 {
-        font-size: 18px;
-        margin-bottom: 12px;
-        padding-bottom: 12px;
-    }
-    .flex-product-detail .flex-basic-params .flex-label {
-        flex: 0 0 100px;
-        font-size: 10px;
-    }
-    .flex-product-detail .flex-basic-params .flex-value {
-        font-size: 13px;
-    }
-    .flex-product-detail .flex-tabs .flex-tab {
-        padding: 12px 14px;
-        font-size: 12px;
-    }
-    .flex-product-detail .flex-tabs .flex-content {
-        padding: 16px;
-    }
-}
-
-
-/* ============================================================================
    Modern delivery box — MODERN REDESIGN 2026-05-15 (v13)
    Clean, contemporary e-commerce card design.
    Status bar (slim) → CENA HUGE → Delivery (akcent z lewa) → CTA (premium button).
@@ -257,16 +36,24 @@
     --gray-700: #374151;
     --gray-900: #111827;
 
-    border-radius: 12px;
+    border-radius: 16px;
     font-family: inherit;
-    margin: 8px 0 4px;
+    margin: 14px 0 18px;
     display: flex;
     flex-direction: column;
     background: #fff;
     border: 1px solid var(--gray-200);
+    box-shadow:
+        0 1px 2px rgba(0, 0, 0, 0.04),
+        0 8px 28px rgba(0, 86, 157, 0.06);
     overflow: hidden;
-    /* W ramach unified card (.flex-informations) zostaje bez wlasnego shadow,
-       tylko subtle border. Spojny look jako sekcja wewnatrz wiekszej karty. */
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.modern-delivery-box:hover {
+    box-shadow:
+        0 1px 2px rgba(0, 0, 0, 0.04),
+        0 16px 40px rgba(0, 86, 157, 0.10);
 }
 
 /* === STATUS BAR — slim, semantic === */
