@@ -1178,3 +1178,110 @@ console.log('MROAUTO: Global helpers loaded');
    IIFE wywolywany na kazdej stronie, console.log "ceny dopravy 26-03-2026" zasmiecal konsole.
    Rollback: git checkout pre-faza-A -- global.js  (przywraca caly plik z tagu pre-faza-A). */
 
+
+/* ============================================================================
+   MOBILE QUICK TILES — 2026-05-16
+   4 kafelki zamiast KATALOGY menu na mobile (KATALOGY hide w CSS @media).
+     1. Autodily → /cs/katalog/tecdoc/osobni
+     2. VIN → /cs/katalog/yq-katalog/vin/  (lub login redirect)
+     3. Karosarske dily → /cs/signeda/karosarske-dily-18
+     4. Vraceni zbozi → https://returo.mroautoapp.cz/vraceni (external)
+   Wstrzykiwane przez JS przed .flex-main-menu. Display: none na desktop.
+   ============================================================================ */
+(function () {
+    'use strict';
+    if (window.__MRO_QUICK_TILES_INIT) return;
+    window.__MRO_QUICK_TILES_INIT = true;
+
+    const TILES = [
+        {
+            label: 'Autodíly',
+            href: '/cs/katalog/tecdoc/osobni',
+            icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 16H9m10 0h3v-3.15a1 1 0 0 0-.84-.99L16 11l-2.7-3.6a1 1 0 0 0-.8-.4H5.24a2 2 0 0 0-1.8 1.1l-.8 1.63A6 6 0 0 0 2 12.42V16h2"/><circle cx="6.5" cy="16.5" r="2.5"/><circle cx="16.5" cy="16.5" r="2.5"/></svg>'
+        },
+        {
+            label: 'VIN',
+            href: '#vin',
+            action: 'vin',
+            icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/><path d="M8 11h6"/><path d="M11 8v6"/></svg>'
+        },
+        {
+            label: 'Karosářské díly',
+            href: '/cs/signeda/karosarske-dily-18',
+            icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>'
+        },
+        {
+            label: 'Vrácení zboží',
+            href: 'https://returo.mroautoapp.cz/vraceni',
+            external: true,
+            icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>'
+        }
+    ];
+
+    function handleVinClick(e) {
+        e.preventDefault();
+        // Niezalogowany — redirect do login (Nextis i tak by to zrobil potem)
+        const isLogged = !!document.querySelector('.flex-user-menu');
+        if (!isLogged) {
+            location.href = '/cs/prihlaseni';
+            return;
+        }
+        // Zalogowany — scroll do VIN search jesli na home, else redirect
+        const vinSearch = document.querySelector('#mlpVehicleSearch');
+        if (vinSearch) {
+            vinSearch.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            setTimeout(() => {
+                const input = vinSearch.querySelector('.vehicleSearch__input');
+                if (input) input.focus();
+            }, 400);
+        } else {
+            location.href = '/cs#vin';
+        }
+    }
+
+    function build() {
+        if (document.querySelector('.mro-quick-tiles')) return; // juz zamontowane
+
+        const mainMenu = document.querySelector('.flex-main-menu');
+        if (!mainMenu) return; // jeszcze nie renderowane
+
+        const wrap = document.createElement('div');
+        wrap.className = 'mro-quick-tiles';
+
+        TILES.forEach(t => {
+            const a = document.createElement('a');
+            a.className = 'mro-quick-tile';
+            a.href = t.href;
+            if (t.external) {
+                a.target = '_blank';
+                a.rel = 'noopener';
+            }
+            if (t.action === 'vin') {
+                a.addEventListener('click', handleVinClick);
+            }
+            a.innerHTML = `
+                <span class="mro-quick-tile-icon">${t.icon}</span>
+                <span class="mro-quick-tile-label">${t.label}</span>
+            `;
+            wrap.appendChild(a);
+        });
+
+        mainMenu.parentNode.insertBefore(wrap, mainMenu);
+    }
+
+    // Bootstrap: try immediate + retry + observer (Nextis renderuje async)
+    function init() {
+        build();
+        const observer = new MutationObserver(() => build());
+        observer.observe(document.body || document.documentElement, { childList: true, subtree: true });
+        let tries = 0;
+        const iv = setInterval(() => { build(); if (++tries >= 20) clearInterval(iv); }, 250);
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init, { once: true });
+    } else {
+        init();
+    }
+})();
+

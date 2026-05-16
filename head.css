@@ -2665,9 +2665,95 @@ box-shadow: 6px 8px 4px 0px rgb(0 0 0 / 10%);
         display: none !important;
     }
 
-    /* KATALOGY menu (mobile) — naszych zmian USUNIETO 2026-05-16 (user feedback:
-       'raz pokazuje po nowemu raz po staremu, daj jak bylo'). Zostaje natywny
-       Nextis 1-col collapse. */
+    /* KATALOGY native menu — UKRYTE na mobile (zastapiamy 4 kafelki) */
+    .flex-container.flex-main-menu {
+        display: none !important;
+    }
+
+    /* === MRO QUICK TILES (mobile only): 4 kafelki zamiast KATALOGY === */
+    .mro-quick-tiles {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 8px !important;
+        padding: 10px !important;
+    }
+
+    .mro-quick-tile {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        padding: 14px 8px;
+        background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+        border: 1px solid #e0ecf5;
+        border-radius: 12px;
+        text-decoration: none;
+        color: #00569d;
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 1.2;
+        text-align: center;
+        box-shadow: 0 1px 2px rgba(0, 86, 157, 0.04);
+        transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+        min-height: 72px;
+    }
+
+    .mro-quick-tile:hover,
+    .mro-quick-tile:active {
+        transform: translateY(-1px);
+        border-color: #00569d;
+        box-shadow: 0 4px 12px rgba(0, 86, 157, 0.12);
+    }
+
+    .mro-quick-tile-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 32px;
+        height: 32px;
+        color: #00569d;
+        flex-shrink: 0;
+    }
+
+    .mro-quick-tile-icon svg {
+        width: 100%;
+        height: 100%;
+    }
+
+    .mro-quick-tile-label {
+        display: block;
+        letter-spacing: 0.2px;
+    }
+}
+
+/* Desktop — hide quick tiles (tylko mobile) */
+@media (min-width: 769px) {
+    .mro-quick-tiles {
+        display: none !important;
+    }
+}
+
+/* === VIN search compact na mobile + hide gdy locked (niezalogowany) ===
+   Locked overlay nie ma sensu na mobile — user ma kafelek 'VIN' w quick tiles
+   ktory go przekieruje do logowania lub VIN search input. */
+@media (max-width: 768px) {
+    /* Niezalogowany — caly VIN search ukryty (kafelek 'VIN' wystarczy) */
+    #mlpVehicleSearch.--locked {
+        display: none !important;
+    }
+
+    /* Zalogowany — VIN search compact: mniejszy heading + tighter spacing */
+    #mlpVehicleSearch {
+        margin: 4px auto 10px !important;
+    }
+    #mlpVehicleSearch .vehicleSearch__heading {
+        font-size: 14px !important;
+        margin: 4px 8px 6px !important;
+    }
+    #mlpVehicleSearch .vehicleSearch__label {
+        padding: 6px !important;
+    }
 }
 
 
