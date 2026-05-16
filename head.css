@@ -3265,5 +3265,34 @@ box-shadow: 6px 8px 4px 0px rgb(0 0 0 / 10%);
     }
 }
 
+/* === TecDoc kategorie — mobile reorder 2026-05-16 ===
+   Problem: Na mobile nagłówek "Signeda - karosářské díly" (.title z h1)
+   pokazywal sie MIEDZY naszymi quick tiles a drzewkiem Nextisa (.tree.main),
+   bo w DOM .title jest po .shortcuts-container ale przed faktyczna lista
+   Signeda items. Nextis na mobile hide'uje .shortcuts (Signeda items) ale
+   .title zostaje sierota, wizualnie podpisujac drzewko.
+
+   Fix: na mobile flex-column na .content w .categories.with-shortcuts,
+   z order tak zeby drzewko (.tree.main) wjechalo PRZED Signeda (.title)
+   i jego .shortcuts. Wizualnie:
+     1. h1 BMW + search
+     2. nasze quick tiles + 18 Nextis tiles
+     3. drzewko (tree.main)
+     4. Signeda h1 + tiles (jezeli widoczne)
+
+   Desktop niezmieniony — sidebar layout z drzewkiem po lewej dziala dalej. */
+@media (max-width: 768px) {
+    .flex-tecdoc .categories.with-shortcuts > .content {
+        display: flex !important;
+        flex-direction: column !important;
+    }
+    .flex-tecdoc .categories.with-shortcuts > .content > .flex-row-add-to-license-plate { order: 1 !important; }
+    .flex-tecdoc .categories.with-shortcuts > .content > .search-and-tools { order: 2 !important; }
+    .flex-tecdoc .categories.with-shortcuts > .content > .shortcuts-container { order: 3 !important; }
+    .flex-tecdoc .categories.with-shortcuts > .content > .tree.main { order: 4 !important; }
+    .flex-tecdoc .categories.with-shortcuts > .content > .title { order: 5 !important; }
+    .flex-tecdoc .categories.with-shortcuts > .content > .shortcuts { order: 6 !important; }
+}
+
 
 
