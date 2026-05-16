@@ -8,6 +8,284 @@
 
    Rollback: git checkout pre-faza-B -- head.css  ALBO  git revert <sha>. */
 
+
+/* ============================================================================
+   MROAUTO DESIGN SYSTEM v1 — 2026-05-16 (faza D1)
+   CSS variables jako tokens projektowe. Uzywac w nowych modulach przez var(--mro-*).
+   Inspired SmartParts (zaakceptowane wizualnie przez user'a).
+   ============================================================================ */
+
+:root {
+    /* === KOLORY === */
+    --mro-brand: #00569d;
+    --mro-brand-dark: #003e72;
+    --mro-brand-light: #0072c8;
+    --mro-accent: #e30613;        /* czerwony brand (CTA, podkreslenia) */
+    --mro-accent-dark: #b00510;
+
+    --mro-success: #16a34a;
+    --mro-success-soft: #f0fdf4;
+    --mro-success-text: #14532d;
+
+    --mro-warning: #f59e0b;
+    --mro-warning-soft: #fffbeb;
+
+    --mro-danger: #dc2626;
+    --mro-danger-soft: #fef2f2;
+    --mro-danger-text: #7f1d1d;
+
+    --mro-info: #0ea5e9;
+    --mro-info-soft: #f0f9ff;
+
+    /* Skala szarosci (Tailwind-inspired) */
+    --mro-gray-50:  #f9fafb;
+    --mro-gray-100: #f3f4f6;
+    --mro-gray-200: #e5e7eb;
+    --mro-gray-300: #d1d5db;
+    --mro-gray-400: #9ca3af;
+    --mro-gray-500: #6b7280;
+    --mro-gray-600: #4b5563;
+    --mro-gray-700: #374151;
+    --mro-gray-800: #1f2937;
+    --mro-gray-900: #111827;
+
+    --mro-bg: #fff;
+    --mro-bg-soft: #fafbfd;
+    --mro-bg-tint: #f5f7fa;
+
+    /* === SPACING (4px base scale) === */
+    --mro-space-0: 0;
+    --mro-space-1: 4px;
+    --mro-space-2: 8px;
+    --mro-space-3: 12px;
+    --mro-space-4: 16px;
+    --mro-space-5: 20px;
+    --mro-space-6: 24px;
+    --mro-space-8: 32px;
+    --mro-space-10: 40px;
+    --mro-space-12: 48px;
+
+    /* === RADIUS === */
+    --mro-radius-sm: 6px;
+    --mro-radius-md: 10px;
+    --mro-radius-lg: 14px;
+    --mro-radius-xl: 18px;
+    --mro-radius-pill: 999px;
+
+    /* === SHADOWS (subtle, brand-tinted) === */
+    --mro-shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.04);
+    --mro-shadow-sm: 0 2px 6px rgba(0, 86, 157, 0.06);
+    --mro-shadow-md: 0 1px 2px rgba(0, 0, 0, 0.04), 0 8px 24px rgba(0, 86, 157, 0.06);
+    --mro-shadow-lg: 0 1px 2px rgba(0, 0, 0, 0.04), 0 16px 40px rgba(0, 86, 157, 0.10);
+    --mro-shadow-xl: 0 4px 12px rgba(0, 0, 0, 0.06), 0 24px 48px rgba(0, 86, 157, 0.12);
+
+    /* === TYPOGRAPHY === */
+    --mro-text-xs:   11px;
+    --mro-text-sm:   13px;
+    --mro-text-base: 14px;
+    --mro-text-md:   15px;
+    --mro-text-lg:   17px;
+    --mro-text-xl:   20px;
+    --mro-text-2xl:  24px;
+    --mro-text-3xl:  30px;
+    --mro-text-4xl:  38px;
+    --mro-text-5xl:  48px;
+
+    --mro-leading-tight:  1.2;
+    --mro-leading-snug:   1.35;
+    --mro-leading-normal: 1.5;
+    --mro-leading-relaxed: 1.7;
+
+    --mro-font-mono: 'SF Mono', 'Cascadia Code', Monaco, Consolas, 'Courier New', monospace;
+
+    /* === TRANSITIONS === */
+    --mro-transition-fast: 0.12s ease;
+    --mro-transition: 0.18s ease;
+    --mro-transition-slow: 0.3s ease;
+
+    /* === BREAKPOINTS (dokumentacja — uzywaj w @media bezposrednio) ===
+       sm:  480px   (mobile landscape / small tablet)
+       md:  768px   (tablet)
+       lg:  1024px  (desktop)
+       xl:  1280px  (large desktop) */
+}
+
+/* === UTILITY KLASY (komponenty wielokrotnego uzytku) === */
+
+/* Bazowy 'modern shell' wrapper — reset Nextis dla scoped redesign */
+.mro-modern {
+    box-sizing: border-box;
+    font-family: inherit;
+    color: var(--mro-gray-800);
+}
+
+.mro-modern *,
+.mro-modern *::before,
+.mro-modern *::after {
+    box-sizing: border-box;
+}
+
+/* Karty (containers) */
+.mro-card {
+    background: var(--mro-bg);
+    border: 1px solid var(--mro-gray-200);
+    border-radius: var(--mro-radius-lg);
+    box-shadow: var(--mro-shadow-md);
+    transition: box-shadow var(--mro-transition);
+    overflow: hidden;
+}
+
+.mro-card-hover:hover {
+    box-shadow: var(--mro-shadow-lg);
+}
+
+/* Przyciski — duzy CTA */
+.mro-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--mro-space-2);
+    padding: 10px 18px;
+    border: none;
+    border-radius: var(--mro-radius-md);
+    font-family: inherit;
+    font-size: var(--mro-text-base);
+    font-weight: 600;
+    line-height: 1.2;
+    cursor: pointer;
+    transition: all var(--mro-transition);
+    text-decoration: none;
+    white-space: nowrap;
+    user-select: none;
+}
+
+.mro-btn-primary {
+    background: var(--mro-accent);
+    color: #fff;
+    box-shadow: 0 1px 2px rgba(227, 6, 19, 0.2), 0 4px 12px rgba(227, 6, 19, 0.15);
+}
+
+.mro-btn-primary:hover {
+    background: var(--mro-accent-dark);
+    transform: translateY(-1px);
+    box-shadow: 0 1px 2px rgba(227, 6, 19, 0.2), 0 8px 20px rgba(227, 6, 19, 0.25);
+}
+
+.mro-btn-primary:active {
+    transform: translateY(0);
+}
+
+.mro-btn-secondary {
+    background: var(--mro-bg);
+    color: var(--mro-brand);
+    border: 1px solid var(--mro-gray-200);
+}
+
+.mro-btn-secondary:hover {
+    border-color: var(--mro-brand);
+    background: var(--mro-info-soft);
+}
+
+.mro-btn-ghost {
+    background: transparent;
+    color: var(--mro-gray-600);
+}
+
+.mro-btn-ghost:hover {
+    background: var(--mro-gray-100);
+    color: var(--mro-gray-900);
+}
+
+.mro-btn-pill {
+    border-radius: var(--mro-radius-pill);
+    padding: 8px 16px;
+}
+
+.mro-btn-lg {
+    padding: 14px 24px;
+    font-size: var(--mro-text-md);
+}
+
+.mro-btn-sm {
+    padding: 6px 12px;
+    font-size: var(--mro-text-sm);
+}
+
+/* Badge (label / chip) */
+.mro-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--mro-space-1);
+    padding: 4px 10px;
+    border-radius: var(--mro-radius-pill);
+    font-size: var(--mro-text-xs);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+}
+
+.mro-badge-success { background: var(--mro-success-soft); color: var(--mro-success-text); }
+.mro-badge-danger  { background: var(--mro-danger-soft);  color: var(--mro-danger-text); }
+.mro-badge-info    { background: var(--mro-info-soft);    color: var(--mro-brand); }
+.mro-badge-brand   { background: var(--mro-brand);        color: #fff; }
+
+/* Status dot z pulse (in-stock) */
+.mro-status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    position: relative;
+    box-shadow: 0 0 0 3px rgba(currentColor, 0.18);
+}
+
+.mro-status-dot.is-pulse::after {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    background: currentColor;
+    opacity: 0.4;
+    animation: mroPulse 2s ease-out infinite;
+}
+
+@keyframes mroPulse {
+    0%   { transform: scale(0.8); opacity: 0.5; }
+    100% { transform: scale(2.2); opacity: 0; }
+}
+
+/* Banner (info banner z ikona + tekst, jak SmartParts delivery banner) */
+.mro-banner {
+    display: flex;
+    align-items: center;
+    gap: var(--mro-space-3);
+    padding: 12px 16px;
+    border-radius: var(--mro-radius-md);
+    font-size: var(--mro-text-sm);
+    line-height: var(--mro-leading-snug);
+}
+
+.mro-banner-success { background: var(--mro-success-soft); color: var(--mro-success-text); border: 1px solid #bbf7d0; }
+.mro-banner-info    { background: var(--mro-info-soft);    color: var(--mro-brand); border: 1px solid #bae6fd; }
+.mro-banner-warning { background: var(--mro-warning-soft); color: #92400e; border: 1px solid #fde68a; }
+.mro-banner-danger  { background: var(--mro-danger-soft);  color: var(--mro-danger-text); border: 1px solid #fecaca; }
+
+.mro-banner-icon {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.6);
+}
+
+.mro-banner-body { flex: 1; }
+.mro-banner-title { font-weight: 700; margin-bottom: 2px; }
+
+
 /* === Logo brand mroauto (zamiana default Nextis logo.png na Image.ashx?id=644339) ===
    Migrowane 2026-05-15 z Head_w_nextis. Wersjonowanie pomyslu:
      - v1: #BodyContentPlaceHolder_Logo (tylko home, na podstronach BUG bo brak ID)
