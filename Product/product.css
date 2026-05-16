@@ -105,12 +105,18 @@
     border-bottom: 1px solid var(--gray-100);
 }
 
+.mro-price-card.is-in-stock {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+}
+
 .mro-price-card.is-unavailable {
     background: linear-gradient(180deg, #fef9f9 0%, #fdf2f2 100%);
 }
 
 .mro-price-row {
-    display: flex;
     align-items: baseline;
     justify-content: flex-end;
     margin-bottom: 10px;
@@ -121,7 +127,7 @@
 }
 
 .mro-price-main {
-    font-size: 36px;
+    font-size: 25px;
     font-weight: 900;
     color: var(--gray-900);
     letter-spacing: -1px;
@@ -131,7 +137,7 @@
 
 .mro-price-vat {
     margin-top: 4px;
-    font-size: 12px;
+    font-size: 11px;
     color: var(--gray-500);
     font-weight: 500;
     font-variant-numeric: tabular-nums;
