@@ -1644,7 +1644,7 @@ width: 286px !important;
     .home-page-login-form .lost-password-box,
     .home-page-login-form .inputs {
         max-width: 100% !important;
-        width: 100% !important;
+        width: 98% !important;
         box-sizing: border-box !important;
     }
     .flex-login-container .buttons {
