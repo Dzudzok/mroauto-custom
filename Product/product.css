@@ -5,6 +5,107 @@
    z .flex-product-detail (URL TecDoc / hledani). */
 
 /* ============================================================================
+   HYBRID REDESIGN — styling Nextis elementów + wypełnienie placeholderów
+   Scoped przez .flex-product-detail (tylko karta produktu, nie inne strony).
+   ============================================================================ */
+
+/* === .mro-product-top — placeholder z naszego Product/top.html, wypelniany przez JS === */
+.flex-product-detail .mro-product-top {
+    margin-bottom: 14px;
+}
+
+.flex-product-detail .mro-product-top-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.flex-product-detail .mro-brand-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 3px 3px 3px 3px;
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.flex-product-detail .mro-brand-pill-mark {
+    background: #00569d;
+    color: #fff;
+    padding: 4px 9px;
+    border-radius: 999px;
+    font-weight: 800;
+    font-size: 10px;
+    letter-spacing: 0.6px;
+    line-height: 1;
+}
+
+.flex-product-detail .mro-brand-pill-name {
+    color: #374151;
+    padding-right: 8px;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+}
+
+.flex-product-detail .mro-product-meta {
+    font-size: 12px;
+    color: #6b7280;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.flex-product-detail .mro-product-meta-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: #9ca3af;
+    font-weight: 700;
+}
+
+.flex-product-detail .mro-product-meta strong {
+    color: #00569d;
+    font-family: 'SF Mono', Monaco, Consolas, monospace;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+/* === H1 z logo producenta (.info-manufacturer-logo wstrzykujemy przez global.js) === */
+.flex-product-detail .flex-informations > h1 {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    font-size: 22px;
+    font-weight: 800;
+    color: #111827;
+    letter-spacing: -0.4px;
+    line-height: 1.3;
+    margin: 0 0 8px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #f0f4f8;
+}
+
+.flex-product-detail .flex-informations > h1 .info-manufacturer-logo {
+    order: 2;
+    flex-shrink: 0;
+    align-self: flex-start;
+    margin-top: 2px;
+}
+
+.flex-product-detail .flex-informations > h1 .info-manufacturer-logo img {
+    max-width: 80px;
+    max-height: 36px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+}
+
+/* ============================================================================
    Modern delivery box — MODERN REDESIGN 2026-05-15 (v13)
    Clean, contemporary e-commerce card design.
    Status bar (slim) → CENA HUGE → Delivery (akcent z lewa) → CTA (premium button).

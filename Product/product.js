@@ -19,6 +19,35 @@
     });
   };
 
+  // Wypelnia .mro-product-top (pusty placeholder z Product/top.html injected przez
+  // injector) — wstawia brand pill z nazwa producenta + crumb-style metadata.
+  function populateProductTop() {
+    const top = document.querySelector('.flex-product-detail .mro-product-top');
+    if (!top || top.children.length) return; // juz wypelnione
+
+    const manufacturerEl = document.querySelector('.flex-product-detail .flex-manufacturer .flex-value');
+    const codeEl = document.querySelector('.flex-product-detail .flex-code .flex-value');
+    const tecdocEl = document.querySelector('.flex-product-detail .flex-tecdoc-number .flex-value');
+
+    const manufacturer = manufacturerEl ? manufacturerEl.textContent.trim() : '';
+    const code = codeEl ? (codeEl.value || codeEl.textContent || '').trim() : '';
+    const tecdoc = tecdocEl ? tecdocEl.textContent.trim() : '';
+
+    if (!manufacturer) return; // brak danych
+
+    const mark = manufacturer.slice(0, 3).toUpperCase();
+    top.innerHTML = `
+      <div class="mro-product-top-row">
+        <span class="mro-brand-pill">
+          <span class="mro-brand-pill-mark">${mark}</span>
+          <span class="mro-brand-pill-name">${manufacturer}</span>
+        </span>
+        ${code ? `<span class="mro-product-meta"><span class="mro-product-meta-label">Kód</span> <strong>${code}</strong></span>` : ''}
+        ${tecdoc && tecdoc !== code ? `<span class="mro-product-meta"><span class="mro-product-meta-label">TecDoc®</span> <strong>${tecdoc}</strong></span>` : ''}
+      </div>
+    `;
+  }
+
   // Mountowanie modern-delivery-box. Wywolywane na init() + watchdog re-mount
   // jesli Nextis re-renderowal DOM po naszym pierwszym mount.
   function mountModernBox() {
@@ -249,12 +278,14 @@ document.querySelectorAll(".flex-delivery-time-item").forEach((firstItem, index)
 
     // Try initial mount
     mountModernBox();
+    populateProductTop();
 
     // Retry przez 8s, co 300ms. Pokrywa wszystkie race conditions z Nextis.
     let retries = 0;
     const retryInterval = setInterval(() => {
       retries++;
       mountModernBox(); // idempotent — guard sprawdza czy juz jest
+      populateProductTop(); // idempotent (skip jesli juz wypelnione)
       if (retries >= 26) clearInterval(retryInterval); // 8s
     }, 300);
 
@@ -263,6 +294,7 @@ document.querySelectorAll(".flex-delivery-time-item").forEach((firstItem, index)
     // przestaje istniec.
     const observer = new MutationObserver(() => {
       mountModernBox(); // idempotent
+      populateProductTop();
     });
     observer.observe(document.body, { childList: true, subtree: true });
 
