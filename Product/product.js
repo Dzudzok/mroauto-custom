@@ -206,19 +206,18 @@ document.querySelectorAll(".flex-delivery-time-item").forEach((firstItem, index)
   }
 
   if (isAvailable) {
-    // PRZENIESIENIE basketEl zamiast klonowania (fix 2026-05-15).
-    // cloneNode(true) kopiuje atrybuty ale NIE event listenery JS Nextisa.
-    // Nextis spinner +/- (.flex-spinner-increment/decrement-button) ma
-    // listenery podpiete do KONKRETNYCH elementow DOM. Klon ich nie ma —
-    // spinner wyglada ale klik nie dziala (raz tak raz nie, bo czasem
-    // Nextis ma event delegation a czasem nie).
-    //
-    // appendChild na elemencie ktory juz jest w DOM = MOVE (nie copy).
-    // basketEl jest przenoszony z .flex-amount-info (ktore i tak hide'ujemy
-    // ponizej) do naszego .modern-basket-container. ID inputu i spinner
-    // data-flex-spinner-input bez zmian — JS Nextisa wciaz dziala.
+    // Przenoszenie zamiast klonowania (zachowuje JS listenery Nextisa) —
+    // patrz [[feedback-move-not-clone]].
     basketEl.classList.add("modern-basket");
     box.querySelector(".modern-basket-container").appendChild(basketEl);
+
+    // SmartParts-style CTA: Nextis input button ma value='' (sama ikona via CSS
+    // bg-image). Ustawiamy value='Do kosiku' + class .modern-add-btn dla styli.
+    const addBtn = basketEl.querySelector('input.flex-add-to-basket-button');
+    if (addBtn) {
+      addBtn.value = 'Do košíku';
+      addBtn.classList.add('modern-add-btn');
+    }
   }
 
   firstItem.insertBefore(box, firstItem.firstChild);
