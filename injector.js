@@ -147,16 +147,13 @@
       matchSelector: 'body',
       js: 'DeliveryFormat/delivery-format.js'
     },
-    // delivery-countdown USUNIETO 2026-05-16 — user 'przeszkadza mi w rogu gornym,
-    // chce strone powiekszyc na 80%'. Modul Plivery Countdown/ zostaje na dysku
-    // jako backup, mozna przywrocic dodajac wpis ponownie.
-    // {
-    //   name: 'delivery-countdown',
-    //   pathIncludes: [],
-    //   matchSelector: '.flex-user-menu',
-    //   css: 'DeliveryCountdown/delivery-countdown.css',
-    //   js: 'DeliveryCountdown/delivery-countdown.js'
-    // },
+    {
+      name: 'delivery-countdown',
+      pathIncludes: [],
+      matchSelector: '.flex-user-menu', // tylko dla zalogowanych
+      css: 'DeliveryCountdown/delivery-countdown.css',
+      js: 'DeliveryCountdown/delivery-countdown.js'
+    },
     {
       name: 'category-tiles',
       pathIncludes: ['/katalog/tecdoc/'],

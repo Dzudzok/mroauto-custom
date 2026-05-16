@@ -203,13 +203,48 @@
             }
         }, { passive: true });
 
-        countdownTimer.addEventListener('click', function () {
-            countdownTimer.classList.toggle('active');
+        // === SLIDE-OUT DRAWER + TRIGGER TAB (redesign 2026-05-16) ===
+        // Wczesniej: fixed badge top-right (przeszkadzal). Teraz: pionowy
+        // trigger tab na prawej krawedzi ekranu, klik = toggle slide-in drawer.
+        // Mobile @768: CSS display:none na trigger i drawer.
+
+        // Create trigger button jesli nie istnieje
+        let trigger = document.querySelector('.mro-delivery-trigger');
+        if (!trigger) {
+            trigger = document.createElement('button');
+            trigger.type = 'button';
+            trigger.className = 'mro-delivery-trigger';
+            trigger.innerHTML = `<span>Trasy</span><span class="mro-delivery-trigger-time">${(timerElement.textContent || '').trim()}</span>`;
+            document.body.appendChild(trigger);
+        }
+
+        // Sync timer w triggerze z aktualnym timerElement
+        function syncTriggerTime() {
+            const timeSpan = trigger.querySelector('.mro-delivery-trigger-time');
+            if (!timeSpan) return;
+            const t = (timerElement.textContent || '').trim();
+            timeSpan.textContent = t;
+            // Urgent < 5min
+            const [h, m, s] = t.split(':').map(Number);
+            const total = (h || 0) * 3600 + (m || 0) * 60 + (s || 0);
+            trigger.classList.toggle('is-urgent', total > 0 && total < 5 * 60);
+        }
+        syncTriggerTime();
+
+        // Observe timerElement zmian zeby sync triggera
+        const triggerObserver = new MutationObserver(syncTriggerTime);
+        triggerObserver.observe(timerElement, { childList: true, characterData: true, subtree: true });
+
+        // Toggle drawer on trigger click
+        trigger.addEventListener('click', function (e) {
+            e.stopPropagation();
+            countdownTimer.classList.toggle('is-open');
         });
 
+        // Close drawer on click outside (ale nie wewnatrz countdown lub trigger)
         document.addEventListener('click', function (event) {
-            if (!countdownTimer.contains(event.target)) {
-                countdownTimer.classList.remove('active');
+            if (!countdownTimer.contains(event.target) && !trigger.contains(event.target)) {
+                countdownTimer.classList.remove('is-open');
             }
         });
     }

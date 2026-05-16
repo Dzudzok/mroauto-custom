@@ -1,51 +1,114 @@
-/* Tooltip delivery countdown — migrowane z Body_w_nextis 2026-05-15 (faza B4).
-   Fixed badge top-right ze odliczaniem deadline transportu + tooltip z trasami. */
+/* Tooltip delivery countdown — redesign 2026-05-16: slide-out drawer z prawej.
+   Wczesniej: fixed badge top-right (przeszkadzal przy 80% layout).
+   Teraz: pionowy trigger tab na prawej krawedzi → klik → slide-in drawer.
+   Mobile @max-width 768: caly element ukryty. */
 
+/* === TRIGGER TAB — pionowy pasek z prawej krawedzi (klik = toggle drawer) === */
+.mro-delivery-trigger {
+    position: fixed;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    z-index: 2002;
+    background: #006fd2;
+    color: #fff;
+    border: none;
+    border-radius: 10px 0 0 10px;
+    padding: 14px 8px;
+    cursor: pointer;
+    box-shadow: -2px 0 8px rgba(0, 0, 0, 0.15);
+    font-family: 'Arial', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    writing-mode: vertical-rl;
+    transform-origin: center;
+    transform: translateY(-50%);
+    transition: background 0.15s, padding 0.15s;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.mro-delivery-trigger:hover {
+    background: #005bb0;
+    padding-right: 12px;
+}
+
+.mro-delivery-trigger .mro-delivery-trigger-time {
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 0;
+    color: #fff;
+}
+
+.mro-delivery-trigger.is-urgent .mro-delivery-trigger-time {
+    color: #ffe066;
+}
+
+/* === DRAWER — slide-out z prawej (countdown + tooltip razem) === */
 .transport-deadline-countdown {
     position: fixed !important;
-    right: 20px !important;
-    top: 5px !important;
-    width: auto !important;
-    padding: 8px 15px !important;
+    right: -380px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    width: 360px !important;
+    max-width: calc(100vw - 40px) !important;
+    padding: 18px 20px !important;
     background: #ffffff !important;
-    border-radius: 8px !important;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) !important;
-    color: #7b7b7b !important;
-    font-weight: bold !important;
+    border-radius: 14px 0 0 14px !important;
+    box-shadow: -8px 0 24px rgba(0, 0, 0, 0.15) !important;
+    color: #1f2937 !important;
+    font-weight: 600 !important;
     font-size: 14px !important;
     z-index: 2001 !important;
     display: flex !important;
-    align-items: center !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
     font-family: 'Arial', sans-serif !important;
-    cursor: pointer !important;
-    border: 1px solid #006fd2 !important;
+    cursor: default !important;
+    border: none !important;
+    border-left: 1px solid #006fd2 !important;
+    transition: right 0.3s ease-in-out !important;
+}
+
+.transport-deadline-countdown.is-open {
+    right: 0 !important;
 }
 
 .transport-deadline-countdown-timer {
-    margin-left: 5px !important;
-    font-size: 14px !important;
+    margin-left: 8px !important;
+    font-size: 22px !important;
+    font-weight: 800 !important;
+    color: #006fd2 !important;
+    letter-spacing: -0.5px !important;
+    font-variant-numeric: tabular-nums !important;
 }
 
 .transport-deadline-countdown.scrolled {
-    top: 5px !important;
+    /* zachowanie scroll bez zmian — slide drawer pozostaje na ten sam top */
 }
 
+/* === LISTA TRAS (oryginalny tooltip — teraz inline w drawerze) === */
 .mro-delivery-tooltip {
-    position: absolute !important;
-    top: 100% !important;
-    right: 0 !important;
-    background: white !important;
+    position: static !important;
+    top: auto !important;
+    right: auto !important;
+    background: transparent !important;
     color: #3b5060 !important;
     font-family: 'Arial', sans-serif !important;
-    font-size: 14px !important;
-    padding: 10px 15px !important;
-    border-radius: 8px !important;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) !important;
-    z-index: 2000 !important;
-    display: none !important;
-    width: 514px !important;
-    border: 2px solid #006fd2 !important;
-    max-height: 420px !important;
+    font-size: 13px !important;
+    padding: 16px 0 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    z-index: auto !important;
+    display: block !important;
+    width: 100% !important;
+    border: none !important;
+    border-top: 1px solid #e5e7eb !important;
+    margin-top: 16px !important;
+    max-height: 60vh !important;
     overflow-y: auto !important;
 }
 
@@ -57,62 +120,53 @@
 .mro-delivery-items {
     display: flex !important;
     flex-direction: column !important;
-    gap: 5px !important;
+    gap: 6px !important;
 }
 
 .mro-delivery-item {
     display: flex !important;
     align-items: center !important;
-    gap: 8px !important;
-    padding: 5px !important;
-    border: 1px solid #e0e0e0 !important;
-    border-radius: 4px !important;
+    gap: 10px !important;
+    padding: 8px 10px !important;
+    border: 1px solid #e5e7eb !important;
+    border-radius: 8px !important;
+    background: #fafbfd !important;
+    transition: background 0.12s ease, border-color 0.12s ease !important;
 }
 
 .mro-delivery-item:hover {
-    background-color: #5db9ff4f;
+    background: #f0f7fc !important;
+    border-color: #bfdcf2 !important;
 }
 
 .mro-delivery-item i {
-    font-size: 16px !important;
-    color: #ff0000 !important;
+    font-size: 14px !important;
+    color: #006fd2 !important;
+    flex-shrink: 0 !important;
 }
 
 .mro-delivery-item span {
     font-weight: 500 !important;
-    white-space: nowrap !important;
+    white-space: normal !important;
+    font-size: 12px !important;
+    line-height: 1.4 !important;
+    color: #374151 !important;
 }
 
 .mro-delivery-info {
-    margin-top: 10px !important;
-    font-size: 12px !important;
-    color: #666 !important;
+    margin-top: 12px !important;
+    font-size: 11px !important;
+    color: #6b7280 !important;
     font-style: italic !important;
-    padding-top: 5px !important;
-    border-top: 1px solid #e0e0e0 !important;
+    padding-top: 10px !important;
+    border-top: 1px solid #e5e7eb !important;
+    line-height: 1.5 !important;
 }
 
+/* === MOBILE — caly widget ukryty === */
 @media (max-width: 768px) {
+    .mro-delivery-trigger,
     .transport-deadline-countdown {
-        right: 10px !important;
-        padding: 5px 10px !important;
-        font-size: 12px !important;
-    }
-    .transport-deadline-countdown-timer {
-        font-size: 12px !important;
-    }
-    .mro-delivery-tooltip {
-        width: 250px !important;
-        font-size: 12px !important;
-        max-height: 300px !important;
-    }
-    .mro-delivery-item i {
-        font-size: 14px !important;
-    }
-    .mro-delivery-item {
-        padding: 3px !important;
-    }
-    .mro-delivery-info {
-        font-size: 10px !important;
+        display: none !important;
     }
 }
