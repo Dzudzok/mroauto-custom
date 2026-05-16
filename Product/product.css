@@ -254,6 +254,99 @@
     justify-content: flex-end;
 }
 
+/* SPINNER SmartParts-style: '[-] [1] [+]' poziomo z border pill.
+   Nextis DOM: <input type=text> + <div class=flex-spinner><div increment/><div decrement/></div>
+   Manipulujemy CSS order zeby zlozyc poziomo: decrement | input | increment
+   .flex-spinner staje sie flex row z grupowanymi przyciskami po prawej input,
+   plus order: -1 na flex-spinner zeby przeszedl PRZED input — nope, łatwiej:
+   pozostawiamy DOM, ale pozycjonujemy przyciski przez order. */
+
+.modern-basket .flex-basket-spinner {
+    display: flex !important;
+    align-items: stretch;
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 999px;
+    overflow: hidden;
+    height: 46px;
+    flex-shrink: 0;
+}
+
+/* Input ilości — w środku */
+.modern-basket .flex-basket-spinner > input[type="text"] {
+    order: 2;
+    width: 48px !important;
+    height: 100% !important;
+    border: none !important;
+    border-left: 1px solid #e5e7eb !important;
+    border-right: 1px solid #e5e7eb !important;
+    border-radius: 0 !important;
+    text-align: center !important;
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    background: #fff !important;
+    padding: 0 !important;
+    color: #111827 !important;
+    margin: 0 !important;
+}
+
+/* Kontener Nextis spinner +/- (Nextis ma to jako .flex-spinner z 2 dzieci pionowo) */
+.modern-basket .flex-basket-spinner > .flex-spinner {
+    display: contents !important; /* dzieci flex-spinner stają się siostrami input */
+}
+
+/* Decrement '-' po lewej, increment '+' po prawej */
+.modern-basket .flex-spinner-decrement-button,
+.modern-basket .flex-spinner-increment-button {
+    width: 38px !important;
+    height: 100% !important;
+    background-image: none !important; /* Nextis ma bg-image z arrow ikona */
+    background-color: #f9fafb !important;
+    cursor: pointer !important;
+    position: relative !important;
+    transition: background 0.15s !important;
+    border: none !important;
+}
+
+.modern-basket .flex-spinner-decrement-button { order: 1; }
+.modern-basket .flex-spinner-increment-button { order: 3; }
+
+.modern-basket .flex-spinner-decrement-button:hover,
+.modern-basket .flex-spinner-increment-button:hover {
+    background-color: #f3f4f6 !important;
+}
+
+/* Znaki '+' i '-' jako CSS ::before */
+.modern-basket .flex-spinner-decrement-button::before,
+.modern-basket .flex-spinner-increment-button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #374151;
+}
+
+.modern-basket .flex-spinner-decrement-button::before {
+    content: '−'; /* minus sign U+2212, ladniejszy niz hyphen */
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1;
+}
+
+.modern-basket .flex-spinner-increment-button::before {
+    content: '+';
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1;
+}
+
+/* Button koszyka po PRAWEJ — bezposrednie dziecko .modern-basket
+   (przez JS appendChild wyciagnięty z .flex-basket-spinner). */
+.modern-basket > .flex-add-to-basket-button {
+    /* style przejmowane z .modern-add-btn — patrz wyzej */
+}
+
 /* === SmartParts-style CTA button: 'Do košíku' big red pill z ikoną === */
 /* Nextis renderuje <input type="button" value=""> jako maly button z bg-image
    ikona. JS ustawia value='Do košíku' + class .modern-add-btn — CSS przekształca

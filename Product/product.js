@@ -211,12 +211,17 @@ document.querySelectorAll(".flex-delivery-time-item").forEach((firstItem, index)
     basketEl.classList.add("modern-basket");
     box.querySelector(".modern-basket-container").appendChild(basketEl);
 
-    // SmartParts-style CTA: Nextis input button ma value='' (sama ikona via CSS
-    // bg-image). Ustawiamy value='Do kosiku' + class .modern-add-btn dla styli.
+    // SmartParts-style CTA:
+    //   1. Nextis input button ma value='' (sama ikona via CSS bg-image).
+    //      Ustawiamy text + class.
+    //   2. Move addBtn na poziom basketEl (sibling .flex-basket-spinner) zeby
+    //      ramka pill spinnera nie obejmowala buttona. appendChild moves
+    //      element bez utraty listenerow JS Nextisa.
     const addBtn = basketEl.querySelector('input.flex-add-to-basket-button');
     if (addBtn) {
       addBtn.value = 'Do košíku';
       addBtn.classList.add('modern-add-btn');
+      basketEl.appendChild(addBtn); // move out of .flex-basket-spinner
     }
   }
 
