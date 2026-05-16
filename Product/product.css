@@ -266,9 +266,9 @@
     align-items: stretch;
     background: #fff;
     border: 1px solid #e5e7eb;
-    border-radius: 999px;
+    border-radius: 12px;
     overflow: hidden;
-    height: 46px;
+    height: 30px;
     flex-shrink: 0;
 }
 
@@ -354,14 +354,14 @@
 .mro-cta-row .modern-add-btn,
 .modern-basket .modern-add-btn {
     flex: 1;
-    height: 46px !important;
+    height: 30px !important;
     width: auto !important;
     min-width: 160px !important;
     background: #e30613 !important;
     background-image: none !important; /* Nextis ma background-image z ikona — usuwamy */
     color: #fff !important;
     border: none !important;
-    border-radius: 999px !important; /* pill */
+    border-radius: 12px !important; /* pill */
     font-family: inherit !important;
     font-size: 15px !important;
     font-weight: 700 !important;
