@@ -1,8 +1,12 @@
 /* Kafelki kategorii TecDoc — migrowane z Body_w_nextis 2026-05-15 (faza B5).
-   Renderowane na stronach TecDoc po wyborze auta. URL musi pasowac do wzorca:
-     /tecdoc/<seg1>/<seg2>/<seg3>/<seg4>/<seg5>/<seg6>/<seg7>/
+   Renderowane na stronach TecDoc po wyborze auta (listing kategorii).
+   URL musi pasowac: /tecdoc/<vehType>/<mfr>/<model>/<engine>/<mfrId>/<modelId>/<engineId>
    Kafelek linkuje do: ${prefix}${slug}/${vehicleIDpath}/${id}/
-   CSS w CategoryTiles/category-tiles.css. */
+   CSS w CategoryTiles/category-tiles.css.
+
+   2026-05-16: Nextis renderuje te kafelki SAM server-side (klasy
+   .product-shortcut-grid / .product-shortcut-tile). Nasz JS dziala jako
+   FALLBACK — czeka 1.5s i jezeli Nextis nie wyrenderowal, my budujemy. */
 (function () {
     'use strict';
 
@@ -10,7 +14,9 @@
     window.__MRO_CATEGORY_TILES_INIT = true;
 
     const cleanURL = location.origin + location.pathname;
-    const fullMatch = cleanURL.match(/(.*\/tecdoc\/[^\/]+\/[^\/]+\/[^\/]+\/[^\/]+\/)([^\/]+\/[^\/]+\/[^\/]+)$/);
+    // Listing URL ma 7 segmentow po /tecdoc/. Detail page ma 9. My obslugujemy
+    // tylko listing (gdzie Nextis renderuje grid). Trailing slash opcjonalny.
+    const fullMatch = cleanURL.match(/(.*\/tecdoc\/[^\/]+\/[^\/]+\/[^\/]+\/[^\/]+\/)([^\/]+\/[^\/]+\/[^\/]+)\/?$/);
     if (!fullMatch) return;
 
     const prefix = fullMatch[1];
@@ -47,15 +53,9 @@
         });
     }
 
-    async function mount() {
-        if (document.querySelector('.product-shortcut-grid')) return;
-
-        const shortcutsSection = await waitFor('.shortcuts', 5000);
-        if (shortcutsSection) shortcutsSection.style.visibility = 'hidden';
-
+    function buildTiles() {
         const container = document.createElement('div');
         container.className = 'product-shortcut-grid';
-
         for (const { label, icon, slug, id } of tiles) {
             const tile = document.createElement('a');
             tile.className = 'product-shortcut-tile';
@@ -66,14 +66,36 @@
             `;
             container.appendChild(tile);
         }
+        return container;
+    }
 
-        if (shortcutsSection) {
-            shortcutsSection.style.visibility = 'visible';
-            shortcutsSection.parentNode.insertBefore(container, shortcutsSection);
+    async function mount() {
+        // Czekamy 1.5s na Nextis server-side render. Jezeli Nextis OK,
+        // bailujemy out — nasze kafelki by stworzyly duplikat.
+        const FALLBACK_DELAY = 1500;
+        const start = Date.now();
+        while (Date.now() - start < FALLBACK_DELAY) {
+            if (document.querySelector('.product-shortcut-grid')) return;
+            await new Promise(r => setTimeout(r, 100));
+        }
+
+        // Double-check race: w trakcie czekania mogl pojawic sie grid.
+        if (document.querySelector('.product-shortcut-grid')) return;
+
+        // Nextis sie nie wyrenderowal — fallback. Wstawiamy przed .shortcuts
+        // (siatka 18 kategorii TecDoc) wewnatrz .shortcuts-container.
+        const container = buildTiles();
+        const shortcutsContainer = document.querySelector('.shortcuts-container');
+        const shortcutsSection = shortcutsContainer && shortcutsContainer.querySelector('.shortcuts');
+
+        if (shortcutsContainer && shortcutsSection) {
+            shortcutsContainer.insertBefore(container, shortcutsSection);
+        } else if (shortcutsContainer) {
+            shortcutsContainer.insertBefore(container, shortcutsContainer.firstChild);
         } else {
-            // fallback gdy .shortcuts nigdy nie pojawi sie — wstaw na koncu .flex-content
-            const fallback = document.querySelector('.flex-content') || document.body;
-            fallback.insertBefore(container, fallback.firstChild);
+            // Najgorszy fallback — wstaw na poczatek .flex-content
+            const fc = document.querySelector('.flex-content');
+            if (fc) fc.insertBefore(container, fc.firstChild);
         }
     }
 

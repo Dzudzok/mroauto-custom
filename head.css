@@ -1265,7 +1265,7 @@ padding-left: 0px !important;
 
 .flex-product-detail h1 {
     display: flex !important;
-    flex-direction: row-reverse;
+    flex-direction: row;
     justify-content: space-between;
 }
 
