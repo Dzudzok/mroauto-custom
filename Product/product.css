@@ -9,16 +9,19 @@
    Scoped przez .flex-product-detail (tylko karta produktu, nie inne strony).
    ============================================================================ */
 
-/* === .mro-product-top — placeholder z naszego Product/top.html, wypelniany przez JS === */
-.flex-product-detail .mro-product-top {
-    margin-bottom: 14px;
-}
-
-.flex-product-detail .mro-product-top-row {
+/* === BRAND STRIP — wstrzykiwany przed h1 w .flex-informations === */
+.flex-product-detail .mro-brand-strip {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+/* .mro-product-top (placeholder Product/top.html) zostaje pusty na razie —
+   moze byc wykorzystany w przyszlosci dla badges/breadcrumbs nad cala kara. */
+.flex-product-detail .mro-product-top:empty {
+    display: none;
 }
 
 .flex-product-detail .mro-brand-pill {

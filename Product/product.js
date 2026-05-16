@@ -19,33 +19,42 @@
     });
   };
 
-  // Wypelnia .mro-product-top (pusty placeholder z Product/top.html injected przez
-  // injector) — wstawia brand pill z nazwa producenta + crumb-style metadata.
-  function populateProductTop() {
-    const top = document.querySelector('.flex-product-detail .mro-product-top');
-    if (!top || top.children.length) return; // juz wypelnione
+  // Wstrzykuje brand pill PRZED <h1> w .flex-informations (prawa kolumna karty).
+  // Wczesniej wypelnialismy .mro-product-top — ale to placeholder na poczatku
+  // .flex-product-detail (przed .flex-images), wiec brand pill ladowal nad foto
+  // a nie nad tytulem. Teraz wstrzykujemy bezposrednio do .flex-informations.
+  function populateBrandPill() {
+    const info = document.querySelector('.flex-product-detail .flex-informations:not(.flex-tab)');
+    if (!info) return;
+    if (info.querySelector(':scope > .mro-brand-strip')) return; // juz wstrzykniete
 
-    const manufacturerEl = document.querySelector('.flex-product-detail .flex-manufacturer .flex-value');
-    const codeEl = document.querySelector('.flex-product-detail .flex-code .flex-value');
-    const tecdocEl = document.querySelector('.flex-product-detail .flex-tecdoc-number .flex-value');
+    const manufacturerEl = info.querySelector('.flex-manufacturer .flex-value');
+    const codeEl = info.querySelector('.flex-code .flex-value');
+    const tecdocEl = info.querySelector('.flex-tecdoc-number .flex-value');
 
     const manufacturer = manufacturerEl ? manufacturerEl.textContent.trim() : '';
     const code = codeEl ? (codeEl.value || codeEl.textContent || '').trim() : '';
     const tecdoc = tecdocEl ? tecdocEl.textContent.trim() : '';
 
-    if (!manufacturer) return; // brak danych
+    if (!manufacturer) return;
 
+    const strip = document.createElement('div');
+    strip.className = 'mro-brand-strip';
     const mark = manufacturer.slice(0, 3).toUpperCase();
-    top.innerHTML = `
-      <div class="mro-product-top-row">
-        <span class="mro-brand-pill">
-          <span class="mro-brand-pill-mark">${mark}</span>
-          <span class="mro-brand-pill-name">${manufacturer}</span>
-        </span>
-        ${code ? `<span class="mro-product-meta"><span class="mro-product-meta-label">Kód</span> <strong>${code}</strong></span>` : ''}
-        ${tecdoc && tecdoc !== code ? `<span class="mro-product-meta"><span class="mro-product-meta-label">TecDoc®</span> <strong>${tecdoc}</strong></span>` : ''}
-      </div>
+    strip.innerHTML = `
+      <span class="mro-brand-pill">
+        <span class="mro-brand-pill-mark">${mark}</span>
+        <span class="mro-brand-pill-name">${manufacturer}</span>
+      </span>
+      ${code ? `<span class="mro-product-meta"><span class="mro-product-meta-label">Kód</span> <strong>${code}</strong></span>` : ''}
+      ${tecdoc && tecdoc !== code ? `<span class="mro-product-meta"><span class="mro-product-meta-label">TecDoc®</span> <strong>${tecdoc}</strong></span>` : ''}
     `;
+    const h1 = info.querySelector(':scope > h1');
+    if (h1) {
+      info.insertBefore(strip, h1);
+    } else {
+      info.insertBefore(strip, info.firstChild);
+    }
   }
 
   // Mountowanie modern-delivery-box. Wywolywane na init() + watchdog re-mount
@@ -278,14 +287,14 @@ document.querySelectorAll(".flex-delivery-time-item").forEach((firstItem, index)
 
     // Try initial mount
     mountModernBox();
-    populateProductTop();
+    populateBrandPill();
 
     // Retry przez 8s, co 300ms. Pokrywa wszystkie race conditions z Nextis.
     let retries = 0;
     const retryInterval = setInterval(() => {
       retries++;
       mountModernBox(); // idempotent — guard sprawdza czy juz jest
-      populateProductTop(); // idempotent (skip jesli juz wypelnione)
+      populateBrandPill(); // idempotent (skip jesli juz wstrzykniete)
       if (retries >= 26) clearInterval(retryInterval); // 8s
     }, 300);
 
@@ -294,7 +303,7 @@ document.querySelectorAll(".flex-delivery-time-item").forEach((firstItem, index)
     // przestaje istniec.
     const observer = new MutationObserver(() => {
       mountModernBox(); // idempotent
-      populateProductTop();
+      populateBrandPill();
     });
     observer.observe(document.body, { childList: true, subtree: true });
 
