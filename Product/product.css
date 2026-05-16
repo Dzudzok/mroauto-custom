@@ -103,6 +103,13 @@
     cursor: text;
 }
 
+/* Konkretne pole .flex-code .flex-value z subtelnym tlem code-field */
+.flex-product-detail .flex-general .flex-informations .flex-basic-params .flex-code .flex-value {
+    background: #ebf2f8 !important;
+    padding: 4px 10px !important;
+    border-radius: 6px !important;
+}
+
 /* Nahrazuje — linki do innych produktow */
 .flex-product-detail .flex-basic-params .replaced-numbers .flex-link,
 .flex-product-detail .flex-basic-params .replaced-numbers a {
@@ -500,9 +507,9 @@ input.modern-add-btn {
 /* Hover effect */
 .mro-cta-row .modern-add-btn:hover,
 .modern-basket .modern-add-btn:hover {
-    background: #b00510 !important;
+    background: #007e05 !important;
     transform: translateY(-1px);
-    box-shadow: 0 2px 4px rgba(227, 6, 19, 0.25), 0 8px 20px rgba(227, 6, 19, 0.3);
+    box-shadow: 0 2px 4px rgb(7 44 0 / 25%), 0 8px 20px rgb(113 203 0 / 30%);
 }
 
 .mro-cta-row .modern-add-btn:active,
