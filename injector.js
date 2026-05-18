@@ -247,36 +247,61 @@
 
   ];
 
-  resources.forEach((r) => {
-    const hasPathCondition = r.pathIncludes && r.pathIncludes.length > 0;
-    const pathMatch = hasPathCondition && (r.isExactPath ? isExactPath(path, r.pathIncludes) : includesPath(path, r.pathIncludes));
-    
-    // Handle matchSelector as array or string
-    let selectorMatch = false;
-    if (r.matchSelector) {
-      if (Array.isArray(r.matchSelector)) {
-        // For arrays: use .every() if ALL selectors must exist, .some() if ANY is enough
-        selectorMatch = r.matchSelector.every(sel => document.querySelector(sel));
+  // Sprawdzenie czy resource powinien byc wstrzykniety i ewentualne wstrzykniecie.
+  // Wczesniej byl to plain forEach ktory uruchamial sie raz. Problem: gdy injector.js
+  // ladowany jako static <script src> w <head> (parser-blocking), wykonuje sie ZANIM
+  // body sparsowane. matchSelector typu 'body', '.flex-main-menu' zwracaly false →
+  // resources nie byly wstrzykiwane. Fix 2026-05-18: retry przez MutationObserver
+  // + DOMContentLoaded fallback. Resource oznaczony __injected po jednorazowym match.
+  const tryInject = () => {
+    let allDone = true;
+    resources.forEach((r) => {
+      if (r.__injected) return;
+      const hasPathCondition = r.pathIncludes && r.pathIncludes.length > 0;
+      const pathMatch = hasPathCondition && (r.isExactPath ? isExactPath(path, r.pathIncludes) : includesPath(path, r.pathIncludes));
+
+      let selectorMatch = false;
+      if (r.matchSelector) {
+        if (Array.isArray(r.matchSelector)) {
+          selectorMatch = r.matchSelector.every(sel => document.querySelector(sel));
+        } else {
+          selectorMatch = !!document.querySelector(r.matchSelector);
+        }
+      }
+
+      const shouldInject = (hasPathCondition && r.matchSelector)
+        ? (pathMatch && selectorMatch)
+        : (pathMatch || selectorMatch);
+
+      if (shouldInject) {
+        r.__injected = true;
+        if (r.css) injectCss(r.css);
+        if (r.html) injectHtml(r.html, r.targetSelector, r.position || 'afterend', 7000);
+        if (r.js) injectJs(r.js);
       } else {
-        selectorMatch = !!document.querySelector(r.matchSelector);
+        // Resource ktory nie pasuje TERAZ moze pasowac pozniej (matchSelector pojawi sie
+        // w DOM) — zostawiamy go bez __injected, retry-ujemy.
+        allDone = false;
       }
-    }
+    });
+    return allDone;
+  };
 
-    // Use AND logic if both path and selector defined, OR if only one is defined
-    const shouldInject = (hasPathCondition && r.matchSelector) 
-      ? (pathMatch && selectorMatch)  // Both must match
-      : (pathMatch || selectorMatch);  // At least one must match
+  // 1) Sprobuj od razu (czesc resources moze juz pasowac, np. matchSelector='head')
+  if (!tryInject()) {
+    // 2) Watchuj DOM — jak elementy beda parsowane przez przegladarke, MutationObserver
+    //    fires i ponowimy sprawdzenie. Disconnectujemy gdy wszystko done albo 10s timeout.
+    const observer = new MutationObserver(() => {
+      if (tryInject()) observer.disconnect();
+    });
+    observer.observe(document.documentElement, { childList: true, subtree: true });
+    setTimeout(() => { try { observer.disconnect(); } catch (e) {} }, 10000);
 
-    if (shouldInject) {
-      if (r.css) injectCss(r.css);
-      if (r.html) {
-        injectHtml(r.html, r.targetSelector, r.position || 'afterend', 7000);
-      }
-      if (r.js) {
-        injectJs(r.js);
-      }
+    // 3) Final fallback — DOMContentLoaded gwarantuje ze body sparsowane
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', () => { tryInject(); }, { once: true });
     }
-  });
+  }
 
 })();
 
