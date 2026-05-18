@@ -1346,7 +1346,7 @@ console.log('MROAUTO: Global helpers loaded');
                 a.rel = 'noopener';
             }
             if (t.action === 'vin') {
-                a.addEventListener('click', handleVinClick);
+                a.setAttribute('data-mro-action', 'vin');
             }
             a.innerHTML = `
                 <span class="mro-quick-tile-icon">${t.icon}</span>
@@ -1361,8 +1361,18 @@ console.log('MROAUTO: Global helpers loaded');
         document.body.classList.add('mro-has-quick-tiles');
     }
 
+    // Delegated VIN tile click handler — dziala tez dla tiles zbudowanych
+    // przez inline script w Head_w_nextis (pre-paint), bo nie wymaga
+    // addEventListener przy budowie. Atrybut data-mro-action="vin" na tilu.
+    function delegatedVinHandler(e) {
+        const tile = e.target.closest('.mro-quick-tile[data-mro-action="vin"]');
+        if (!tile) return;
+        handleVinClick(e);
+    }
+
     // Bootstrap: try immediate + retry + observer (Nextis renderuje async)
     function init() {
+        document.addEventListener('click', delegatedVinHandler);
         build();
         const observer = new MutationObserver(() => build());
         observer.observe(document.body || document.documentElement, { childList: true, subtree: true });
