@@ -2659,9 +2659,6 @@ box-shadow: 6px 8px 4px 0px rgb(0 0 0 / 10%);
         background-color: #f0f7fc !important;
     }
 
-    /* Natywny Cesky dropdown — ukryty przez global.js .menu-item.dropdown
-       .dropdown-button {visibility: hidden}. Zamiast tego pokazujemy nasz
-       #mro-lang-inline jako 4ty kafelek na mobile. */
     #mro-lang-inline {
         display: inline-block !important;
         margin: 0 !important;
@@ -3263,6 +3260,15 @@ box-shadow: 6px 8px 4px 0px rgb(0 0 0 / 10%);
     #mlpVehicleSearch .vehicleSearch__label {
         padding: 6px !important;
     }
+}
+
+/* === Natywny Cesky dropdown — pre-hide before paint 2026-05-16 ===
+   Regula PRZENIESIONA z global.js (injectOnceCSS) do head.css. Wczesniej
+   leciala dynamicznie po first paint = flash natywnego Cesky dropdown.
+   Teraz head.css synchroniczny = hide PRZED paintem. Globalne (mobile + desktop). */
+.menu-item.dropdown .dropdown-button {
+    visibility: hidden !important;
+    width: 1px !important;
 }
 
 /* === TecDoc kategorie — mobile fix 2026-05-16 ===
