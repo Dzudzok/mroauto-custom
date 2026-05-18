@@ -3018,6 +3018,11 @@ box-shadow: 6px 8px 4px 0px rgb(0 0 0 / 10%);
 		justify-content: space-between;
         flex-wrap: wrap;
     }
+	#ctl00\$ctl00\$BodyContentPlaceHolder\$ContentCPH\$Categories2 .content .content-block .title {
+    display: none;
+	}
+
+	
 
     .flex-select-vehicle-wizard .flex-drop-down dd .flex-collapsible ul li .flex-drop-down-link.selected {
         background: #f0f7fc !important;
