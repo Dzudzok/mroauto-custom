@@ -3262,6 +3262,17 @@ box-shadow: 6px 8px 4px 0px rgb(0 0 0 / 10%);
     }
 }
 
+/* === iOS Safari no-zoom on vehicle wizard search 2026-05-16 ===
+   iOS Safari auto-zooms gdy user fokusuje input z font-size < 16px.
+   Fix tylko dla 3 boxow w wyszukiwarce auta (znacka/model/motoryzace) —
+   user prosil zeby reszta zostala bez zmian. */
+@media (max-width: 768px) {
+    .flex-select-vehicle-wizard input[type="text"],
+    .flex-select-vehicle-wizard .flex-drop-down-search input {
+        font-size: 16px !important;
+    }
+}
+
 /* === TecDoc kategorie — mobile fix 2026-05-16 ===
    Problem: Na mobile nagłówek "Signeda - karosářské díly" (.title z h1)
    pokazywal sie MIEDZY naszymi quick tiles a drzewkiem Nextisa (.tree.main).
