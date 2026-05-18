@@ -96,7 +96,10 @@
       script.src = (src.startsWith('http') ? src : primaryBase + src) + cacheBust();
       script.defer = false;
       script.async = false;
-      document.body.appendChild(script);
+      // Fallback do head/documentElement gdy injector odpalany jako static <script>
+      // w <head> i body jeszcze nie istnieje (parser-blocking before body parse).
+      const target = document.body || document.head || document.documentElement;
+      target.appendChild(script);
     } catch (e) {
       console.warn('MROAUTO: injectJs failed', src, e);
     }
