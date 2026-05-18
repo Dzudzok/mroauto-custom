@@ -3262,15 +3262,6 @@ box-shadow: 6px 8px 4px 0px rgb(0 0 0 / 10%);
     }
 }
 
-/* === Natywny Cesky dropdown — pre-hide before paint 2026-05-16 ===
-   Regula PRZENIESIONA z global.js (injectOnceCSS) do head.css. Wczesniej
-   leciala dynamicznie po first paint = flash natywnego Cesky dropdown.
-   Teraz head.css synchroniczny = hide PRZED paintem. Globalne (mobile + desktop). */
-.menu-item.dropdown .dropdown-button {
-    visibility: hidden !important;
-    width: 1px !important;
-}
-
 /* === TecDoc kategorie — mobile fix 2026-05-16 ===
    Problem: Na mobile nagłówek "Signeda - karosářské díly" (.title z h1)
    pokazywal sie MIEDZY naszymi quick tiles a drzewkiem Nextisa (.tree.main).
